@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>记忆力挑战</title>
+  <meta name="description" content="记忆力挑战 · 挑战最强大脑，看看你能坚持到第几关？" />
+  <script type="text/javascript" src="//mat1.gtimg.com/www/js/newsapp/jsapi/news.js?_tsid=1" async=""></script>
+
+  <style>
+/* 开发预览用CSS变量 - 构建时会被替换 */
+/* CSS变量已由构建脚本内联 */
+
+/* 工具模板 - 主题变量定义 */
+body,
+.light-theme {
+  --logo-url: url("https://inews.gtimg.com/newsapp_bt/0/0929205936427_7225/0");
+}
+
+.dark-theme {
+  --logo-url: url("https://inews.gtimg.com/newsapp_bt/0/1009122307384_5356/0");
+}
+
+/* 全局重置和基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow: hidden !important;
+  height: auto;
+  min-height: auto;
+}
+
+body {
+  background-color: var(--bg-grey);
+  color: var(--t1);
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 淡入动画定义 - 优化版本，避免与高度响应冲突 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  margin: 0 12px 6px 12px;
+  padding: 16px;
+  background-color: var(--bg-white);
+  border-radius: 12px;
+  width: calc(100% - 24px);
+}
+
+/* 标题样式 */
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--t1);
+  margin: 0;
+  line-height: 28px;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t2);
+  margin: 0;
+  line-height: 14px;
+}
+
+/* 工具卡片容器 */
+.tool-card {
+  background-color: var(--bg-white);
+  border-radius: 12px;
+}
+
+/* 头部区域样式 */
+.header-section {
+  margin: 12px;
+  padding: 0;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-logo {
+  width: 210px;
+  max-width: 100%;
+  height: 14px;
+  background-image: var(--logo-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.header-status {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--t2);
+  line-height: 12px;
+}
+
+/* 标题区域间距 */
+.header-text-spaced {
+  margin-top: 12px;
+}
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html, body {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn,
+button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    opacity: 0.6;
+  }
+}
+
+.btn:active {
+  opacity: 0.6;
+  transform: scale(1.02);
+}
+
+.btn:disabled,
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+:root,
+body.light-theme {
+  --t1: #333333;
+  --t2: #5C5C5C;
+  --t5: #FFFFFF;
+  --bg-white: #FFFFFF;
+  --bg-grey: #F5F5F5;
+  --bg-block: #F7F7F7;
+  --blue-normal: #3377FF;
+  --blue-light: #EBF5FF;
+  --red-normal: #FF0055;
+  --green-normal: #00BF7E;
+  --green-light: #E6FAF0;
+  --yellow-light: #FFF6E6;
+  --orange-normal: #FF7D3E;
+}
+
+body.dark-theme {
+  --t1: #E6E6E6;
+  --t2: #A9A9A9;
+  --t5: #FFFFFF;
+  --bg-white: #1F1F1F;
+  --bg-grey: #121212;
+  --bg-block: #2B2B2B;
+  --blue-normal: #3377FF;
+  --blue-light: #273240;
+  --red-normal: #D90048;
+  --green-normal: #00BF7E;
+  --green-light: #2E3330;
+  --yellow-light: #332F29;
+  --orange-normal: #D96A35;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --t1: #E6E6E6;
+    --t2: #A9A9A9;
+    --t5: #FFFFFF;
+    --bg-white: #1F1F1F;
+    --bg-grey: #121212;
+    --bg-block: #2B2B2B;
+    --blue-normal: #3377FF;
+    --blue-light: #273240;
+    --red-normal: #D90048;
+    --green-normal: #00BF7E;
+    --green-light: #2E3330;
+    --yellow-light: #332F29;
+    --orange-normal: #D96A35;
+  }
+}
+
+.memory-match-content {
+  padding: 0;
+  background: var(--bg-white);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--t2);
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.game-main-container {
+  background: var(--bg-grey);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.game-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8px;
+  background: transparent;
+  border-radius: 8px;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.status-item:first-child {
+  justify-content: flex-start;
+}
+
+.status-item:nth-child(2) {
+  justify-content: center;
+}
+
+.status-item:last-child {
+  justify-content: flex-end;
+}
+
+.status-item:last-child .status-text {
+  min-width: 100px;
+  text-align: right;
+}
+
+.status-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: fit-content;
+}
+
+.status-text.highlight {
+  color: var(--blue-normal);
+}
+
+.status-text.warning {
+  color: var(--orange-normal);
+  animation: timePulse 1s infinite;
+}
+
+.status-text.danger {
+  color: var(--red-normal);
+  animation: timePulse 0.5s infinite;
+}
+
+.card-grid {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  justify-content: center;
+  align-content: center;
+  min-height: auto;
+  position: relative;
+  background: transparent;
+  border-radius: 8px;
+  transition: background-color 0.4s ease;
+}
+
+.card-grid.level-complete {
+  background: var(--green-light);
+  opacity: 0.9;
+}
+
+.card-grid.game-over {
+  background: var(--yellow-light);
+  opacity: 0.9;
+}
+
+.card-grid.grid-2x3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-2x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-3x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x5 {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 6px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x6 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  padding: 8px;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  transform-style: preserve-3d;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  cursor: default;
+  pointer-events: none;
+}
+
+.memory-card.matched .card-front {
+  background: var(--green-light);
+}
+
+.memory-card.shake {
+  animation: shake 0.4s ease;
+}
+
+.memory-card.disabled {
+  pointer-events: none;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 16px;
+}
+
+.card-back {
+  background: var(--blue-normal);
+  z-index: 2;
+}
+
+.card-back::after {
+  content: '?';
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--t5);
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  z-index: 1;
+  font-size: 38px;
+  background: var(--bg-white);
+}
+
+.card-grid.memory-phase .memory-card {
+  transform: rotateY(180deg);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 0 0 0;
+}
+
+.btn {
+  width: 100%;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background: var(--blue-normal);
+  color: var(--t5);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-primary-dark {
+  background: var(--blue-normal);
+  color: var(--t5);
+}
+
+.btn-primary-dark:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-secondary-light {
+  background: var(--blue-light);
+  color: var(--blue-normal);
+  border: none;
+}
+
+.btn-secondary-light:active {
+  background: var(--blue-light);
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background: var(--bg-block);
+  color: var(--blue-normal);
+  border: none;
+}
+
+.btn-secondary:active {
+  background: var(--bg-block);
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inline-result-panel {
+  background: var(--yellow-light);
+  border-radius: 16px;
+  padding: 32px 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: slideUp 0.5s ease;
+  min-height: 360px;
+  justify-content: center;
+}
+
+.inline-result-panel.level-complete {
+  background: var(--green-light);
+}
+
+.result-icon {
+  font-size: 65px;
+  margin-bottom: 8px;
+  animation: bounce 0.6s ease;
+  line-height: 1;
+}
+
+.result-icon.success {
+  color: var(--green-normal);
+}
+
+.result-icon.fail {
+  color: var(--orange-normal);
+}
+
+.result-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  text-align: center;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.result-message {
+  font-size: 14px;
+  color: var(--t2);
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.result-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  gap: 24px;
+  margin: 12px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--t2);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.result-percentage {
+  font-size: 14px;
+  color: var(--t2);
+  text-align: center;
+  margin: 2px 0;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.percentage-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange-normal);
+  margin: 0 2px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.result-actions.single {
+  justify-content: center;
+}
+
+.result-actions .btn {
+  flex: 1;
+}
+
+.game-tips {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0 0 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.tip-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotateY(180deg);
+  }
+  25% {
+    transform: translateX(-8px) rotateY(180deg);
+  }
+  75% {
+    transform: translateX(8px) rotateY(180deg);
+  }
+}
+
+@keyframes flipBack {
+  0% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) rotateY(180deg);
+  }
+  50% {
+    transform: scale(1.05) rotateY(180deg);
+  }
+}
+
+@keyframes timePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.memory-card.match-success {
+  animation: pulse 0.4s ease;
+}
+
+.memory-card.flip-back {
+  animation: flipBack 0.5s ease forwards;
+}
+
+  </style>
+</head>
+<body data-platform="tn">
+  <!-- 头部区域 -->
+  <div class="header-section">
+    <div class="header-top">
+      <div class="header-logo" role="img" aria-label="Logo"></div>
+      <span class="header-status">已为你生成工具</span>
+    </div>
+    <!-- 工具标题区域 -->
+    <div class="header-text header-text-spaced">
+      <h1 class="header-title">记忆力挑战</h1>
+      <p class="header-subtitle">挑战最强大脑，看看你能坚持到第几关？</p>
+    </div>
+  </div>
+
+  <!-- 工具内容区域 -->
+  <main class="container">
+    <div class="tool-card">
+      <div class="memory-match-content content-container">
+      <!-- 游戏主容器 - 包含状态栏、提示、卡片区域 -->
+      <div class="game-main-container">
+        <!-- 游戏状态栏 -->
+        <div class="game-status-bar" id="gameStatusBar" style="display: none;">
+          <div class="status-item">
+            <span class="status-text" id="currentLevel">关卡 1</span>
+          </div>
+          <div class="status-item">
+            <span class="status-text" id="gameHint">记忆阶段</span>
+          </div>
+          <div class="status-item">
+            <span class="status-text highlight" id="remainingTime">剩余时间 20s</span>
+          </div>
+        </div>
+
+        <!-- 卡片网格区域 -->
+        <div class="card-grid" id="cardGrid">
+          <!-- 卡片将通过JavaScript动态生成 -->
+        </div>
+      </div>
+
+      <!-- 游戏提示 -->
+      <div class="game-tips" id="gameTips">
+        <div class="tip-item">
+          <span class="tip-icon">🧠</span>
+          <span>记住卡片的位置</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">⏱️</span>
+          <span>在限定时间内完成配对</span>
+        </div>
+      </div>
+
+      <!-- 操作按钮区 -->
+      <div class="button-group">
+        <button class="btn btn-primary" id="startBtn">
+          开始挑战
+        </button>
+        <button class="btn btn-primary-dark" id="skipMemoryBtn" style="display: none;">
+          直接开始
+        </button>
+        <button class="btn btn-secondary-light" id="restartBtn" style="display: none;">
+          重新开始
+        </button>
+      </div>
+
+      <!-- 内联结果面板将通过JavaScript动态插入到这里 -->
+    </div>
+    </div>
+  </main>
+
+  <!-- 主题控制脚本 -->
+  <script type="text/javascript">
+    function setTheme(value) {
+      document.body.classList.remove("light-theme", "dark-theme");
+      const isNight = value === "2" || value === "night" || value === "dark";
+      document.body.classList.add(isNight ? "dark-theme" : "light-theme");
+    }
+
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    // 页面初始化时app会主动给网页地址注入参数isnm来通知网页当前app的主题模式，网页需要根据地址链接参数来做对应模式适配
+    try {
+      const theme = getParam("isnm") || getParam("theme");
+      if (theme) setTheme(theme);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // app切换日夜间模式时，会主动调用网页提供的回调函数
+    window.webCellManager = {
+      themeChanged: function(theme) {
+        try {
+          setTheme(theme);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    // 高度监测功能
+    function updateHeight() {
+      try {
+        const contentHeight = Math.ceil(document.body.getBoundingClientRect().height)  || 400;
+        const webViewWidth = window.innerWidth;
+        const aspectRatio = webViewWidth / contentHeight;
+
+        window?.TencentNews?.invoke('adjustWebViewInfo', {
+          aspectRatio: aspectRatio
+        });
+        window?.TencentNews?.invoke('onWebCellReady');
+        
+      } catch (e) {
+        console.error('高度更新失败:', e);
+      }
+    }
+
+    // 页面加载完成后初始化
+    window.addEventListener('load', updateHeight);
+
+    // 窗口大小变化时更新高度
+    window.addEventListener('resize', updateHeight);
+
+    // 监听内容变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(updateHeight);
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    }
+  </script>
+  <script>
+
+// ==================== 游戏配置 ====================
+const GAME_CONFIG = {
+  levels: [
+    { level: 1, stage: '新手', pairs: 4, grid: '2x4', memoryTime: 5, playTime: 20 },
+    { level: 2, stage: '简单', pairs: 6, grid: '3x4', memoryTime: 5, playTime: 30 },
+    { level: 3, stage: '简单', pairs: 6, grid: '3x4', memoryTime: 5, playTime: 30 },
+    { level: 4, stage: '中等', pairs: 8, grid: '4x4', memoryTime: 8, playTime: 40 },
+    { level: 5, stage: '中等', pairs: 8, grid: '4x4', memoryTime: 8, playTime: 40 },
+    { level: 6, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 7, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 8, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 9, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 10, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 11, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 12, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 13, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 14, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 15, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+  ],
+  
+  emojiPool: [
+    '🎨', '🎭', '🎪', '🎯', '🎲', '🎸', '🎺', '🎻',
+    '🏀', '⚽', '🏈', '🎾', '🏐', '🏓', '🏸', '🥊',
+    '🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍒',
+    '🌸', '🌺', '🌻', '🌹', '🌷', '🌼', '🌴', '🌵',
+    '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼',
+    '⭐', '🌟', '✨', '💫', '🌙', '☀️', '🌈', '🔥',
+  ],
+};
+
+// ==================== 游戏状态管理 ====================
+class MemoryMatchGame {
+  constructor() {
+    this.currentLevel = 1;
+    this.totalLevelsCleared = 0;
+    this.levelStartTime = null;
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.memoryTimer = null;
+    this.playTimer = null;
+    this.remainingTime = 0;
+    this.gamePhase = 'idle';
+    this.idleAnimationInterval = null;
+    
+    this.initElements();
+    this.bindEvents();
+    this.loadProgress();
+    this.startIdleAnimation();
+  }
+
+  initElements() {
+    this.elements = {
+      cardGrid: document.getElementById('cardGrid'),
+      currentLevel: document.getElementById('currentLevel'),
+      remainingTime: document.getElementById('remainingTime'),
+      gameHint: document.getElementById('gameHint'),
+      startBtn: document.getElementById('startBtn'),
+      skipMemoryBtn: document.getElementById('skipMemoryBtn'),
+      restartBtn: document.getElementById('restartBtn'),
+      gameStatusBar: document.getElementById('gameStatusBar'),
+    };
+  }
+
+  bindEvents() {
+    this.elements.startBtn.addEventListener('click', () => this.startGame());
+    this.elements.skipMemoryBtn.addEventListener('click', () => this.skipMemoryPhase());
+    this.elements.restartBtn.addEventListener('click', () => this.restartGame());
+  }
+
+  loadProgress() {
+    try {
+      const saved = localStorage.getItem('memoryMatchProgress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        this.currentLevel = data.currentLevel || 1;
+        this.totalLevelsCleared = data.totalLevelsCleared || 0;
+      }
+    } catch (e) {
+      console.error('加载进度失败:', e);
+    }
+    this.updateStatusBar();
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'none';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'none';
+    }
+  }
+
+  startIdleAnimation() {
+    const idleEmojis = ['🎨', '🎭', '🎸', '🎯'];
+    const idleCards = [];
+    idleEmojis.forEach((emoji, index) => {
+      idleCards.push(
+        { id: index * 2, emoji, pairId: index },
+        { id: index * 2 + 1, emoji, pairId: index }
+      );
+    });
+    
+    this.cards = idleCards.sort(() => Math.random() - 0.5);
+    
+    this.elements.cardGrid.className = 'card-grid grid-2x4';
+    this.elements.cardGrid.innerHTML = '';
+    
+    this.cards.forEach(card => {
+      const cardElement = this.createCardElement(card);
+      cardElement.style.pointerEvents = 'none';
+      this.elements.cardGrid.appendChild(cardElement);
+    });
+    
+    this.playIdleFlipAnimation();
+  }
+
+  playIdleFlipAnimation() {
+    const cards = document.querySelectorAll('.memory-card');
+    const cardArray = Array.from(cards);
+    const shuffledCards = cardArray.sort(() => Math.random() - 0.5);
+    const delayPerCard = 120;
+    const displayDuration = 1500;
+    
+    shuffledCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('flipped');
+      }, index * delayPerCard);
+    });
+    
+    const totalRevealTime = shuffledCards.length * delayPerCard + displayDuration;
+    
+    setTimeout(() => {
+      const shuffledBackCards = cardArray.sort(() => Math.random() - 0.5);
+      shuffledBackCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.remove('flipped');
+        }, index * delayPerCard);
+      });
+      
+      const totalFlipBackTime = shuffledBackCards.length * delayPerCard + 1000;
+      this.idleAnimationInterval = setTimeout(() => {
+        if (this.gamePhase === 'idle') {
+          this.playIdleFlipAnimation();
+        }
+      }, totalFlipBackTime);
+      
+    }, totalRevealTime);
+  }
+
+  stopIdleAnimation() {
+    if (this.idleAnimationInterval) {
+      clearTimeout(this.idleAnimationInterval);
+      this.idleAnimationInterval = null;
+    }
+    
+    const cards = document.querySelectorAll('.memory-card');
+    cards.forEach(card => {
+      card.classList.remove('flipped');
+    });
+  }
+
+  saveProgress() {
+    try {
+      localStorage.setItem('memoryMatchProgress', JSON.stringify({
+        currentLevel: this.currentLevel,
+        totalLevelsCleared: this.totalLevelsCleared,
+      }));
+    } catch (e) {
+      console.error('保存进度失败:', e);
+    }
+  }
+
+  getLevelConfig() {
+    const config = GAME_CONFIG.levels[this.currentLevel - 1];
+    if (!config) {
+      return {
+        level: this.currentLevel,
+        stage: '大师',
+        pairs: 12,
+        grid: '4x6',
+        memoryTime: 10,
+        playTime: 60,
+      };
+    }
+    return config;
+  }
+
+  startGame() {
+    this.stopIdleAnimation();
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'flex';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'block';
+    }
+    
+    const gameTips = document.getElementById('gameTips');
+    if (gameTips) {
+      gameTips.style.display = 'none';
+    }
+    
+    this.gamePhase = 'memory';
+    this.levelStartTime = Date.now();
+    this.matchedPairs = 0;
+    
+    const config = this.getLevelConfig();
+    this.remainingTime = config.playTime;
+    
+    this.updateStatusBar();
+    this.generateCards(config);
+    this.renderCards();
+    
+    this.elements.startBtn.style.display = 'none';
+    this.elements.skipMemoryBtn.style.display = 'block';
+    this.elements.restartBtn.style.display = 'block';
+    this.elements.gameHint.textContent = '记忆阶段';
+    
+    this.playInitialRevealAnimation(config);
+  }
+
+  generateCards(config) {
+    const { pairs } = config;
+    const shuffled = [...GAME_CONFIG.emojiPool].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, pairs);
+    
+    const cardPairs = [];
+    selected.forEach((emoji, index) => {
+      cardPairs.push(
+        { id: index * 2, emoji, pairId: index },
+        { id: index * 2 + 1, emoji, pairId: index }
+      );
+    });
+    
+    this.cards = cardPairs.sort(() => Math.random() - 0.5);
+  }
+
+  renderCards() {
+    const config = this.getLevelConfig();
+    const gridClass = `grid-${config.grid.replace('×', 'x').replace('x', 'x')}`;
+    
+    this.elements.cardGrid.className = `card-grid ${gridClass}`;
+    this.elements.cardGrid.innerHTML = '';
+    
+    this.cards.forEach(card => {
+      const cardElement = this.createCardElement(card);
+      cardElement.style.pointerEvents = '';
+      this.elements.cardGrid.appendChild(cardElement);
+    });
+  }
+
+  createCardElement(card) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'memory-card';
+    cardDiv.dataset.id = card.id;
+    cardDiv.dataset.pairId = card.pairId;
+    
+    const backFace = document.createElement('div');
+    backFace.className = 'card-face card-back';
+    
+    const frontFace = document.createElement('div');
+    frontFace.className = 'card-face card-front';
+    frontFace.textContent = card.emoji;
+    
+    cardDiv.appendChild(backFace);
+    cardDiv.appendChild(frontFace);
+    cardDiv.addEventListener('click', () => this.handleCardClick(cardDiv));
+    
+    return cardDiv;
+  }
+
+  playInitialRevealAnimation(config) {
+    const cards = document.querySelectorAll('.memory-card');
+    const totalCards = cards.length;
+    const delayPerCard = 80;
+    
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('flipped');
+      }, index * delayPerCard);
+    });
+    
+    const totalRevealTime = totalCards * delayPerCard + 300;
+    
+    setTimeout(() => {
+      this.startMemoryPhase(config.memoryTime);
+    }, totalRevealTime);
+  }
+
+  startMemoryPhase(duration) {
+    this.elements.cardGrid.classList.add('memory-phase');
+    this.elements.gameHint.textContent = `记忆阶段`;
+    
+    let countdown = duration;
+    this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
+    
+    this.memoryTimer = setInterval(() => {
+      countdown--;
+      this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
+      this.elements.gameHint.textContent = `记忆阶段`;
+      
+      if (countdown <= 0) {
+        this.endMemoryPhase();
+      }
+    }, 1000);
+  }
+
+  skipMemoryPhase() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    this.endMemoryPhase();
+  }
+
+  endMemoryPhase() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    
+    this.gamePhase = 'playing';
+    this.elements.cardGrid.classList.remove('memory-phase');
+    this.elements.skipMemoryBtn.style.display = 'none';
+    this.elements.gameHint.textContent = '配对阶段';
+    
+    const cards = document.querySelectorAll('.memory-card');
+    const cardArray = Array.from(cards);
+    
+    // 随机打乱卡片顺序，创建波浪式翻转效果
+    const shuffledCards = cardArray.sort(() => Math.random() - 0.5);
+    const delayPerCard = 50; // 每张卡片间隔50ms
+    
+    shuffledCards.forEach((card, index) => {
+      setTimeout(() => {
+        // 强制重绘，确保动画在移动设备上正确触发
+        void card.offsetHeight;
+        card.classList.remove('flipped');
+      }, index * delayPerCard);
+    });
+    
+    // 等所有卡片翻转完成后再开始计时
+    const totalFlipTime = shuffledCards.length * delayPerCard + 500;
+    setTimeout(() => {
+      this.startPlayTimer();
+    }, totalFlipTime);
+  }
+
+  startPlayTimer() {
+    this.playTimer = setInterval(() => {
+      if (this.gamePhase !== 'playing') {
+        if (this.playTimer) {
+          clearInterval(this.playTimer);
+          this.playTimer = null;
+        }
+        return;
+      }
+      
+      this.remainingTime--;
+      
+      if (this.remainingTime <= 0) {
+        this.remainingTime = 0;
+        this.updateRemainingTime();
+        this.gameFailed();
+      } else {
+        this.updateRemainingTime();
+      }
+    }, 1000);
+  }
+
+  updateRemainingTime() {
+    this.elements.remainingTime.textContent = `剩余时间 ${this.remainingTime}s`;
+    this.elements.remainingTime.classList.remove('warning', 'danger');
+    
+    if (this.remainingTime <= 0) {
+      this.elements.remainingTime.classList.add('danger');
+    } else if (this.remainingTime <= 5) {
+      this.elements.remainingTime.classList.add('danger');
+    } else if (this.remainingTime <= 10) {
+      this.elements.remainingTime.classList.add('warning');
+    }
+  }
+
+  handleCardClick(cardElement) {
+    if (this.gamePhase !== 'playing') return;
+    if (this.isProcessing) return;
+    if (cardElement.classList.contains('flipped')) return;
+    if (cardElement.classList.contains('matched')) return;
+    if (this.flippedCards.length >= 2) return;
+    
+    cardElement.classList.add('flipped');
+    this.flippedCards.push(cardElement);
+    
+    if (this.flippedCards.length === 2) {
+      this.isProcessing = true;
+      this.checkMatch();
+    }
+  }
+
+  checkMatch() {
+    const [card1, card2] = this.flippedCards;
+    const pairId1 = card1.dataset.pairId;
+    const pairId2 = card2.dataset.pairId;
+    
+    setTimeout(() => {
+      if (pairId1 === pairId2) {
+        this.handleMatchSuccess(card1, card2);
+      } else {
+        this.handleMatchFailure(card1, card2);
+      }
+      
+      this.flippedCards = [];
+      this.isProcessing = false;
+    }, 600);
+  }
+
+  handleMatchSuccess(card1, card2) {
+    card1.classList.add('matched', 'match-success');
+    card2.classList.add('matched', 'match-success');
+    
+    setTimeout(() => {
+      card1.classList.remove('match-success');
+      card2.classList.remove('match-success');
+    }, 400);
+    
+    this.matchedPairs++;
+    
+    const config = this.getLevelConfig();
+    if (this.matchedPairs === config.pairs) {
+      if (this.playTimer) {
+        clearInterval(this.playTimer);
+        this.playTimer = null;
+      }
+      this.levelComplete();
+    }
+  }
+
+  handleMatchFailure(card1, card2) {
+    card1.classList.add('shake');
+    card2.classList.add('shake');
+    
+    setTimeout(() => {
+      card1.classList.remove('shake');
+      card2.classList.remove('shake');
+      card1.classList.add('flip-back');
+      card2.classList.add('flip-back');
+      
+      setTimeout(() => {
+        card1.classList.remove('flipped', 'flip-back');
+        card2.classList.remove('flipped', 'flip-back');
+      }, 500);
+    }, 400);
+  }
+
+  // 关卡完成
+  levelComplete() {
+    // 防止重复调用
+    if (this.gamePhase === 'finished') {
+      return;
+    }
+    
+    this.gamePhase = 'finished';
+    
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    this.totalLevelsCleared++;
+    const playTime = Math.floor((Date.now() - this.levelStartTime) / 1000);
+    
+    // 保存进度
+    if (this.currentLevel >= GAME_CONFIG.levels.length) {
+      // 已完成所有预设关卡
+      this.saveProgress();
+    } else {
+      this.saveProgress();
+    }
+    
+    // 显示内联结果
+    this.showInlineResult(true, playTime);
+  }
+
+  // 游戏失败
+  gameFailed() {
+    // 防止重复调用
+    if (this.gamePhase === 'finished') {
+      return;
+    }
+    
+    this.gamePhase = 'finished';
+    
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    // 隐藏底部的重新开始按钮
+    this.elements.restartBtn.style.display = 'none';
+    
+    // 隐藏"配对阶段"提示
+    this.elements.gameHint.style.display = 'none';
+    
+    const playTime = Math.floor((Date.now() - this.levelStartTime) / 1000);
+    this.showInlineResult(false, playTime);
+  }
+
+  // 显示内联结果（替代弹窗）
+  showInlineResult(isSuccess, playTime) {
+    // 如果成功，直接显示倒计时并进入下一关
+    if (isSuccess) {
+      this.showNextLevelCountdown();
+      return;
+    }
+    
+    // 失败时显示结果面板
+    const config = this.getLevelConfig();
+    
+    // 设置卡片网格背景色
+    this.elements.cardGrid.classList.add('game-over');
+    this.elements.cardGrid.classList.remove('level-complete');
+    
+    // 隐藏整个游戏主容器，显示结果面板
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = 'none';
+    }
+    
+    // 创建结果面板
+    const resultPanel = document.createElement('div');
+    resultPanel.className = 'inline-result-panel';
+    resultPanel.id = 'inlineResultPanel';
+    
+    // 计算实际完成的关卡数（当前关卡 - 1）
+    const completedLevels = this.currentLevel - 1;
+    
+    resultPanel.innerHTML = `
+      <div class="result-icon fail">💪</div>
+      <div class="result-title">挑战到第${config.level}关，再试一次吧！</div>
+      <div class="result-message">继续挑战，突破自我！</div>
+      
+      <div class="result-stats">
+        <div class="stat-item">
+          <div class="stat-label">完成关卡</div>
+          <div class="stat-value">${completedLevels}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">成功配对</div>
+          <div class="stat-value">${this.matchedPairs}对</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">游戏时长</div>
+          <div class="stat-value">${playTime}s</div>
+        </div>
+      </div>
+      
+      <div class="result-actions single">
+        <button class="btn btn-primary" id="retryBtn">再来一次</button>
+      </div>
+    `;
+    
+    // 绑定重试按钮
+    setTimeout(() => {
+      const retryBtn = document.getElementById('retryBtn');
+      if (retryBtn) {
+        retryBtn.addEventListener('click', () => this.restartGame());
+      }
+    }, 100);
+    
+    // 将结果面板插入到 game-main-container 之后（外面）
+    if (gameMainContainer && gameMainContainer.parentNode) {
+      gameMainContainer.parentNode.insertBefore(resultPanel, gameMainContainer.nextSibling);
+    }
+  }
+
+  showNextLevelCountdown() {
+    const config = this.getLevelConfig();
+    let countdown = 3;
+    
+    this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
+    this.elements.gameHint.style.display = 'block';
+    this.elements.gameHint.classList.add('countdown-success');
+    
+    const countdownTimer = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
+      } else {
+        clearInterval(countdownTimer);
+        this.elements.gameHint.classList.remove('countdown-success');
+        this.nextLevel();
+      }
+    }, 1000);
+  }
+
+  nextLevel() {
+    this.currentLevel++;
+    this.resetLevel();
+    this.startGame();
+  }
+
+  retryLevel() {
+    this.hideInlineResult();
+    this.resetLevel();
+    this.startGame();
+  }
+
+  restartGame() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    if (this.idleAnimationInterval) {
+      clearTimeout(this.idleAnimationInterval);
+      this.idleAnimationInterval = null;
+    }
+    
+    this.hideInlineResult();
+    
+    this.currentLevel = 1;
+    this.totalLevelsCleared = 0;
+    this.levelStartTime = null;
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.remainingTime = 0;
+    this.gamePhase = 'idle';
+    
+    try {
+      localStorage.removeItem('memoryMatchProgress');
+    } catch (e) {
+      console.error('清除进度失败:', e);
+    }
+    
+    this.elements.cardGrid.innerHTML = '';
+    this.elements.cardGrid.className = 'card-grid';
+    this.elements.cardGrid.style.display = '';
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = '';
+    }
+    this.elements.startBtn.style.display = 'block';
+    this.elements.skipMemoryBtn.style.display = 'none';
+    this.elements.restartBtn.style.display = 'none';
+    this.elements.gameHint.textContent = '记忆阶段';
+    
+    const gameTips = document.getElementById('gameTips');
+    if (gameTips) {
+      gameTips.style.display = 'flex';
+    }
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'none';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'none';
+    }
+    
+    this.updateStatusBar();
+    this.startIdleAnimation();
+  }
+
+  hideInlineResult() {
+    const panel = document.getElementById('inlineResultPanel');
+    if (panel) {
+      panel.remove();
+    }
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = '';
+    }
+    this.elements.cardGrid.style.display = '';
+    this.elements.cardGrid.classList.remove('level-complete', 'game-over');
+  }
+
+  resetLevel() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.gamePhase = 'idle';
+    
+    this.elements.cardGrid.innerHTML = '';
+    this.elements.cardGrid.className = 'card-grid';
+  }
+
+  updateStatusBar() {
+    const config = this.getLevelConfig();
+    this.elements.currentLevel.textContent = `关卡 ${config.level}`;
+    
+    if (this.gamePhase === 'playing') {
+      this.elements.remainingTime.textContent = `剩余时间 ${this.remainingTime}s`;
+    } else if (this.gamePhase === 'memory') {
+      this.elements.remainingTime.textContent = `剩余时间 ${config.memoryTime}s`;
+    } else {
+      this.elements.remainingTime.textContent = `剩余时间 ${config.playTime}s`;
+    }
+    
+    this.elements.remainingTime.classList.remove('warning', 'danger');
+  }
+}
+
+let game;
+
+document.addEventListener('DOMContentLoaded', () => {
+  game = new MemoryMatchGame();
+});
+
+  </script>
+
+</body>
+</html>
