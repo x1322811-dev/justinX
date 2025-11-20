@@ -1,0 +1,2261 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<DOCUMENT>
+  <item>
+    <key><![CDATA[memory-match_tool_qb]]></key>
+    <!-- 请务必填写：key，必填标签。一定要填，用来和其他卡片区分，所以可以起的特殊一些，字母数字汉字都能组合。 -->
+    <display>
+      <title><![CDATA[记忆力挑战]]></title>
+      <!-- 标题，必填标签。最多出现1次。最少1字节，最多128字节。 -->
+      <url><![CDATA[http://open-sogou（若url字段不在前端使用，请统一使用此标记）]]></url>
+      <!-- url，必填标签。这条不用改，不用管。 -->
+      <motion_copy><![CDATA[<!DOCTYPE html>
+<html lang="zh-CN" data-color-scheme="light">
+<head>
+  <!-- 内联脚本：立即检测并设置日夜模式，避免闪烁 -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('qb-color-scheme');
+        const scheme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-color-scheme', scheme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>记忆力挑战</title>
+  <meta name="description" content="记忆力挑战 · 挑战最强大脑，看看你能坚持到第几关？" />
+  <style>
+    /* QQ浏览器模板 - 精简版，避免与shared.css重复 */
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--t1);
+      line-height: 1.5;
+      min-height: auto;
+      height: auto;
+    }
+
+    /* 适配iframe高度传递需求 */
+    html, body {
+      width: 100%;
+    }
+
+    main {
+      width: 100%;
+      min-height: auto;
+      height: auto;
+      position: relative;
+    }
+
+    /* 标题区域样式 */
+    .header-section {
+      margin: 0 0 16px 0;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 28px;
+      color: var(--t1);
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--t2);
+      margin: 0;
+      line-height: 14px;
+    }
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html, body {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn,
+button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    opacity: 0.6;
+  }
+}
+
+.btn:active {
+  opacity: 0.6;
+  transform: scale(1.02);
+}
+
+.btn:disabled,
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+}
+
+:root,
+[data-color-scheme='light'] {
+  --t1: #242424;
+  --t2: #666666;
+  --t5: #FFFFFF;
+  --bg-white: #FFFFFF;
+  --bg-grey: #F5F5F5;
+  --bg-block: #F7F7F7;   
+  --blue-normal: #205AEF;
+  --blue-light: rgba(32, 90, 239, 0.08);
+  --green-normal: #0BB861;
+  --green-light: rgba(11, 184, 97, 0.08);
+  --red-normal: #F44837;
+  --yellow-light: rgba(255, 149, 13, 0.08);
+}
+
+[data-color-scheme='dark'] {
+  --t1: #A3A3A3;
+  --t2: #7F7F7F;
+  --t5: #FFFFFF;
+  --bg-white: #1A1A1A;
+  --bg-grey: #262626;
+  --bg-block: #262626;
+  --blue-normal: #1F4DC4;
+  --blue-light: rgba(31, 77, 196, 0.15);
+  --green-normal: #0E9853;
+  --green-light: rgba(14, 152, 83, 0.15);
+  --red-normal: #C83F31;
+  --yellow-light: rgba(209, 160, 15, 0.15);
+}
+
+.memory-match-content {
+  padding: 0;
+  background: var(--bg-white);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--t2);
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.game-main-container {
+  background: var(--bg-grey);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.game-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8px;
+  background: transparent;
+  border-radius: 8px;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.status-item:first-child {
+  justify-content: flex-start;
+}
+
+.status-item:nth-child(2) {
+  justify-content: center;
+}
+
+.status-item:last-child {
+  justify-content: flex-end;
+}
+
+.status-item:last-child .status-text {
+  min-width: 100px;
+  text-align: right;
+}
+
+.status-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t1);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: fit-content;
+}
+
+.status-text.highlight {
+  color: var(--blue-normal);
+}
+
+.status-text.warning {
+  color: var(--orange-normal);
+  animation: timePulse 1s infinite;
+}
+
+.status-text.danger {
+  color: var(--red-normal);
+  animation: timePulse 0.5s infinite;
+}
+
+.card-grid {
+  display: grid;
+  gap: 8px;
+  padding: 8px;
+  justify-content: center;
+  align-content: center;
+  min-height: auto;
+  position: relative;
+  background: transparent;
+  border-radius: 8px;
+  transition: background-color 0.4s ease;
+}
+
+.card-grid.level-complete {
+  background: var(--green-light);
+  opacity: 0.9;
+}
+
+.card-grid.game-over {
+  background: var(--yellow-light);
+  opacity: 0.9;
+}
+
+.card-grid.grid-2x3 {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-2x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-3x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x4 {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x5 {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 6px;
+  padding: 8px;
+}
+
+.card-grid.grid-4x6 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  padding: 8px;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  transform-style: preserve-3d;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  cursor: default;
+  pointer-events: none;
+}
+
+.memory-card.matched .card-front {
+  background: var(--green-light);
+}
+
+.memory-card.shake {
+  animation: shake 0.4s ease;
+}
+
+.memory-card.disabled {
+  pointer-events: none;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 16px;
+}
+
+.card-back {
+  background: var(--blue-normal);
+  z-index: 2;
+}
+
+.card-back::after {
+  content: '?';
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--t5);
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  z-index: 1;
+  font-size: 38px;
+  background: var(--bg-white);
+}
+
+.card-grid.memory-phase .memory-card {
+  transform: rotateY(180deg);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 0 0 0;
+}
+
+.btn {
+  width: 100%;
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background: var(--blue-normal);
+  color: var(--t5);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-primary-dark {
+  background: var(--blue-normal);
+  color: var(--t5);
+}
+
+.btn-primary-dark:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-secondary-light {
+  background: var(--blue-light);
+  color: var(--blue-normal);
+  border: none;
+}
+
+.btn-secondary-light:active {
+  background: var(--blue-light);
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background: var(--bg-block);
+  color: var(--blue-normal);
+  border: none;
+}
+
+.btn-secondary:active {
+  background: var(--bg-block);
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inline-result-panel {
+  background: var(--yellow-light);
+  border-radius: 16px;
+  padding: 32px 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: slideUp 0.5s ease;
+  min-height: 360px;
+  justify-content: center;
+}
+
+.inline-result-panel.level-complete {
+  background: var(--green-light);
+}
+
+.result-icon {
+  font-size: 65px;
+  margin-bottom: 8px;
+  animation: bounce 0.6s ease;
+  line-height: 1;
+}
+
+.result-icon.success {
+  color: var(--green-normal);
+}
+
+.result-icon.fail {
+  color: var(--orange-normal);
+}
+
+.result-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--t1);
+  text-align: center;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.result-message {
+  font-size: 14px;
+  color: var(--t2);
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.result-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  gap: 24px;
+  margin: 12px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--t2);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.result-percentage {
+  font-size: 14px;
+  color: var(--t2);
+  text-align: center;
+  margin: 2px 0;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.percentage-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange-normal);
+  margin: 0 2px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.result-actions.single {
+  justify-content: center;
+}
+
+.result-actions .btn {
+  flex: 1;
+}
+
+.game-tips {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0 0 0;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--t2);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.tip-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotateY(180deg);
+  }
+  25% {
+    transform: translateX(-8px) rotateY(180deg);
+  }
+  75% {
+    transform: translateX(8px) rotateY(180deg);
+  }
+}
+
+@keyframes flipBack {
+  0% {
+    transform: rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) rotateY(180deg);
+  }
+  50% {
+    transform: scale(1.05) rotateY(180deg);
+  }
+}
+
+@keyframes timePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.memory-card.match-success {
+  animation: pulse 0.4s ease;
+}
+
+.memory-card.flip-back {
+  animation: flipBack 0.5s ease forwards;
+}
+
+  </style>
+
+</head>
+
+<body data-platform="qb">
+  <main>
+    <!-- 标题区域 - 严格按照参考样式 -->
+    <div class="header-section">
+      <div class="header-text">
+        <h1 class="header-title">记忆力挑战</h1>
+        <p class="header-subtitle">挑战最强大脑，看看你能坚持到第几关？</p>
+      </div>
+    </div>
+
+    <!-- 工具内容区域 -->
+    <div class="memory-match-content content-container">
+      <!-- 游戏主容器 - 包含状态栏、提示、卡片区域 -->
+      <div class="game-main-container">
+        <!-- 游戏状态栏 -->
+        <div class="game-status-bar" id="gameStatusBar" style="display: none;">
+          <div class="status-item">
+            <span class="status-text" id="currentLevel">关卡 1</span>
+          </div>
+          <div class="status-item">
+            <span class="status-text" id="gameHint">记忆阶段</span>
+          </div>
+          <div class="status-item">
+            <span class="status-text highlight" id="remainingTime">剩余时间 20s</span>
+          </div>
+        </div>
+
+        <!-- 卡片网格区域 -->
+        <div class="card-grid" id="cardGrid">
+          <!-- 卡片将通过JavaScript动态生成 -->
+        </div>
+      </div>
+
+      <!-- 游戏提示 -->
+      <div class="game-tips" id="gameTips">
+        <div class="tip-item">
+          <span class="tip-icon">🧠</span>
+          <span>记住卡片的位置</span>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">⏱️</span>
+          <span>在限定时间内完成配对</span>
+        </div>
+      </div>
+
+      <!-- 操作按钮区 -->
+      <div class="button-group">
+        <button class="btn btn-primary" id="startBtn">
+          开始挑战
+        </button>
+        <button class="btn btn-primary-dark" id="skipMemoryBtn" style="display: none;">
+          直接开始
+        </button>
+        <button class="btn btn-secondary-light" id="restartBtn" style="display: none;">
+          重新开始
+        </button>
+      </div>
+
+      <!-- 内联结果面板将通过JavaScript动态插入到这里 -->
+    </div>
+  </main>
+  <script>
+
+// ==================== 游戏配置 ====================
+const GAME_CONFIG = {
+  levels: [
+    { level: 1, stage: '新手', pairs: 4, grid: '2x4', memoryTime: 5, playTime: 20 },
+    { level: 2, stage: '简单', pairs: 6, grid: '3x4', memoryTime: 5, playTime: 30 },
+    { level: 3, stage: '简单', pairs: 6, grid: '3x4', memoryTime: 5, playTime: 30 },
+    { level: 4, stage: '中等', pairs: 8, grid: '4x4', memoryTime: 8, playTime: 40 },
+    { level: 5, stage: '中等', pairs: 8, grid: '4x4', memoryTime: 8, playTime: 40 },
+    { level: 6, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 7, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 8, stage: '困难', pairs: 10, grid: '4x5', memoryTime: 10, playTime: 50 },
+    { level: 9, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 10, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 11, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 12, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 13, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 14, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+    { level: 15, stage: '大师', pairs: 12, grid: '4x6', memoryTime: 10, playTime: 60 },
+  ],
+  
+  emojiPool: [
+    '🎨', '🎭', '🎪', '🎯', '🎲', '🎸', '🎺', '🎻',
+    '🏀', '⚽', '🏈', '🎾', '🏐', '🏓', '🏸', '🥊',
+    '🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍒',
+    '🌸', '🌺', '🌻', '🌹', '🌷', '🌼', '🌴', '🌵',
+    '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼',
+    '⭐', '🌟', '✨', '💫', '🌙', '☀️', '🌈', '🔥',
+  ],
+};
+
+// ==================== 游戏状态管理 ====================
+class MemoryMatchGame {
+  constructor() {
+    this.currentLevel = 1;
+    this.totalLevelsCleared = 0;
+    this.levelStartTime = null;
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.memoryTimer = null;
+    this.playTimer = null;
+    this.remainingTime = 0;
+    this.gamePhase = 'idle';
+    this.idleAnimationInterval = null;
+    
+    this.initElements();
+    this.bindEvents();
+    this.loadProgress();
+    this.startIdleAnimation();
+  }
+
+  initElements() {
+    this.elements = {
+      cardGrid: document.getElementById('cardGrid'),
+      currentLevel: document.getElementById('currentLevel'),
+      remainingTime: document.getElementById('remainingTime'),
+      gameHint: document.getElementById('gameHint'),
+      startBtn: document.getElementById('startBtn'),
+      skipMemoryBtn: document.getElementById('skipMemoryBtn'),
+      restartBtn: document.getElementById('restartBtn'),
+      gameStatusBar: document.getElementById('gameStatusBar'),
+    };
+  }
+
+  bindEvents() {
+    this.elements.startBtn.addEventListener('click', () => this.startGame());
+    this.elements.skipMemoryBtn.addEventListener('click', () => this.skipMemoryPhase());
+    this.elements.restartBtn.addEventListener('click', () => this.restartGame());
+  }
+
+  loadProgress() {
+    try {
+      const saved = localStorage.getItem('memoryMatchProgress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        this.currentLevel = data.currentLevel || 1;
+        this.totalLevelsCleared = data.totalLevelsCleared || 0;
+      }
+    } catch (e) {
+      console.error('加载进度失败:', e);
+    }
+    this.updateStatusBar();
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'none';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'none';
+    }
+  }
+
+  startIdleAnimation() {
+    const idleEmojis = ['🎨', '🎭', '🎸', '🎯'];
+    const idleCards = [];
+    idleEmojis.forEach((emoji, index) => {
+      idleCards.push(
+        { id: index * 2, emoji, pairId: index },
+        { id: index * 2 + 1, emoji, pairId: index }
+      );
+    });
+    
+    this.cards = idleCards.sort(() => Math.random() - 0.5);
+    
+    this.elements.cardGrid.className = 'card-grid grid-2x4';
+    this.elements.cardGrid.innerHTML = '';
+    
+    this.cards.forEach(card => {
+      const cardElement = this.createCardElement(card);
+      cardElement.style.pointerEvents = 'none';
+      this.elements.cardGrid.appendChild(cardElement);
+    });
+    
+    this.playIdleFlipAnimation();
+  }
+
+  playIdleFlipAnimation() {
+    const cards = document.querySelectorAll('.memory-card');
+    const cardArray = Array.from(cards);
+    const shuffledCards = cardArray.sort(() => Math.random() - 0.5);
+    const delayPerCard = 120;
+    const displayDuration = 1500;
+    
+    shuffledCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('flipped');
+      }, index * delayPerCard);
+    });
+    
+    const totalRevealTime = shuffledCards.length * delayPerCard + displayDuration;
+    
+    setTimeout(() => {
+      const shuffledBackCards = cardArray.sort(() => Math.random() - 0.5);
+      shuffledBackCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.remove('flipped');
+        }, index * delayPerCard);
+      });
+      
+      const totalFlipBackTime = shuffledBackCards.length * delayPerCard + 1000;
+      this.idleAnimationInterval = setTimeout(() => {
+        if (this.gamePhase === 'idle') {
+          this.playIdleFlipAnimation();
+        }
+      }, totalFlipBackTime);
+      
+    }, totalRevealTime);
+  }
+
+  stopIdleAnimation() {
+    if (this.idleAnimationInterval) {
+      clearTimeout(this.idleAnimationInterval);
+      this.idleAnimationInterval = null;
+    }
+    
+    const cards = document.querySelectorAll('.memory-card');
+    cards.forEach(card => {
+      card.classList.remove('flipped');
+    });
+  }
+
+  saveProgress() {
+    try {
+      localStorage.setItem('memoryMatchProgress', JSON.stringify({
+        currentLevel: this.currentLevel,
+        totalLevelsCleared: this.totalLevelsCleared,
+      }));
+    } catch (e) {
+      console.error('保存进度失败:', e);
+    }
+  }
+
+  getLevelConfig() {
+    const config = GAME_CONFIG.levels[this.currentLevel - 1];
+    if (!config) {
+      return {
+        level: this.currentLevel,
+        stage: '大师',
+        pairs: 12,
+        grid: '4x6',
+        memoryTime: 10,
+        playTime: 60,
+      };
+    }
+    return config;
+  }
+
+  startGame() {
+    this.stopIdleAnimation();
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'flex';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'block';
+    }
+    
+    const gameTips = document.getElementById('gameTips');
+    if (gameTips) {
+      gameTips.style.display = 'none';
+    }
+    
+    this.gamePhase = 'memory';
+    this.levelStartTime = Date.now();
+    this.matchedPairs = 0;
+    
+    const config = this.getLevelConfig();
+    this.remainingTime = config.playTime;
+    
+    this.updateStatusBar();
+    this.generateCards(config);
+    this.renderCards();
+    
+    this.elements.startBtn.style.display = 'none';
+    this.elements.skipMemoryBtn.style.display = 'block';
+    this.elements.restartBtn.style.display = 'block';
+    this.elements.gameHint.textContent = '记忆阶段';
+    
+    this.playInitialRevealAnimation(config);
+  }
+
+  generateCards(config) {
+    const { pairs } = config;
+    const shuffled = [...GAME_CONFIG.emojiPool].sort(() => Math.random() - 0.5);
+    const selected = shuffled.slice(0, pairs);
+    
+    const cardPairs = [];
+    selected.forEach((emoji, index) => {
+      cardPairs.push(
+        { id: index * 2, emoji, pairId: index },
+        { id: index * 2 + 1, emoji, pairId: index }
+      );
+    });
+    
+    this.cards = cardPairs.sort(() => Math.random() - 0.5);
+  }
+
+  renderCards() {
+    const config = this.getLevelConfig();
+    const gridClass = `grid-${config.grid.replace('×', 'x').replace('x', 'x')}`;
+    
+    this.elements.cardGrid.className = `card-grid ${gridClass}`;
+    this.elements.cardGrid.innerHTML = '';
+    
+    this.cards.forEach(card => {
+      const cardElement = this.createCardElement(card);
+      cardElement.style.pointerEvents = '';
+      this.elements.cardGrid.appendChild(cardElement);
+    });
+  }
+
+  createCardElement(card) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'memory-card';
+    cardDiv.dataset.id = card.id;
+    cardDiv.dataset.pairId = card.pairId;
+    
+    const backFace = document.createElement('div');
+    backFace.className = 'card-face card-back';
+    
+    const frontFace = document.createElement('div');
+    frontFace.className = 'card-face card-front';
+    frontFace.textContent = card.emoji;
+    
+    cardDiv.appendChild(backFace);
+    cardDiv.appendChild(frontFace);
+    cardDiv.addEventListener('click', () => this.handleCardClick(cardDiv));
+    
+    return cardDiv;
+  }
+
+  playInitialRevealAnimation(config) {
+    const cards = document.querySelectorAll('.memory-card');
+    const totalCards = cards.length;
+    const delayPerCard = 80;
+    
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('flipped');
+      }, index * delayPerCard);
+    });
+    
+    const totalRevealTime = totalCards * delayPerCard + 300;
+    
+    setTimeout(() => {
+      this.startMemoryPhase(config.memoryTime);
+    }, totalRevealTime);
+  }
+
+  startMemoryPhase(duration) {
+    this.elements.cardGrid.classList.add('memory-phase');
+    this.elements.gameHint.textContent = `记忆阶段`;
+    
+    let countdown = duration;
+    this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
+    
+    this.memoryTimer = setInterval(() => {
+      countdown--;
+      this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
+      this.elements.gameHint.textContent = `记忆阶段`;
+      
+      if (countdown <= 0) {
+        this.endMemoryPhase();
+      }
+    }, 1000);
+  }
+
+  skipMemoryPhase() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    this.endMemoryPhase();
+  }
+
+  endMemoryPhase() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    
+    this.gamePhase = 'playing';
+    this.elements.cardGrid.classList.remove('memory-phase');
+    this.elements.skipMemoryBtn.style.display = 'none';
+    this.elements.gameHint.textContent = '配对阶段';
+    
+    const cards = document.querySelectorAll('.memory-card');
+    const cardArray = Array.from(cards);
+    
+    // 随机打乱卡片顺序，创建波浪式翻转效果
+    const shuffledCards = cardArray.sort(() => Math.random() - 0.5);
+    const delayPerCard = 50; // 每张卡片间隔50ms
+    
+    shuffledCards.forEach((card, index) => {
+      setTimeout(() => {
+        // 强制重绘，确保动画在移动设备上正确触发
+        void card.offsetHeight;
+        card.classList.remove('flipped');
+      }, index * delayPerCard);
+    });
+    
+    // 等所有卡片翻转完成后再开始计时
+    const totalFlipTime = shuffledCards.length * delayPerCard + 500;
+    setTimeout(() => {
+      this.startPlayTimer();
+    }, totalFlipTime);
+  }
+
+  startPlayTimer() {
+    this.playTimer = setInterval(() => {
+      if (this.gamePhase !== 'playing') {
+        if (this.playTimer) {
+          clearInterval(this.playTimer);
+          this.playTimer = null;
+        }
+        return;
+      }
+      
+      this.remainingTime--;
+      
+      if (this.remainingTime <= 0) {
+        this.remainingTime = 0;
+        this.updateRemainingTime();
+        this.gameFailed();
+      } else {
+        this.updateRemainingTime();
+      }
+    }, 1000);
+  }
+
+  updateRemainingTime() {
+    this.elements.remainingTime.textContent = `剩余时间 ${this.remainingTime}s`;
+    this.elements.remainingTime.classList.remove('warning', 'danger');
+    
+    if (this.remainingTime <= 0) {
+      this.elements.remainingTime.classList.add('danger');
+    } else if (this.remainingTime <= 5) {
+      this.elements.remainingTime.classList.add('danger');
+    } else if (this.remainingTime <= 10) {
+      this.elements.remainingTime.classList.add('warning');
+    }
+  }
+
+  handleCardClick(cardElement) {
+    if (this.gamePhase !== 'playing') return;
+    if (this.isProcessing) return;
+    if (cardElement.classList.contains('flipped')) return;
+    if (cardElement.classList.contains('matched')) return;
+    if (this.flippedCards.length >= 2) return;
+    
+    cardElement.classList.add('flipped');
+    this.flippedCards.push(cardElement);
+    
+    if (this.flippedCards.length === 2) {
+      this.isProcessing = true;
+      this.checkMatch();
+    }
+  }
+
+  checkMatch() {
+    const [card1, card2] = this.flippedCards;
+    const pairId1 = card1.dataset.pairId;
+    const pairId2 = card2.dataset.pairId;
+    
+    setTimeout(() => {
+      if (pairId1 === pairId2) {
+        this.handleMatchSuccess(card1, card2);
+      } else {
+        this.handleMatchFailure(card1, card2);
+      }
+      
+      this.flippedCards = [];
+      this.isProcessing = false;
+    }, 600);
+  }
+
+  handleMatchSuccess(card1, card2) {
+    card1.classList.add('matched', 'match-success');
+    card2.classList.add('matched', 'match-success');
+    
+    setTimeout(() => {
+      card1.classList.remove('match-success');
+      card2.classList.remove('match-success');
+    }, 400);
+    
+    this.matchedPairs++;
+    
+    const config = this.getLevelConfig();
+    if (this.matchedPairs === config.pairs) {
+      if (this.playTimer) {
+        clearInterval(this.playTimer);
+        this.playTimer = null;
+      }
+      this.levelComplete();
+    }
+  }
+
+  handleMatchFailure(card1, card2) {
+    card1.classList.add('shake');
+    card2.classList.add('shake');
+    
+    setTimeout(() => {
+      card1.classList.remove('shake');
+      card2.classList.remove('shake');
+      card1.classList.add('flip-back');
+      card2.classList.add('flip-back');
+      
+      setTimeout(() => {
+        card1.classList.remove('flipped', 'flip-back');
+        card2.classList.remove('flipped', 'flip-back');
+      }, 500);
+    }, 400);
+  }
+
+  // 关卡完成
+  levelComplete() {
+    // 防止重复调用
+    if (this.gamePhase === 'finished') {
+      return;
+    }
+    
+    this.gamePhase = 'finished';
+    
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    this.totalLevelsCleared++;
+    const playTime = Math.floor((Date.now() - this.levelStartTime) / 1000);
+    
+    // 保存进度
+    if (this.currentLevel >= GAME_CONFIG.levels.length) {
+      // 已完成所有预设关卡
+      this.saveProgress();
+    } else {
+      this.saveProgress();
+    }
+    
+    // 显示内联结果
+    this.showInlineResult(true, playTime);
+  }
+
+  // 游戏失败
+  gameFailed() {
+    // 防止重复调用
+    if (this.gamePhase === 'finished') {
+      return;
+    }
+    
+    this.gamePhase = 'finished';
+    
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    // 隐藏底部的重新开始按钮
+    this.elements.restartBtn.style.display = 'none';
+    
+    // 隐藏"配对阶段"提示
+    this.elements.gameHint.style.display = 'none';
+    
+    const playTime = Math.floor((Date.now() - this.levelStartTime) / 1000);
+    this.showInlineResult(false, playTime);
+  }
+
+  // 显示内联结果（替代弹窗）
+  showInlineResult(isSuccess, playTime) {
+    // 如果成功，直接显示倒计时并进入下一关
+    if (isSuccess) {
+      this.showNextLevelCountdown();
+      return;
+    }
+    
+    // 失败时显示结果面板
+    const config = this.getLevelConfig();
+    
+    // 设置卡片网格背景色
+    this.elements.cardGrid.classList.add('game-over');
+    this.elements.cardGrid.classList.remove('level-complete');
+    
+    // 隐藏整个游戏主容器，显示结果面板
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = 'none';
+    }
+    
+    // 创建结果面板
+    const resultPanel = document.createElement('div');
+    resultPanel.className = 'inline-result-panel';
+    resultPanel.id = 'inlineResultPanel';
+    
+    // 计算实际完成的关卡数（当前关卡 - 1）
+    const completedLevels = this.currentLevel - 1;
+    
+    resultPanel.innerHTML = `
+      <div class="result-icon fail">💪</div>
+      <div class="result-title">挑战到第${config.level}关，再试一次吧！</div>
+      <div class="result-message">继续挑战，突破自我！</div>
+      
+      <div class="result-stats">
+        <div class="stat-item">
+          <div class="stat-label">完成关卡</div>
+          <div class="stat-value">${completedLevels}</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">成功配对</div>
+          <div class="stat-value">${this.matchedPairs}对</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">游戏时长</div>
+          <div class="stat-value">${playTime}s</div>
+        </div>
+      </div>
+      
+      <div class="result-actions single">
+        <button class="btn btn-primary" id="retryBtn">再来一次</button>
+      </div>
+    `;
+    
+    // 绑定重试按钮
+    setTimeout(() => {
+      const retryBtn = document.getElementById('retryBtn');
+      if (retryBtn) {
+        retryBtn.addEventListener('click', () => this.restartGame());
+      }
+    }, 100);
+    
+    // 将结果面板插入到 game-main-container 之后（外面）
+    if (gameMainContainer && gameMainContainer.parentNode) {
+      gameMainContainer.parentNode.insertBefore(resultPanel, gameMainContainer.nextSibling);
+    }
+  }
+
+  showNextLevelCountdown() {
+    const config = this.getLevelConfig();
+    let countdown = 3;
+    
+    this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
+    this.elements.gameHint.style.display = 'block';
+    this.elements.gameHint.classList.add('countdown-success');
+    
+    const countdownTimer = setInterval(() => {
+      countdown--;
+      if (countdown > 0) {
+        this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
+      } else {
+        clearInterval(countdownTimer);
+        this.elements.gameHint.classList.remove('countdown-success');
+        this.nextLevel();
+      }
+    }, 1000);
+  }
+
+  nextLevel() {
+    this.currentLevel++;
+    this.resetLevel();
+    this.startGame();
+  }
+
+  retryLevel() {
+    this.hideInlineResult();
+    this.resetLevel();
+    this.startGame();
+  }
+
+  restartGame() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    if (this.idleAnimationInterval) {
+      clearTimeout(this.idleAnimationInterval);
+      this.idleAnimationInterval = null;
+    }
+    
+    this.hideInlineResult();
+    
+    this.currentLevel = 1;
+    this.totalLevelsCleared = 0;
+    this.levelStartTime = null;
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.remainingTime = 0;
+    this.gamePhase = 'idle';
+    
+    try {
+      localStorage.removeItem('memoryMatchProgress');
+    } catch (e) {
+      console.error('清除进度失败:', e);
+    }
+    
+    this.elements.cardGrid.innerHTML = '';
+    this.elements.cardGrid.className = 'card-grid';
+    this.elements.cardGrid.style.display = '';
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = '';
+    }
+    this.elements.startBtn.style.display = 'block';
+    this.elements.skipMemoryBtn.style.display = 'none';
+    this.elements.restartBtn.style.display = 'none';
+    this.elements.gameHint.textContent = '记忆阶段';
+    
+    const gameTips = document.getElementById('gameTips');
+    if (gameTips) {
+      gameTips.style.display = 'flex';
+    }
+    
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'none';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'none';
+    }
+    
+    this.updateStatusBar();
+    this.startIdleAnimation();
+  }
+
+  hideInlineResult() {
+    const panel = document.getElementById('inlineResultPanel');
+    if (panel) {
+      panel.remove();
+    }
+    const gameMainContainer = document.querySelector('.game-main-container');
+    if (gameMainContainer) {
+      gameMainContainer.style.display = '';
+    }
+    this.elements.cardGrid.style.display = '';
+    this.elements.cardGrid.classList.remove('level-complete', 'game-over');
+  }
+
+  resetLevel() {
+    if (this.memoryTimer) {
+      clearInterval(this.memoryTimer);
+      this.memoryTimer = null;
+    }
+    if (this.playTimer) {
+      clearInterval(this.playTimer);
+      this.playTimer = null;
+    }
+    
+    this.cards = [];
+    this.flippedCards = [];
+    this.matchedPairs = 0;
+    this.isProcessing = false;
+    this.gamePhase = 'idle';
+    
+    this.elements.cardGrid.innerHTML = '';
+    this.elements.cardGrid.className = 'card-grid';
+  }
+
+  updateStatusBar() {
+    const config = this.getLevelConfig();
+    this.elements.currentLevel.textContent = `关卡 ${config.level}`;
+    
+    if (this.gamePhase === 'playing') {
+      this.elements.remainingTime.textContent = `剩余时间 ${this.remainingTime}s`;
+    } else if (this.gamePhase === 'memory') {
+      this.elements.remainingTime.textContent = `剩余时间 ${config.memoryTime}s`;
+    } else {
+      this.elements.remainingTime.textContent = `剩余时间 ${config.playTime}s`;
+    }
+    
+    this.elements.remainingTime.classList.remove('warning', 'danger');
+  }
+}
+
+let game;
+
+document.addEventListener('DOMContentLoaded', () => {
+  game = new MemoryMatchGame();
+});
+
+  </script>
+
+  <!-- 日夜间模式自动同步脚本 -->
+  <script>
+/**
+ * QB小工具 - 日夜模式自动同步脚本 V2
+ * Dark Mode Auto Sync for QB Tools V2
+ * 
+ * 功能说明：
+ * 1. 优先检测浏览器的日夜模式设置（localStorage），其次检测系统偏好
+ * 2. 通过设置 data-color-scheme 属性来控制样式
+ * 3. 监听系统模式变化并实时切换
+ * 4. 支持手动切换并持久化用户偏好
+ */
+
+(function() {
+  'use strict';
+
+  // 本地存储的键名
+  const STORAGE_KEY = 'qb-color-scheme';
+  
+  /**
+   * 获取浏览器存储的模式偏好
+   * @returns {string|null} 'dark', 'light' 或 null（未设置）
+   */
+  function getBrowserPreference() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法访问 localStorage:', e.message);
+      return null;
+    }
+  }
+
+  /**
+   * 保存模式偏好到浏览器
+   * @param {string} scheme - 'dark' 或 'light'
+   */
+  function saveBrowserPreference(scheme) {
+    try {
+      localStorage.setItem(STORAGE_KEY, scheme);
+      console.log('[Dark Mode Sync V2] 已保存用户偏好:', scheme);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法保存到 localStorage:', e.message);
+    }
+  }
+
+  /**
+   * 检测系统是否为夜间模式
+   * @returns {boolean} true表示夜间模式，false表示日间模式
+   */
+  function isSystemDarkMode() {
+    // 桌面端永远返回日间模式
+    if (isDesktop()) {
+      console.log('[Dark Mode Sync V2] 桌面端检测：强制返回日间模式');
+      return false;
+    }
+
+    // 针对iOS做特殊处理
+    if (isIOS()&&isQQBrowser()) {
+      try {
+        // 如果在iframe中，尝试获取主iframe的html
+        let targetRoot = document.querySelector('html');
+        
+        // 尝试访问父窗口的document（如果在iframe中）
+        try {
+          if (window.parent && window.parent !== window && window.parent.document) {
+            targetRoot = window.parent.document.querySelector('html');
+          }
+        } catch (e) {
+          // 跨域限制，继续使用当前document
+        }
+        
+        const darkAttr = targetRoot.attributes.getNamedItem('data-darkreader-scheme');
+        
+        if (darkAttr) {
+          if (darkAttr.value === 'dark') {
+            return true; // 夜间模式
+          } else {
+            return false; // 日间模式
+          }
+        }
+      } catch (e) {
+        console.debug('[Dark Mode Sync V2] iOS特殊处理失败:', e.message);
+      }
+    }
+    
+    // 适配darkreader.js
+    if (window.__DARKREADER_COLOR_SCHEME__) {
+      return window.__DARKREADER_COLOR_SCHEME__ === 'dark';
+    }
+
+    // 移动端才使用 matchMedia 检测系统偏好
+    if (window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    return false;
+  }
+
+  /**
+   * 获取当前应该使用的模式
+   * 优先级：浏览器设置 > 系统设置
+   * @returns {string} 'dark' 或 'light'
+   */
+  function getCurrentScheme() {
+    // 1. 优先使用浏览器存储的偏好
+    const browserPref = getBrowserPreference();
+    if (browserPref === 'dark' || browserPref === 'light') {
+      console.log('[Dark Mode Sync V2] 使用浏览器偏好:', browserPref);
+      return browserPref;
+    }
+
+    // 2. 其次使用系统偏好
+    const systemIsDark = isSystemDarkMode();
+    const scheme = systemIsDark ? 'dark' : 'light';
+    console.log('[Dark Mode Sync V2] 使用系统偏好:', scheme);
+    return scheme;
+  }
+
+  /**
+   * 检测是否为iOS QQ浏览器
+   */
+  function isQQBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('mqqbrowser') > -1 || ua.indexOf('qq/') > -1;
+  }
+
+  /**
+   * 检测是否为iOS设备
+   */
+  function isIOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(ua);
+  }
+
+  /**
+   * 检测是否为桌面端
+   * @returns {boolean} true表示桌面端，false表示移动端
+   */
+  function isDesktop() {
+    const ua = navigator.userAgent.toLowerCase();
+    // 检测是否为移动设备
+    const isMobile = /android|iphone|ipad|ipod|windows phone|mobile/i.test(ua);
+    
+    // 桌面端：不是移动设备
+    return !isMobile;
+  }
+
+  /**
+   * 移除硬编码的白色背景
+   */
+  function removeHardcodedWhiteBackgrounds() {
+    try {
+      // 查找所有可能包含硬编码白色背景的元素
+      const allElements = document.querySelectorAll('*');
+      let removedCount = 0;
+      
+      allElements.forEach(element => {
+        const computedStyle = window.getComputedStyle(element);
+        const bgColor = computedStyle.backgroundColor;
+        
+        // 检测是否为白色背景 (rgb(255, 255, 255) 或 #ffffff 或 #fff)
+        if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff' || bgColor === '#fff') {
+          const inlineStyle = element.style.backgroundColor;
+          // 只移除内联样式中的白色背景
+          if (inlineStyle && (inlineStyle.toLowerCase() === '#ffffff' || 
+              inlineStyle.toLowerCase() === '#fff' || 
+              inlineStyle.toLowerCase() === 'white' ||
+              inlineStyle.toLowerCase() === 'rgb(255, 255, 255)')) {
+            element.style.backgroundColor = '';
+            removedCount++;
+            console.log('[Dark Mode Sync V2] 已移除硬编码白色背景:', element.tagName, element.className);
+          }
+        }
+      });
+      
+      if (removedCount > 0) {
+        console.log('[Dark Mode Sync V2] 共移除', removedCount, '个硬编码白色背景');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 移除硬编码背景时出错:', e.message);
+    }
+  }
+
+  /**
+   * 强制修复iOS QQ浏览器的输入框背景
+   */
+  function forceFixIOSQQBrowserInputs() {
+    if (!isIOS() || !isQQBrowser()) {
+      return;
+    }
+
+    try {
+      // 查找所有输入框和文本域
+      const inputs = document.querySelectorAll('input, textarea, .qb-input, .qb-textarea, .birthday-input');
+      let fixedCount = 0;
+
+      inputs.forEach(input => {
+        // 强制设置背景色
+        const darkBg = getComputedStyle(document.documentElement).getPropertyValue('--qb-bg-white-dark').trim() || '#1A1A1A';
+        input.style.setProperty('background-color', darkBg, 'important');
+        input.style.setProperty('background', darkBg, 'important');
+        
+        // 强制设置文字颜色
+        const darkText = getComputedStyle(document.documentElement).getPropertyValue('--qb-text-a1-dark').trim() || '#A3A3A3';
+        input.style.setProperty('color', darkText, 'important');
+        input.style.setProperty('-webkit-text-fill-color', darkText, 'important');
+        
+        fixedCount++;
+      });
+
+      if (fixedCount > 0) {
+        console.log('[Dark Mode Sync V2] iOS QQ浏览器: 已强制修复', fixedCount, '个输入框');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 修复iOS QQ浏览器输入框时出错:', e.message);
+    }
+  }
+
+  /**
+   * 应用日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存到浏览器（默认false）
+   */
+  function applyColorScheme(scheme, savePreference = false) {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    // 设置 data-color-scheme 属性到 html 和 body
+    htmlElement.setAttribute('data-color-scheme', scheme);
+    if (bodyElement) {
+      bodyElement.setAttribute('data-color-scheme', scheme);
+    }
+    
+    // 如果是夜间模式，移除硬编码的白色背景
+    if (scheme === 'dark') {
+      // 延迟执行以确保DOM完全加载
+      setTimeout(() => {
+        removeHardcodedWhiteBackgrounds();
+        // iOS QQ浏览器需要额外的强制修复
+        if (isIOS() && isQQBrowser()) {
+          forceFixIOSQQBrowserInputs();
+          // 多次尝试修复，因为QQ浏览器可能会延迟应用样式
+          setTimeout(forceFixIOSQQBrowserInputs, 200);
+          setTimeout(forceFixIOSQQBrowserInputs, 500);
+        }
+      }, 100);
+    }
+    
+    console.log('[Dark Mode Sync V2] 已切换到', scheme === 'dark' ? '夜间模式' : '日间模式');
+    
+    // 如果需要，保存用户偏好
+    if (savePreference) {
+      saveBrowserPreference(scheme);
+    }
+  }
+
+  /**
+   * 初始化日夜模式
+   */
+  function initColorScheme() {
+    const scheme = getCurrentScheme();
+    applyColorScheme(scheme, false);
+    console.log('[Dark Mode Sync V2] 初始化完成，当前模式:', scheme === 'dark' ? '夜间' : '日间');
+  }
+
+  // 全局标记，防止重复初始化监听器
+  let isWatchingSystemColorScheme = false;
+  
+  /**
+   * 监听系统日夜模式变化
+   * 注意：只有在用户未手动设置偏好时，才响应系统变化
+   */
+  function watchSystemColorScheme() {
+    // 防止重复初始化
+    if (isWatchingSystemColorScheme) {
+      console.log('[Dark Mode Sync V2] 系统监听已初始化，跳过重复设置');
+      return;
+    }
+    
+    // 复用的处理逻辑
+    const handleChange = (e) => {
+      // 只有在没有浏览器偏好设置时，才响应系统变化
+      const browserPref = getBrowserPreference();
+      if (!browserPref) {
+        const scheme = e.matches ? 'dark' : 'light';
+        applyColorScheme(scheme, false);
+        console.log('[Dark Mode Sync V2] 系统模式已变化:', scheme === 'dark' ? '夜间' : '日间');
+      } else {
+        console.log('[Dark Mode Sync V2] 检测到系统模式变化，但浏览器偏好优先，保持当前设置');
+      }
+    };
+    
+    // 针对iOS做特殊处理
+    if (isIOS()) {
+      // 获取需要 hook 的 DarkReader 对象（优先主 frame，其次当前 window）
+      let targetDarkReader = null;
+      let targetWindow = null;
+      
+      try {
+        // 尝试访问父窗口的 DarkReader（如果在 iframe 中）
+        if (window.parent && window.parent !== window && window.parent.DarkReader) {
+          targetDarkReader = window.parent.DarkReader;
+          targetWindow = window.parent;
+          console.log('[Dark Mode Sync V2] iOS: 找到父窗口的DarkReader');
+        }
+      } catch (e) {
+        console.debug('[Dark Mode Sync V2] iOS: 无法访问父窗口DarkReader（跨域限制）:', e.message);
+      }
+      
+      // 如果无法访问父窗口，使用当前窗口的 DarkReader
+      if (!targetDarkReader && window.DarkReader) {
+        targetDarkReader = window.DarkReader;
+        targetWindow = window;
+        console.log('[Dark Mode Sync V2] iOS: 使用当前窗口的DarkReader');
+      }
+      
+      // 复写DarkReader方法来监听日夜间切换
+      if (targetDarkReader) {
+        // 检查是否已经被 hook 过了
+        if (!targetDarkReader._qbHooked) {
+          // 保存原始方法
+          const originalForceEnable = targetDarkReader.forceEnable;
+          const originalForceDisable = targetDarkReader.forceDisable;
+          
+          // 复写forceEnable
+          targetDarkReader.forceEnable = function() {
+            // 调用原始forceEnable
+            if (originalForceEnable) {
+              originalForceEnable.apply(this, arguments);
+            }
+            // 执行监听
+            handleChange({"matches": true});
+          };
+          
+          // 复写forceDisable
+          targetDarkReader.forceDisable = function() {
+            // 调用原始forceDisable
+            if (originalForceDisable) {
+              originalForceDisable.apply(this, arguments);
+            }
+            // 执行监听
+            handleChange({"matches": false});
+          };
+          
+          // 标记已经被 hook
+          targetDarkReader._qbHooked = true;
+          
+          console.log('[Dark Mode Sync V2] iOS: 已设置DarkReader监听', targetWindow === window.parent ? '(主窗口)' : '(当前窗口)');
+        } else {
+          console.log('[Dark Mode Sync V2] iOS: DarkReader已被hook，跳过重复设置');
+        }
+        
+        console.log('[Dark Mode Sync V2] iOS: 已开始监听系统模式变化');
+
+      // 标记已初始化
+      isWatchingSystemColorScheme = true;
+      return;
+
+      } else {
+        console.log('[Dark Mode Sync V2] iOS: DarkReader未找到，跳过监听设置');
+      }
+      
+    }
+    
+    // 桌面端不监听系统模式变化
+    if (isDesktop()) {
+      console.log('[Dark Mode Sync V2] 桌面端：跳过系统模式监听');
+      isWatchingSystemColorScheme = true;
+      return;
+    }
+
+    // 移动端才监听系统模式变化
+    if (window.matchMedia) {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      // 监听变化（现代浏览器）
+      if (darkModeQuery.addEventListener) {
+        darkModeQuery.addEventListener('change', handleChange);
+      } 
+      // 兼容旧版浏览器
+      else if (darkModeQuery.addListener) {
+        darkModeQuery.addListener(handleChange);
+      }
+      
+      console.log('[Dark Mode Sync V2] 移动端：已开始监听系统模式变化');
+    }
+    
+    // 标记已初始化
+    isWatchingSystemColorScheme = true;
+  }
+
+  /**
+   * 向父窗口通知当前模式（可选功能）
+   */
+  function notifyParentWindow(scheme) {
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'iframe-color-scheme-change',
+          colorScheme: scheme,
+          source: 'qb-tool-iframe'
+        }, '*');
+        console.log('[Dark Mode Sync V2] 已通知父窗口模式变化:', scheme);
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法通知父窗口:', e.message);
+    }
+  }
+
+  /**
+   * 切换日夜模式
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function toggleColorScheme(savePreference = true) {
+    const currentScheme = document.documentElement.getAttribute('data-color-scheme');
+    const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+    applyColorScheme(newScheme, savePreference);
+    notifyParentWindow(newScheme);
+    return newScheme;
+  }
+
+  /**
+   * 设置指定的日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function setColorScheme(scheme, savePreference = true) {
+    if (scheme !== 'dark' && scheme !== 'light') {
+      console.error('[Dark Mode Sync V2] 无效的模式:', scheme);
+      return;
+    }
+    applyColorScheme(scheme, savePreference);
+    notifyParentWindow(scheme);
+  }
+
+  /**
+   * 清除浏览器偏好，恢复使用系统设置
+   */
+  function resetToSystemPreference() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('[Dark Mode Sync V2] 已清除浏览器偏好');
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法清除 localStorage:', e.message);
+    }
+    initColorScheme();
+  }
+
+  // ==================== 自动执行 ====================
+
+  // 页面加载时立即初始化（在脚本执行时就尝试设置）
+  if (document.readyState === 'loading') {
+    // 立即设置一次，避免闪烁
+    const scheme = getCurrentScheme();
+    document.documentElement.setAttribute('data-color-scheme', scheme);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initColorScheme();
+      watchSystemColorScheme();
+    });
+  } else {
+    // 如果脚本加载时DOM已就绪，立即执行
+    initColorScheme();
+    watchSystemColorScheme();
+  }
+
+  // ==================== 暴露全局方法 ====================
+
+  window.QBColorScheme = {
+    // 获取当前模式
+    get current() {
+      return document.documentElement.getAttribute('data-color-scheme') || 'light';
+    },
+    
+    // 检测系统是否为夜间模式
+    isSystemDark: isSystemDarkMode,
+    
+    // 获取浏览器存储的偏好
+    getBrowserPreference: getBrowserPreference,
+    
+    // 设置指定模式（会保存偏好）
+    set: (scheme) => setColorScheme(scheme, true),
+    
+    // 设置指定模式（不保存偏好）
+    setTemporary: (scheme) => setColorScheme(scheme, false),
+    
+    // 切换日夜模式
+    toggle: toggleColorScheme,
+    
+    // 重置为系统偏好
+    reset: resetToSystemPreference,
+    
+    // 强制刷新模式
+    refresh: initColorScheme
+  };
+
+  console.log('[Dark Mode Sync V2] 脚本已加载，全局方法已暴露: window.QBColorScheme');
+  console.log('[Dark Mode Sync V2] 使用示例:');
+  console.log('  - 切换模式: QBColorScheme.toggle()');
+  console.log('  - 设置夜间: QBColorScheme.set("dark")');
+  console.log('  - 设置日间: QBColorScheme.set("light")');
+  console.log('  - 重置偏好: QBColorScheme.reset()');
+
+})();
+
+  </script>
+  
+  <!-- iframe高度自适应通用脚本 -->
+  <script>
+/**
+ * iframe高度自适应通用脚本
+ * 
+ * 功能：自动检测页面内容高度变化，并通知父级iframe调整高度
+ * 适用场景：任何嵌入在iframe中的动态内容页面
+
+ * @version 1.0.0
+ */
+
+(function() {
+    'use strict';
+
+    /**
+     * 注入动态高度样式
+     * 确保页面内容可以根据实际高度自动调整
+     * 只在 iframe 环境中注入，避免影响独立页面
+     */
+    function injectDynamicHeightStyles() {
+        const styleId = 'iframe-dynamic-height-styles';
+        
+        // 避免重复注入
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        
+        // 只在 iframe 中注入样式
+        const isInIframe = window.parent !== window;
+        if (!isInIframe) {
+            console.log('[iframe-height] 非iframe环境，跳过样式注入');
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            /* iframe 高度自适应 - 通用样式 */
+            body {
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            html {
+                height: auto !important;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('[iframe-height] 通用动态高度样式已注入');
+    }
+
+    /**
+     * 计算当前页面实际内容高度
+     * @returns {number} 页面高度（像素）
+     */
+    function calculatePageHeight() {
+        // 强制浏览器重新计算布局
+        document.body.offsetHeight;
+        
+        // 优先方案：获取主容器的实际高度
+        // 按优先级查找常见的主容器元素
+        const mainContainer = document.querySelector('main') || 
+                            document.querySelector('#app') ||
+                            document.querySelector('.app') ||
+                            document.querySelector('.container') ||
+                            document.querySelector('[role="main"]') ||
+                            document.querySelector('.qb-module');
+        
+        if (mainContainer) {
+            const rect = mainContainer.getBoundingClientRect();
+            const containerHeight = rect.height;
+            
+            // 计算body的额外空间
+            const bodyStyle = window.getComputedStyle(document.body);
+            const bodyPaddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+            const bodyPaddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+            const bodyMarginTop = parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = parseFloat(bodyStyle.marginBottom) || 0;
+            
+            const totalHeight = containerHeight + bodyPaddingTop + bodyPaddingBottom + 
+                              bodyMarginTop + bodyMarginBottom;
+            
+            return Math.ceil(totalHeight);
+        }
+        
+        // 备用方案：使用body和html的高度
+        const body = document.body;
+        const html = document.documentElement;
+        
+        const heights = [
+            body.scrollHeight,
+            body.offsetHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ];
+        
+        return Math.max(...heights);
+    }
+
+    /**
+     * 更新父级iframe的高度
+     * 支持两种方式：直接修改iframe样式 + postMessage通信
+     */
+    function updateIframeHeight() {
+        // 使用requestAnimationFrame确保在渲染帧获取准确高度
+        requestAnimationFrame(() => {
+            const height = calculatePageHeight();
+            
+            // 方式1: 尝试直接修改父级iframe元素的高度
+            try {
+                if (window.parent && window.parent !== window) {
+                    const iframes = window.parent.document.querySelectorAll('iframe');
+                    for (let iframe of iframes) {
+                        try {
+                            if (iframe.contentWindow === window) {
+                                iframe.style.height = height + 'px';
+                                console.log('[iframe-height] 直接更新成功:', height + 'px');
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，继续尝试下一个
+                        }
+                    }
+                }
+            } catch (e) {
+                // 无法访问父级，可能是跨域
+            }
+            
+            // 方式2: 通过postMessage通知父窗口（备用方案，支持跨域）
+            try {
+                if (window.parent && window.parent !== window) {
+                    // 优先使用 originalPostMessage，如果不存在则使用 postMessage
+                    const postMessageMethod = window.parent.originalPostMessage || window.parent.postMessage;
+                    postMessageMethod.call(window.parent, {
+                        type: 'setIframeHeight',
+                        height: height
+                    }, '*');
+                    console.log('[iframe-height] postMessage发送:', height + 'px');
+                }
+            } catch (e) {
+                console.warn('[iframe-height] 更新失败:', e.message);
+            }
+        });
+    }
+
+    /**
+     * 页面内容切换时调用此函数
+     * 会立即触发一次，然后延迟触发两次，确保获取准确高度
+     */
+    function onContentChange() {
+        updateIframeHeight();                    // 立即触发
+        setTimeout(updateIframeHeight, 50);      // 50ms后触发
+        setTimeout(updateIframeHeight, 150);     // 150ms后触发
+    }
+
+    // 防抖定时器
+    let debounceTimer = null;
+
+    /**
+     * 带防抖的高度更新
+     * @param {number} delay 防抖延迟时间（毫秒）
+     */
+    function debouncedUpdate(delay = 10) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateIframeHeight, delay);
+    }
+
+    // ==================== 自动监听机制 ====================
+
+    // 1. 监听DOM变化
+    const observer = new MutationObserver(() => {
+        debouncedUpdate(10);
+    });
+
+    observer.observe(document.body, {
+        childList: true,      // 监听子节点的添加/删除
+        subtree: true,        // 监听所有后代节点
+        attributes: true,     // 监听属性变化
+        characterData: true   // 监听文本内容变化
+    });
+
+    // 2. 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        debouncedUpdate(50);
+    });
+
+    // 3. 监听图片加载
+    document.addEventListener('load', (e) => {
+        if (e.target.tagName === 'IMG') {
+            updateIframeHeight();
+        }
+    }, true);
+
+    // 4. 页面加载完成后立即更新
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            injectDynamicHeightStyles();
+            updateIframeHeight();
+        });
+    } else {
+        injectDynamicHeightStyles();
+        updateIframeHeight();
+    }
+
+    // 5. 监听来自父窗口的高度请求
+    window.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'request-height' || event.data.type === 'requestHeight')) {
+            updateIframeHeight();
+        }
+    });
+
+    // ==================== 暴露全局方法 ====================
+
+    // 将更新函数暴露到全局，供页面内容切换时调用
+    window.updateIframeHeight = updateIframeHeight;
+    window.onContentChange = onContentChange;
+
+    console.log('[iframe-height] 自适应脚本已加载');
+
+})();
+
+  </script>
+</body>
+</html>]]></motion_copy>
+      <!-- 请务必填写：AI调试好的代码，有的卡可能有特殊字符，需要让AI转为能直接粘贴到xml的cdata中的格式，多数卡片是可以直接粘贴html中代码进去。 -->
+      <url_logo><![CDATA[https://img04.sogoucdn.com/app/a/200797/099403a1-4e19-4993-bc5b-14f20c22b0a8]]></url_logo>
+      <!-- 底部参考来源的logo url，不同卡片可能不同，请务必取xml中的，必填标签。一般情况下是展示codebuddy的，现在这个链接是codebuddy的。 -->
+      <source><![CDATA[CodeBuddy]]></source>
+      <!-- 底部参考来源，必填标签。最多出现1次。最少0字节，最多1024字节。 -->
+      <recall_top><![CDATA[记忆力挑战;memory-match]]></recall_top>
+      <!-- 强需召回词，用户配置固排，配置在这里的词，会出在首位，只能放适合出首位的强需词；多个召回词间以英文分号分隔;，必填标签。最多出现1次。最少1字节，最多1024字节。 -->
+      <recall_middle><![CDATA[挑战最强大脑，看看你能坚持到第几关？;工具;查询]]></recall_middle>
+      <!-- 中弱需召回词，配置到这里的词，会走点调逻辑，不一定出首位；多个词以英文分号分隔；，必填标签。最多出现1次。最少0字节，最多1024字节。 -->
+      <motion_copy_ch><![CDATA[好的，用户现在想使用记忆力挑战工具，让我来写一个。]]></motion_copy_ch>
+      <!-- 动效最开始的中文提示信息，选填标签。最多出现1次。最少0字节，最多1024字节。 -->
+      <brand_top><![CDATA[]]></brand_top>
+      <!-- 顶部拼接用品牌名，如果没有外部合作方，这里留空不用填写 -->
+      <title_share><![CDATA[[QBot·记忆力挑战]]]></title_share>
+      <!-- 请务必填写：分享展示的标题，需要根据自己实际的卡片去修改为适合自己卡片的分享标题。 -->
+      <description_share><![CDATA[挑战最强大脑，看看你能坚持到第几关？]]></description_share>
+      <!-- 请务必填写：分享展示的描述，需要根据自己的卡片去修改为适合出的标题。 -->
+      <share_logo><![CDATA[https://img04.sogoucdn.com/app/a/200797/099403a1-4e19-4993-bc5b-14f20c22b0a8]]></share_logo>
+      <!-- 用于放置分享到微信使用的图标，如该字段为空，使用通用的QB logo兜底，如果想定制，请务必填写-->
+      <used_type><![CDATA[用过]]></used_type>
+      <!-- 请务必填写：用于右下角展示的xx人用过/玩过拼接用，字段中为用过时，卡片展示用过，字段中为玩过时，卡片展示玩过；原则上：小游戏类或带有玩的性质的，都填"玩过"，非游戏类填"用过" -->
+      <initnum><![CDATA[1000]]></initnum>
+      <!-- 请务必填写：用于构造右下角xxx人用过/玩过的初始数据，前端会用这个假数据作为初始值，后续自动更新 -->    
+      <card_name><![CDATA[memory-match_card_qb]]></card_name>
+      <!-- 请务必填写：卡片的名称，需要保证唯一性，同时移动和pc也要用同一个，用来给前端计算使用人数使用，确保同一张卡片/工具展示的数字能相同，并与其他工具不同；同一张卡片，即使item不同，该字段也应该相同，譬如简谱卡下，所有歌曲的item都应该展示为"简谱生成器卡123"， 这个字段不会对外展示，所以只要确保不重复就行，可以组合的特殊一些 -->
+    </display>
+    <!-- display，必填标签。最多出现1次。 -->
+  </item>
+</DOCUMENT>

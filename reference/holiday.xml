@@ -1,0 +1,1651 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<DOCUMENT>
+  <item>
+    <key><![CDATA[holiday_schedule_2026]]></key>
+    <!-- key，必填标签。数据的唯一标识，请保证唯一性 -->
+    <display>
+      <title><![CDATA[2026年放假安排]]></title>
+      <!-- 标题，必填标签 -->
+      <url><![CDATA[http://open-sogou]]></url>
+      <!-- url，必填标签 -->
+      <code_url><![CDATA[<!DOCTYPE html>
+<html lang="zh-CN" data-color-scheme="light">
+<head>
+  <!-- 内联脚本：立即检测并设置日夜模式，避免闪烁 -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('qb-color-scheme');
+        const scheme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-color-scheme', scheme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>2026年放假安排</title>
+  <meta name="description" content="2026年放假安排 · 国务院办公厅发布2026年放假安排" />
+  <style>
+    /* QQ浏览器模板 - 精简版，避免与shared.css重复 */
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--t1);
+      line-height: 1.5;
+      min-height: auto;
+      height: auto;
+    }
+
+    /* 适配iframe高度传递需求 */
+    html, body {
+      width: 100%;
+    }
+
+    main {
+      width: 100%;
+      min-height: auto;
+      height: auto;
+      position: relative;
+    }
+
+    /* 标题区域样式 */
+    .header-section {
+      margin: 0 0 16px 0;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 28px;
+      color: var(--t1);
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--t2);
+      margin: 0;
+      line-height: 14px;
+    }
+/* -------------------- 基础重置 -------------------- */
+
+/* 统一盒模型 */
+* {
+  box-sizing: border-box;
+  /* 禁用Android默认触摸高亮 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 通用body属性 - 不重新定义body以避免覆盖模板中的动画 */
+html {
+  /* 禁用缩放 */
+  touch-action: manipulation;
+  
+  /* 固定文字大小 */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* 禁止选中文字 */
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* 统一字体渲染 - 使用默认渲染以保持字体粗细一致 */
+  -webkit-touch-callout: none;
+}
+
+/* 统一滚动策略 - 适配WebView和iframe环境 */
+html, body {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/* -------------------- 通用容器 -------------------- */
+
+/* 内容容器 */
+.content-container {
+  background: transparent;
+  padding: 0;
+}
+
+/* -------------------- 工具类 -------------------- */
+
+/* 隐藏元素 */
+.hidden {
+  display: none;
+}
+
+/* 通用占位符 */
+.placeholder {
+  color: var(--t3);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* -------------------- 通用按钮样式 -------------------- */
+
+/* 统一按钮基础样式 */
+.btn,
+button {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+/* -------------------- 统一交互效果 -------------------- */
+
+/* 统一悬停效果 - 只在支持真正hover的设备上启用 */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    opacity: 0.6;
+  }
+}
+
+/* 统一点击效果 - 60%不透明度 + 轻微放大 */
+.btn:active {
+  opacity: 0.6;
+  transform: scale(1.02);
+}
+
+/* 统一不可用状态 - 30%不透明度 */
+.btn:disabled,
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 移除所有按钮的聚焦效果 */
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* -------------------- 表单组件 -------------------- */
+
+/* 通用输入框样式 */
+.input-base {
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-medium);
+  background: var(--bg-white);
+  color: var(--t1);
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-base:focus {
+  border-color: var(--blue-normal);
+}
+
+.input-base::placeholder {
+  color: var(--t3);
+}
+
+/* -------------------- 布局组件 -------------------- */
+
+/* 通用分割线 */
+.divider-thin-light {
+  height: 0.5px;
+  background-color: var(--line);
+  margin: 0 0 16px 0;
+}
+
+/* -------------------- 响应式优化 -------------------- */
+
+/* 防止iOS缩放 */
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    font-size: 16px;
+  }
+}
+/* QQ浏览器颜色变量 - 支持日夜间模式 */
+
+/* 日间模式（默认） */
+:root,
+[data-color-scheme='light'] {
+  /* 字色 */
+  --t1: #242424;
+  --t2: #666666;
+  --t3: #8F8F8F;
+  --t4: #b3b3b3;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 */
+  --bg-white: #FFFFFF;
+  --bg-block: #F6F7FA;
+  --line: #DEDFE1;
+  --stroke: #E7E8EB;
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* 功能色彩 - QQ浏览器品牌色调 */
+  --blue-normal: #205AEF;
+  --blue-light: rgba(32, 90, 239, 0.08);
+  --green-normal: #0BB861;
+  --green-light: rgba(11, 184, 97, 0.08);
+  --red-normal: #F44837;
+  --red-light: rgba(244, 72, 55, 0.08);
+  --yellow-normal: #FF9500;
+  --yellow-light: rgba(255, 149, 0, 0.08);
+  
+  /* 尺寸 - 圆角 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  /* 尺寸 - 按钮高度 */
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+
+/* 夜间模式 */
+[data-color-scheme='dark'] {
+  /* 字色 - 夜间模式 */
+  --t1: #E5E5E5;
+  --t2: #A3A3A3;
+  --t3: #737373;
+  --t4: #525252;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 - 夜间模式 */
+  --bg-white: #1A1A1A;
+  --bg-block: #262626;
+  --line: #404040;
+  --stroke: #333333;
+  
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* 功能色彩 - 夜间模式（稍微降低饱和度） */
+  --blue-normal: #4A7EFF;
+  --blue-light: rgba(74, 126, 255, 0.15);
+  --green-normal: #2DD47E;
+  --green-light: rgba(45, 212, 126, 0.15);
+  --red-normal: #FF6B5E;
+  --red-light: rgba(255, 107, 94, 0.15);
+  --yellow-normal: #FFB340;
+  --yellow-light: rgba(255, 179, 64, 0.15);
+  
+  /* 尺寸保持不变 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+/* 2026年放假安排样式 */
+
+/* 主容器 - 自适应宽度,不超出父容器 */
+.holiday-wrapper {
+  background: var(--bg-white);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* 表头样式 */
+.holiday-header {
+  display: flex;
+  align-items: center;
+  padding: 0 0 12px 0;
+  background: var(--bg-white);
+}
+
+.header-item {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t2);
+}
+
+.header-item:nth-child(1) {
+  flex: 0 0 64px;
+  width: 64px;
+  text-align: left;
+}
+
+.header-item:nth-child(2) {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+
+.header-item:nth-child(3) {
+  flex: 0 0 auto;
+  width: 40px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-item:nth-child(4) {
+  flex: 0 0 auto;
+  width: 40px;
+  margin-left: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 表头箭头占位元素 - 与内容行的箭头保持一致的宽度和间距 */
+.header-arrow-placeholder {
+  flex: 0 0 auto;
+  width: 12px;
+  margin-left: 12px;
+}
+
+
+
+/* 分割线 */
+.holiday-divider {
+  width: calc(100%);
+  height: 0.5px;
+  background: var(--line);
+}
+
+/* 假期行 */
+.holiday-row {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.holiday-info {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  position: relative;
+}
+
+
+.info-name {
+  flex: 0 0 64px;
+  width: 64px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--t1);
+  text-align: left;
+}
+
+.info-date {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t1);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info-days {
+  flex: 0 0 auto;
+  width: 40px;
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-status {
+  flex: 0 0 auto;
+  width: 40px;
+  margin-left: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-arrow {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.info-arrow.expanded {
+  transform: rotate(180deg);
+}
+
+.info-arrow svg {
+  display: block;
+}
+
+
+/* 月份日历 */
+.month-calendar {
+  margin-bottom: 12px;
+}
+
+.month-header {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--t1);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* 星期标题 */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.weekday {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t3);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* 日期网格 */
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+  border-radius: 8px;
+  background: var(--bg-white);
+}
+
+.day.empty {
+  background: transparent;
+}
+
+.day-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--t1);
+  line-height: 1;
+}
+
+.day-lunar {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--t3);
+  line-height: 1;
+}
+
+.day-label {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 10px;
+  font-weight: 400;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+/* 放假日期 - 使用蓝色系 */
+.day.vacation {
+  background: var(--red-light);
+}
+
+.day.vacation .day-number {
+  color: var(--red-normal);
+}
+
+.day.vacation .day-lunar {
+  color: var(--red-normal);
+}
+
+.vacation-label {
+  background: var(--red-normal);
+  color: var(--t5);
+}
+
+/* 调休上班日期 - 使用红色系 */
+.day.workday {
+  background: var(--bg-block);
+}
+
+.day.workday .day-number {
+  color: var(--t1);
+  font-weight: 500;
+}
+
+.workday-label {
+  background: var(--t1);
+  color: var(--t5);
+}
+
+
+/* 动画效果 */
+.calendar-container {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  </style>
+  
+</head>
+<body data-platform="qb">
+  <main>
+    <!-- 标题区域 - 严格按照参考样式 -->
+    <div class="header-section">
+      <div class="header-text">
+        <h1 class="header-title">2026年放假安排</h1>
+        <p class="header-subtitle">国务院办公厅发布2026年放假安排</p>
+      </div>
+    </div>
+
+    <!-- 工具内容区域 -->
+    <div class="holiday-wrapper">
+      <!-- 表头 -->
+      <div class="holiday-header">
+        <div class="header-item">节日</div>
+        <div class="header-item">放假时间</div>
+        <div class="header-item">天数</div>
+        <div class="header-item">状态</div>
+        <div class="header-arrow-placeholder"></div>
+      </div>
+
+      <!-- 假期列表 -->
+      <div class="holiday-list" id="holidayList"></div>
+    </div>
+  </main>
+
+
+  <!-- 日夜间模式自动同步脚本 - 来自 dark-mode.js -->
+  <script type="text/javascript">
+/**
+ * QB小工具 - 日夜模式自动同步脚本 V2
+ * Dark Mode Auto Sync for QB Tools V2
+ * 
+ * 功能说明：
+ * 1. 优先检测浏览器的日夜模式设置（localStorage），其次检测系统偏好
+ * 2. 通过设置 data-color-scheme 属性来控制样式
+ * 3. 监听系统模式变化并实时切换
+ * 4. 支持手动切换并持久化用户偏好
+ * 
+ * @version 2.0.1
+ */
+
+(function() {
+  'use strict';
+
+  // 本地存储的键名
+  const STORAGE_KEY = 'qb-color-scheme';
+  
+  /**
+   * 获取浏览器存储的模式偏好
+   * @returns {string|null} 'dark', 'light' 或 null（未设置）
+   */
+  function getBrowserPreference() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法访问 localStorage:', e.message);
+      return null;
+    }
+  }
+
+  /**
+   * 保存模式偏好到浏览器
+   * @param {string} scheme - 'dark' 或 'light'
+   */
+  function saveBrowserPreference(scheme) {
+    try {
+      localStorage.setItem(STORAGE_KEY, scheme);
+      console.log('[Dark Mode Sync V2] 已保存用户偏好:', scheme);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法保存到 localStorage:', e.message);
+    }
+  }
+
+  /**
+   * 检测系统是否为夜间模式
+   * @returns {boolean} true表示夜间模式，false表示日间模式
+   */
+  function isSystemDarkMode() {
+    // 适配darkreader.js
+    if (window.__DARKREADER_COLOR_SCHEME__) {
+      return window.__DARKREADER_COLOR_SCHEME__ === 'dark';
+    }
+
+    if (window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    return false;
+  }
+
+  /**
+   * 获取当前应该使用的模式
+   * 优先级：浏览器设置 > 系统设置
+   * @returns {string} 'dark' 或 'light'
+   */
+  function getCurrentScheme() {
+    // 1. 优先使用浏览器存储的偏好
+    const browserPref = getBrowserPreference();
+    if (browserPref === 'dark' || browserPref === 'light') {
+      console.log('[Dark Mode Sync V2] 使用浏览器偏好:', browserPref);
+      return browserPref;
+    }
+
+    // 2. 其次使用系统偏好
+    const systemIsDark = isSystemDarkMode();
+    const scheme = systemIsDark ? 'dark' : 'light';
+    console.log('[Dark Mode Sync V2] 使用系统偏好:', scheme);
+    return scheme;
+  }
+
+  /**
+   * 检测是否为iOS QQ浏览器
+   */
+  function isQQBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('mqqbrowser') > -1 || ua.indexOf('qq/') > -1;
+  }
+
+  /**
+   * 检测是否为iOS设备
+   */
+  function isIOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(ua);
+  }
+
+  /**
+   * 移除硬编码的白色背景
+   */
+  function removeHardcodedWhiteBackgrounds() {
+    try {
+      // 查找所有可能包含硬编码白色背景的元素
+      const allElements = document.querySelectorAll('*');
+      let removedCount = 0;
+      
+      allElements.forEach(element => {
+        const computedStyle = window.getComputedStyle(element);
+        const bgColor = computedStyle.backgroundColor;
+        
+        // 检测是否为白色背景 (rgb(255, 255, 255) 或 #ffffff 或 #fff)
+        if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff' || bgColor === '#fff') {
+          const inlineStyle = element.style.backgroundColor;
+          // 只移除内联样式中的白色背景
+          if (inlineStyle && (inlineStyle.toLowerCase() === '#ffffff' || 
+              inlineStyle.toLowerCase() === '#fff' || 
+              inlineStyle.toLowerCase() === 'white' ||
+              inlineStyle.toLowerCase() === 'rgb(255, 255, 255)')) {
+            element.style.backgroundColor = '';
+            removedCount++;
+            console.log('[Dark Mode Sync V2] 已移除硬编码白色背景:', element.tagName, element.className);
+          }
+        }
+      });
+      
+      if (removedCount > 0) {
+        console.log('[Dark Mode Sync V2] 共移除', removedCount, '个硬编码白色背景');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 移除硬编码背景时出错:', e.message);
+    }
+  }
+
+  /**
+   * 强制修复iOS QQ浏览器的输入框背景
+   */
+  function forceFixIOSQQBrowserInputs() {
+    if (!isIOS() || !isQQBrowser()) {
+      return;
+    }
+
+    try {
+      // 查找所有输入框和文本域
+      const inputs = document.querySelectorAll('input, textarea, .qb-input, .qb-textarea, .birthday-input');
+      let fixedCount = 0;
+
+      inputs.forEach(input => {
+        // 强制设置背景色
+        const darkBg = getComputedStyle(document.documentElement).getPropertyValue('--qb-bg-white-dark').trim() || '#1A1A1A';
+        input.style.setProperty('background-color', darkBg, 'important');
+        input.style.setProperty('background', darkBg, 'important');
+        
+        // 强制设置文字颜色
+        const darkText = getComputedStyle(document.documentElement).getPropertyValue('--qb-text-a1-dark').trim() || '#A3A3A3';
+        input.style.setProperty('color', darkText, 'important');
+        input.style.setProperty('-webkit-text-fill-color', darkText, 'important');
+        
+        fixedCount++;
+      });
+
+      if (fixedCount > 0) {
+        console.log('[Dark Mode Sync V2] iOS QQ浏览器: 已强制修复', fixedCount, '个输入框');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 修复iOS QQ浏览器输入框时出错:', e.message);
+    }
+  }
+
+  /**
+   * 应用日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存到浏览器（默认false）
+   */
+  function applyColorScheme(scheme, savePreference = false) {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    // 设置 data-color-scheme 属性到 html 和 body
+    htmlElement.setAttribute('data-color-scheme', scheme);
+    if (bodyElement) {
+      bodyElement.setAttribute('data-color-scheme', scheme);
+    }
+    
+    // 如果是夜间模式，移除硬编码的白色背景
+    if (scheme === 'dark') {
+      // 延迟执行以确保DOM完全加载
+      setTimeout(() => {
+        removeHardcodedWhiteBackgrounds();
+        // iOS QQ浏览器需要额外的强制修复
+        if (isIOS() && isQQBrowser()) {
+          forceFixIOSQQBrowserInputs();
+          // 多次尝试修复，因为QQ浏览器可能会延迟应用样式
+          setTimeout(forceFixIOSQQBrowserInputs, 200);
+          setTimeout(forceFixIOSQQBrowserInputs, 500);
+        }
+      }, 100);
+    }
+    
+    console.log('[Dark Mode Sync V2] 已切换到', scheme === 'dark' ? '夜间模式' : '日间模式');
+    
+    // 如果需要，保存用户偏好
+    if (savePreference) {
+      saveBrowserPreference(scheme);
+    }
+  }
+
+  /**
+   * 初始化日夜模式
+   */
+  function initColorScheme() {
+    const scheme = getCurrentScheme();
+    applyColorScheme(scheme, false);
+    console.log('[Dark Mode Sync V2] 初始化完成，当前模式:', scheme === 'dark' ? '夜间' : '日间');
+  }
+
+  /**
+   * 监听系统日夜模式变化
+   * 注意：只有在用户未手动设置偏好时，才响应系统变化
+   */
+  function watchSystemColorScheme() {
+    if (window.matchMedia) {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      const handleChange = (e) => {
+        // 只有在没有浏览器偏好设置时，才响应系统变化
+        const browserPref = getBrowserPreference();
+        if (!browserPref) {
+          const scheme = e.matches ? 'dark' : 'light';
+          applyColorScheme(scheme, false);
+          console.log('[Dark Mode Sync V2] 系统模式已变化:', scheme === 'dark' ? '夜间' : '日间');
+        } else {
+          console.log('[Dark Mode Sync V2] 检测到系统模式变化，但浏览器偏好优先，保持当前设置');
+        }
+      };
+      
+      // 监听变化（现代浏览器）
+      if (darkModeQuery.addEventListener) {
+        darkModeQuery.addEventListener('change', handleChange);
+      } 
+      // 兼容旧版浏览器
+      else if (darkModeQuery.addListener) {
+        darkModeQuery.addListener(handleChange);
+      }
+      
+      console.log('[Dark Mode Sync V2] 已开始监听系统模式变化');
+    }
+  }
+
+  /**
+   * 向父窗口通知当前模式（可选功能）
+   */
+  function notifyParentWindow(scheme) {
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'iframe-color-scheme-change',
+          colorScheme: scheme,
+          source: 'qb-tool-iframe'
+        }, '*');
+        console.log('[Dark Mode Sync V2] 已通知父窗口模式变化:', scheme);
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法通知父窗口:', e.message);
+    }
+  }
+
+  /**
+   * 切换日夜模式
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function toggleColorScheme(savePreference = true) {
+    const currentScheme = document.documentElement.getAttribute('data-color-scheme');
+    const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+    applyColorScheme(newScheme, savePreference);
+    notifyParentWindow(newScheme);
+    return newScheme;
+  }
+
+  /**
+   * 设置指定的日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function setColorScheme(scheme, savePreference = true) {
+    if (scheme !== 'dark' && scheme !== 'light') {
+      console.error('[Dark Mode Sync V2] 无效的模式:', scheme);
+      return;
+    }
+    applyColorScheme(scheme, savePreference);
+    notifyParentWindow(scheme);
+  }
+
+  /**
+   * 清除浏览器偏好，恢复使用系统设置
+   */
+  function resetToSystemPreference() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('[Dark Mode Sync V2] 已清除浏览器偏好');
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法清除 localStorage:', e.message);
+    }
+    initColorScheme();
+  }
+
+  // ==================== 自动执行 ====================
+
+  // 页面加载时立即初始化（在脚本执行时就尝试设置）
+  if (document.readyState === 'loading') {
+    // 立即设置一次，避免闪烁
+    const scheme = getCurrentScheme();
+    document.documentElement.setAttribute('data-color-scheme', scheme);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initColorScheme();
+      watchSystemColorScheme();
+    });
+  } else {
+    // 如果脚本加载时DOM已就绪，立即执行
+    initColorScheme();
+    watchSystemColorScheme();
+  }
+
+  // ==================== 暴露全局方法 ====================
+
+  window.QBColorScheme = {
+    // 获取当前模式
+    get current() {
+      return document.documentElement.getAttribute('data-color-scheme') || 'light';
+    },
+    
+    // 检测系统是否为夜间模式
+    isSystemDark: isSystemDarkMode,
+    
+    // 获取浏览器存储的偏好
+    getBrowserPreference: getBrowserPreference,
+    
+    // 设置指定模式（会保存偏好）
+    set: (scheme) => setColorScheme(scheme, true),
+    
+    // 设置指定模式（不保存偏好）
+    setTemporary: (scheme) => setColorScheme(scheme, false),
+    
+    // 切换日夜模式
+    toggle: toggleColorScheme,
+    
+    // 重置为系统偏好
+    reset: resetToSystemPreference,
+    
+    // 强制刷新模式
+    refresh: initColorScheme
+  };
+
+  console.log('[Dark Mode Sync V2] 脚本已加载，全局方法已暴露: window.QBColorScheme');
+
+})();
+  </script>
+
+  <!-- iframe高度自适应通用脚本 - 来自 iframe-height-bridge-10201500.js -->
+  <script type="text/javascript">
+/**
+ * iframe高度自适应通用脚本
+ * 
+ * 功能：自动检测页面内容高度变化，并通知父级iframe调整高度
+ * 适用场景：任何嵌入在iframe中的动态内容页面
+ * 
+ * 使用方法：
+ * 1. 在页面内容切换时调用：window.updateIframeHeight()
+ * 2. 或调用：window.onContentChange()
+ * 
+ * @version 1.0.0
+ */
+
+(function() {
+    'use strict';
+
+    /**
+     * 注入动态高度样式
+     * 确保页面内容可以根据实际高度自动调整
+     * 只在 iframe 环境中注入，避免影响独立页面
+     */
+    function injectDynamicHeightStyles() {
+        const styleId = 'iframe-dynamic-height-styles';
+        
+        // 避免重复注入
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        
+        // 只在 iframe 中注入样式
+        const isInIframe = window.parent !== window;
+        if (!isInIframe) {
+            console.log('[iframe-height] 非iframe环境，跳过样式注入');
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            /* iframe 高度自适应 - 通用样式 */
+            body {
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            html {
+                height: auto !important;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('[iframe-height] 通用动态高度样式已注入');
+    }
+
+    /**
+     * 计算当前页面实际内容高度
+     * @returns {number} 页面高度（像素）
+     */
+    function calculatePageHeight() {
+        // 强制浏览器重新计算布局
+        document.body.offsetHeight;
+        
+        // 优先方案：获取主容器的实际高度
+        // 按优先级查找常见的主容器元素
+        const mainContainer = document.querySelector('main') || 
+                            document.querySelector('#app') ||
+                            document.querySelector('.app') ||
+                            document.querySelector('.container') ||
+                            document.querySelector('[role="main"]') ||
+                            document.querySelector('.qb-module');
+        
+        if (mainContainer) {
+            const rect = mainContainer.getBoundingClientRect();
+            const containerHeight = rect.height;
+            
+            // 计算body的额外空间
+            const bodyStyle = window.getComputedStyle(document.body);
+            const bodyPaddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+            const bodyPaddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+            const bodyMarginTop = parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = parseFloat(bodyStyle.marginBottom) || 0;
+            
+            const totalHeight = containerHeight + bodyPaddingTop + bodyPaddingBottom + 
+                              bodyMarginTop + bodyMarginBottom;
+            
+            return Math.ceil(totalHeight);
+        }
+        
+        // 备用方案：使用body和html的高度
+        const body = document.body;
+        const html = document.documentElement;
+        
+        const heights = [
+            body.scrollHeight,
+            body.offsetHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ];
+        
+        return Math.max(...heights);
+    }
+
+    /**
+     * 更新父级iframe的高度
+     * 支持两种方式：直接修改iframe样式 + postMessage通信
+     */
+    function updateIframeHeight() {
+        // 使用requestAnimationFrame确保在渲染帧获取准确高度
+        requestAnimationFrame(() => {
+            const height = calculatePageHeight();
+            
+            // 方式1: 尝试直接修改父级iframe元素的高度
+            try {
+                if (window.parent && window.parent !== window) {
+                    const iframes = window.parent.document.querySelectorAll('iframe');
+                    for (let iframe of iframes) {
+                        try {
+                            if (iframe.contentWindow === window) {
+                                iframe.style.height = height + 'px';
+                                console.log('[iframe-height] 直接更新成功:', height + 'px');
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，继续尝试下一个
+                        }
+                    }
+                }
+            } catch (e) {
+                // 无法访问父级，可能是跨域
+            }
+            
+            // 方式2: 通过postMessage通知父窗口（备用方案，支持跨域）
+            try {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'setIframeHeight',
+                        height: height
+                    }, '*');
+                    console.log('[iframe-height] postMessage发送:', height + 'px');
+                }
+            } catch (e) {
+                console.warn('[iframe-height] 更新失败:', e.message);
+            }
+        });
+    }
+
+    /**
+     * 页面内容切换时调用此函数
+     * 会立即触发一次，然后延迟触发两次，确保获取准确高度
+     */
+    function onContentChange() {
+        updateIframeHeight();                    // 立即触发
+        setTimeout(updateIframeHeight, 50);      // 50ms后触发
+        setTimeout(updateIframeHeight, 150);     // 150ms后触发
+    }
+
+    // 防抖定时器
+    let debounceTimer = null;
+
+    /**
+     * 带防抖的高度更新
+     * @param {number} delay 防抖延迟时间（毫秒）
+     */
+    function debouncedUpdate(delay = 10) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateIframeHeight, delay);
+    }
+
+    // ==================== 自动监听机制 ====================
+
+    // 1. 监听DOM变化
+    const observer = new MutationObserver(() => {
+        debouncedUpdate(10);
+    });
+
+    observer.observe(document.body, {
+        childList: true,      // 监听子节点的添加/删除
+        subtree: true,        // 监听所有后代节点
+        attributes: true,     // 监听属性变化
+        characterData: true   // 监听文本内容变化
+    });
+
+    // 2. 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        debouncedUpdate(50);
+    });
+
+    // 3. 监听图片加载
+    document.addEventListener('load', (e) => {
+        if (e.target.tagName === 'IMG') {
+            updateIframeHeight();
+        }
+    }, true);
+
+    // 4. 页面加载完成后立即更新
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            injectDynamicHeightStyles();
+            updateIframeHeight();
+        });
+    } else {
+        injectDynamicHeightStyles();
+        updateIframeHeight();
+    }
+
+    // 5. 监听来自父窗口的高度请求
+    window.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'request-height' || event.data.type === 'requestHeight')) {
+            updateIframeHeight();
+        }
+    });
+
+    // ==================== 暴露全局方法 ====================
+
+    // 将更新函数暴露到全局，供页面内容切换时调用
+    window.updateIframeHeight = updateIframeHeight;
+    window.onContentChange = onContentChange;
+
+    console.log('[iframe-height] 自适应脚本已加载');
+
+})();
+  </script>
+  <script>
+
+    // 农历计算类
+    class LunarCalendar {
+      constructor() {
+        // 农历数据 1900-2100
+        this.lunarInfo = [
+          0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,
+          0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,
+          0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,
+          0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,
+          0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,
+          0x06ca0,0x0b550,0x15355,0x04da0,0x0a5b0,0x14573,0x052b0,0x0a9a8,0x0e950,0x06aa0,
+          0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,
+          0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b6a0,0x195a6,
+          0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,
+          0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,
+          0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,
+          0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,
+          0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,
+          0x05aa0,0x076a3,0x096d0,0x04afb,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,
+          0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0,
+          0x14b63,0x09370,0x049f8,0x04970,0x064b0,0x168a6,0x0ea50,0x06b20,0x1a6c4,0x0aae0,
+          0x0a2e0,0x0d2e3,0x0c960,0x0d557,0x0d4a0,0x0da50,0x05d55,0x056a0,0x0a6d0,0x055d4,
+          0x052d0,0x0a9b8,0x0a950,0x0b4a0,0x0b6a6,0x0ad50,0x055a0,0x0aba4,0x0a5b0,0x052b0,
+          0x0b273,0x06930,0x07337,0x06aa0,0x0ad50,0x14b55,0x04b60,0x0a570,0x054e4,0x0d160,
+          0x0e968,0x0d520,0x0daa0,0x16aa6,0x056d0,0x04ae0,0x0a9d4,0x0a2d0,0x0d150,0x0f252
+        ];
+        
+        // 传统节日(农历)
+        this.festivals = {
+          '12-30': '除夕',
+          '1-1': '春节',
+          '1-15': '元宵节',
+          '5-5': '端午节',
+          '7-7': '七夕',
+          '8-15': '中秋节',
+          '9-9': '重阳节',
+          '12-8': '腊八'
+        };
+        
+        // 公历节日(2026年)
+        this.solarFestivals = {
+          2026: {
+            '1-1': '元旦',
+            '4-5': '清明节',
+            '5-1': '劳动节',
+            '10-1': '国庆节'
+          }
+        };
+      }
+      
+      // 获取农历年份天数
+      lYearDays(y) {
+        let sum = 348;
+        for (let i = 0x8000; i > 0x8; i >>= 1) {
+          sum += (this.lunarInfo[y - 1900] & i) ? 1 : 0;
+        }
+        return sum + this.leapDays(y);
+      }
+      
+      // 获取闰月天数
+      leapDays(y) {
+        if (this.leapMonth(y)) {
+          return (this.lunarInfo[y - 1900] & 0x10000) ? 30 : 29;
+        }
+        return 0;
+      }
+      
+      // 获取闰月月份
+      leapMonth(y) {
+        return this.lunarInfo[y - 1900] & 0xf;
+      }
+      
+      // 获取农历月份天数
+      monthDays(y, m) {
+        return (this.lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29;
+      }
+      
+      // 公历转农历
+      solar2lunar(date) {
+        const baseDate = new Date(1900, 0, 31);
+        let offset = Math.floor((date - baseDate) / 86400000);
+        
+        let year = 1900;
+        let daysInYear = 0;
+        
+        while (year < 2101 && offset > 0) {
+          daysInYear = this.lYearDays(year);
+          offset -= daysInYear;
+          year++;
+        }
+        
+        if (offset < 0) {
+          offset += daysInYear;
+          year--;
+        }
+        
+        const leap = this.leapMonth(year);
+        let isLeap = false;
+        
+        let month = 1;
+        for (month = 1; month < 13 && offset > 0; month++) {
+          if (leap > 0 && month === (leap + 1) && !isLeap) {
+            --month;
+            isLeap = true;
+            daysInYear = this.leapDays(year);
+          } else {
+            daysInYear = this.monthDays(year, month);
+          }
+          
+          if (isLeap && month === (leap + 1)) {
+            isLeap = false;
+          }
+          
+          offset -= daysInYear;
+        }
+        
+        if (offset === 0 && leap > 0 && month === leap + 1) {
+          if (isLeap) {
+            isLeap = false;
+          } else {
+            isLeap = true;
+            --month;
+          }
+        }
+        
+        if (offset < 0) {
+          offset += daysInYear;
+          --month;
+        }
+        
+        const day = offset + 1;
+        
+        return {
+          year,
+          month,
+          day,
+          isLeap
+        };
+      }
+      
+      // 获取农历日期中文
+      getLunarDayText(day) {
+        const dayTexts = ['', '初一','初二','初三','初四','初五','初六','初七','初八','初九','初十',
+                         '十一','十二','十三','十四','十五','十六','十七','十八','十九','二十',
+                         '廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+        return dayTexts[day];
+      }
+      
+      // 获取农历月份中文
+      getLunarMonthText(month) {
+        const monthTexts = ['', '正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
+        return monthTexts[month];
+      }
+      
+      // 获取完整农历信息
+      getLunarInfo(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        
+        // 优先检查公历节日(如清明节)
+        const solarDateKey = `${month}-${day}`;
+        const solarFestival = this.solarFestivals[year] ? this.solarFestivals[year][solarDateKey] : null;
+        if (solarFestival) {
+          return { text: solarFestival, type: 'festival' };
+        }
+        
+        const lunar = this.solar2lunar(date);
+        const festivalKey = `${lunar.month}-${lunar.day}`;
+        const festival = this.festivals[festivalKey];
+        
+        // 优先显示节日,其次显示初一,最后显示日期
+        if (festival) {
+          return { text: festival, type: 'festival' };
+        } else if (lunar.day === 1) {
+          return { text: this.getLunarMonthText(lunar.month), type: 'month' };
+        } else {
+          return { text: this.getLunarDayText(lunar.day), type: 'day' };
+        }
+      }
+    }
+
+    class HolidaySchedule {
+      constructor() {
+        this.lunarCalendar = new LunarCalendar();
+        this.holidays = [
+          {
+            name: '元旦',
+            startDate: '2026-01-01',
+            endDate: '2026-01-03',
+            days: 3,
+            status: '未休',
+            vacationDays: ['2026-01-01', '2026-01-02', '2026-01-03'],
+            workDays: ['2026-01-04']
+          },
+          {
+            name: '春节',
+            startDate: '2026-02-15',
+            endDate: '2026-02-23',
+            days: 9,
+            status: '未休',
+            vacationDays: ['2026-02-15', '2026-02-16', '2026-02-17', '2026-02-18', '2026-02-19', '2026-02-20', '2026-02-21', '2026-02-22', '2026-02-23'],
+            workDays: ['2026-02-14', '2026-02-28']
+          },
+          {
+            name: '清明节',
+            startDate: '2026-04-04',
+            endDate: '2026-04-06',
+            days: 3,
+            status: '未休',
+            vacationDays: ['2026-04-04', '2026-04-05', '2026-04-06'],
+            workDays: []
+          },
+          {
+            name: '劳动节',
+            startDate: '2026-05-01',
+            endDate: '2026-05-05',
+            days: 5,
+            status: '未休',
+            vacationDays: ['2026-05-01', '2026-05-02', '2026-05-03', '2026-05-04', '2026-05-05'],
+            workDays: ['2026-05-09']
+          },
+          {
+            name: '端午节',
+            startDate: '2026-06-19',
+            endDate: '2026-06-21',
+            days: 3,
+            status: '未休',
+            vacationDays: ['2026-06-19', '2026-06-20', '2026-06-21'],
+            workDays: []
+          },
+          {
+            name: '中秋节',
+            startDate: '2026-09-25',
+            endDate: '2026-09-27',
+            days: 3,
+            status: '未休',
+            vacationDays: ['2026-09-25', '2026-09-26', '2026-09-27'],
+            workDays: ['2026-09-20']
+          },
+          {
+            name: '国庆节',
+            startDate: '2026-10-01',
+            endDate: '2026-10-07',
+            days: 7,
+            status: '未休',
+            vacationDays: ['2026-10-01', '2026-10-02', '2026-10-03', '2026-10-04', '2026-10-05', '2026-10-06', '2026-10-07'],
+            workDays: ['2026-10-10']
+          }
+        ];
+
+        this.expandedIndex = null;
+        this.init();
+      }
+
+      // 更新假期状态
+      updateHolidayStatus() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // 重置时间为当天0点,便于比较
+        
+        this.holidays.forEach(holiday => {
+          const startDate = new Date(holiday.startDate);
+          startDate.setHours(0, 0, 0, 0);
+          
+          // 如果当前日期 >= 假期开始日期,则为"已休"
+          if (today >= startDate) {
+            holiday.status = '已休';
+          } else {
+            holiday.status = '未休';
+          }
+        });
+      }
+
+      init() {
+        this.updateHolidayStatus(); // 在渲染前更新状态
+        this.renderHolidayList();
+      }
+
+      formatDate(dateStr) {
+        const date = new Date(dateStr);
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${month}月${day}日`;
+      }
+
+      renderHolidayList() {
+        const listContainer = document.getElementById('holidayList');
+        listContainer.innerHTML = '';
+
+        this.holidays.forEach((holiday, index) => {
+          const holidayItem = document.createElement('div');
+          holidayItem.className = 'holiday-item';
+          
+          const isExpanded = this.expandedIndex === index;
+          
+          holidayItem.innerHTML = `
+            <div class="holiday-row" data-index="${index}">
+              <div class="holiday-divider"></div>
+              <div class="holiday-info">
+                <div class="info-name">${holiday.name}</div>
+                <div class="info-date">${this.formatDate(holiday.startDate)} - ${this.formatDate(holiday.endDate)}</div>
+                <div class="info-days">${holiday.days}天</div>
+                <div class="info-status">${holiday.status}</div>
+                <div class="info-arrow ${isExpanded ? 'expanded' : ''}">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M3 4.5L6 7.5L9 4.5" stroke="#999999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            ${isExpanded ? this.renderCalendar(holiday, index) : ''}
+          `;
+
+          listContainer.appendChild(holidayItem);
+        });
+
+        // 绑定点击事件
+        document.querySelectorAll('.holiday-row').forEach(row => {
+          row.addEventListener('click', (e) => {
+            const index = parseInt(e.currentTarget.dataset.index);
+            this.toggleExpand(index);
+          });
+        });
+      }
+
+      toggleExpand(index) {
+        if (this.expandedIndex === index) {
+          this.expandedIndex = null;
+        } else {
+          this.expandedIndex = index;
+        }
+        this.renderHolidayList();
+      }
+
+      renderCalendar(holiday, holidayIndex) {
+        const startDate = new Date(holiday.startDate);
+        const endDate = new Date(holiday.endDate);
+        
+        // 获取日历显示的月份范围
+        const startMonth = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+        const endMonth = new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0);
+        
+        let calendarHTML = '<div class="calendar-container">';
+        
+        // 生成每个月的日历
+        let currentMonth = new Date(startMonth);
+        while (currentMonth <= endMonth) {
+          calendarHTML += this.renderMonthCalendar(currentMonth, holiday);
+          currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+        }
+        
+        calendarHTML += '</div>';
+        return calendarHTML;
+      }
+
+      renderMonthCalendar(monthDate, holiday) {
+        const year = monthDate.getFullYear();
+        const month = monthDate.getMonth();
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        const daysInMonth = lastDay.getDate();
+        const startDayOfWeek = firstDay.getDay();
+
+        let html = `
+          <div class="month-calendar">
+            <div class="month-header">${year}年${month + 1}月</div>
+            <div class="weekdays">
+              <div class="weekday">日</div>
+              <div class="weekday">一</div>
+              <div class="weekday">二</div>
+              <div class="weekday">三</div>
+              <div class="weekday">四</div>
+              <div class="weekday">五</div>
+              <div class="weekday">六</div>
+            </div>
+            <div class="days-grid">
+        `;
+
+        // 填充空白日期
+        for (let i = 0; i < startDayOfWeek; i++) {
+          html += '<div class="day empty"></div>';
+        }
+
+        // 填充日期
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          const isVacation = holiday.vacationDays.includes(dateStr);
+          const isWorkDay = holiday.workDays.includes(dateStr);
+          
+          // 获取农历信息
+          const currentDate = new Date(year, month, day);
+          const lunarInfo = this.lunarCalendar.getLunarInfo(currentDate);
+          const lunarClass = lunarInfo.type === 'festival' ? 'day-lunar festival' : 'day-lunar';
+          
+          let dayClass = 'day';
+          let label = '';
+          
+          if (isVacation) {
+            dayClass += ' vacation';
+            label = '<span class="day-label vacation-label">休</span>';
+          } else if (isWorkDay) {
+            dayClass += ' workday';
+            label = '<span class="day-label workday-label">班</span>';
+          }
+
+          html += `
+            <div class="${dayClass}">
+              <span class="day-number">${day}</span>
+              <span class="${lunarClass}">${lunarInfo.text}</span>
+              ${label}
+            </div>
+          `;
+        }
+
+        html += `
+            </div>
+          </div>
+        `;
+
+        return html;
+      }
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      new HolidaySchedule();
+    });
+  
+  </script>
+</body>
+</html>]]></code_url>
+      <!-- 嵌入iframe的小工具h5链接，必填标签 -->
+      <url_logo><![CDATA[https://]]></url_logo>
+      <!-- 底部参考来源的logo url，必填标签 -->
+      <source><![CDATA[腾讯新闻]]></source>
+      <!-- 底部参考来源，必填标签 -->
+      <recall_top><![CDATA[放假安排;放假查询;2026放假安排;2026放假;2026假期;2026全年假期;2026放假时间表;国务院放假安排;2026年节假日;2026年调休;元旦放假;春节放假;春节调休]]></recall_top>
+      <!-- 强需召回词，用户配置固排；多个召回词间以英文分号分隔，必填标签 -->
+      <recall_middle><![CDATA[今年放假安排;明年放假时间;假期怎么放;什么时候放假;节假日安排;调休时间;法定节假日;放假日历;假期日历;国庆放假;清明放假]]></recall_middle>
+      <!-- 中弱需召回词，配置点调用；多个词以英文分号分隔，必填标签 -->
+      <motion_copy_ch><![CDATA[好的，用户现在想了解2026年的放假安排，包括各个节假日的放假时间和调休安排。]]></motion_copy_ch>
+      <!-- 动效最开始的中文提示信息，选填标签 -->
+      <brand_top><![CDATA[·腾讯新闻]]></brand_top>
+      <!-- 顶部拼接的品牌，选填标签 -->
+      <title_share><![CDATA[2026年放假安排]]></title_share>
+      <!-- 分享展示的标题，选填标签 -->
+      <description_share><![CDATA[2026年放假安排 · 国务院办公厅发布2026年放假安排，包含元旦、春节、清明、劳动节、端午、中秋、国庆等节假日时间。]]></description_share>
+      <!-- 分享展示的描述，选填标签 -->
+    </display>
+    <!-- display，必填标签 -->
+  </item>
+</DOCUMENT>

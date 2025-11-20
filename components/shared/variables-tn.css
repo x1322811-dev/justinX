@@ -1,0 +1,143 @@
+/* 腾讯新闻颜色变量 - 自适应日夜间模式 */
+
+:root {
+  /* 尺寸 - 圆角 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+
+  /* 尺寸 - 按钮高度 */
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+
+/* 默认日间模式 */
+:root,
+body.light-theme {
+  /* 字色 */
+  --t1: #333333;
+  --t2: #5C5C5C;
+  --t3: #999999;
+  --t4: #BBBBBB;
+  --t5: #FFFFFF;
+
+  /* 灰度色 */
+  --bg-white: #FFFFFF;
+  --bg-grey: #F5F5F5;
+  --bg-block: #F7F7F7;
+  --bg-block-blue: #F7F7F7;   /* 与qb对应增加此变量 */
+  --line: #F0F0F0;
+  --stroke: #E6E6E6;
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  /* 彩色 */
+  --blue-normal: #3377FF;
+  --blue-light: #EBF5FF;
+  --red-normal: #FF0055;
+  --red-light: #FFF2F2;
+  --green-normal: #00BF7E;
+  --green-light: #E6FAF0;
+  --yellow-normal: #FFB700;
+  --yellow-light: #FFF6E6;
+  --orange-normal: #FF7D3E;
+  --orange-light: #FFEEE6;
+  --ai-normal: #45AD60;
+  --ai-light: rgba(69, 173, 96, 0.30);
+
+ /* 高亮色 */
+  --highlight: #3377FF;
+  --highlight-light: #EBF5FF;
+
+ /* 特殊色 */
+  --gufengbg: #F5F0E8;
+
+}
+
+/* 夜间模式 - 腾讯新闻App手动控制 */
+body.dark-theme {
+  /* 字色 - 夜间模式 */
+  --t1: #E6E6E6;
+  --t2: #A9A9A9;
+  --t3: #696969;
+  --t4: #666666;
+  --t5: #FFFFFF;
+
+  /* 灰度色 - 夜间模式 */
+  --bg-white: #1F1F1F;
+  --bg-grey: #121212;
+  --bg-block: #2B2B2B;
+  --bg-block-blue: #2B2B2B;
+  --line: #292929;
+  --stroke: #303030;
+
+  --shadow-color: rgba(0, 0, 0, 0.3);
+
+  /* 彩色 - 夜间模式 */
+  --blue-normal: #3377FF;
+  --blue-light: #273240;
+  --red-normal: #D90048;
+  --red-light: #332929;
+  --green-normal: #00BF7E;
+  --green-light: #2E3330;
+  --yellow-normal: #D99B00;
+  --yellow-light: #332F29;
+  --orange-normal: #D96A35;
+  --orange-light: #332C29;
+  --ai-normal: #45AD60;
+  --ai-light: rgba(69,173, 96, 0.30);
+
+   /* 高亮色 */
+  --highlight: #3377FF;
+  --highlight-light: #273240;
+
+   /* 特殊色 */
+  --gufengbg: #2C261E;
+}
+
+/* 夜间模式 - 系统自动跟随 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 字色 - 夜间模式 */
+    --t1: #E6E6E6;
+    --t2: #A9A9A9;
+    --t3: #696969;
+    --t4: #666666;
+    --t5: #FFFFFF;
+
+    /* 灰度色 - 夜间模式 */
+    --bg-white: #1F1F1F;
+    --bg-grey: #121212;
+    --bg-block: #2B2B2B;
+    --bg-block-blue: #2B2B2B;
+    --line: #292929;
+    --stroke: #303030;
+
+    --shadow-color: rgba(0, 0, 0, 0.3);
+
+    /* 彩色 - 夜间模式 */
+    --blue-normal: #3377FF;
+    --blue-light: #273240;
+    --red-normal: #D90048;
+    --red-light: #332929;
+    --green-normal: #00BF7E;
+    --green-light: #2E3330;
+    --yellow-normal: #D99B00;
+    --yellow-light: #332F29;
+    --orange-normal: #D96A35;
+    --orange-light: #332C29;
+    --ai-normal: #45AD60;
+    --ai-light: rgba(69,173, 96, 0.30);
+
+   /* 高亮色 */
+  --highlight: #3377FF;
+  --highlight-light: #273240;
+
+    /* 特殊色 */
+    --gufengbg: #2C261E;
+
+
+  }
+}

@@ -1,0 +1,91 @@
+/* QQ浏览器颜色变量 - 支持日夜间模式 */
+
+/* 日间模式（默认） */
+:root,
+[data-color-scheme='light'] {
+  /* 字色 */
+  --t1: #242424;
+  --t2: #666666;
+  --t3: #8F8F8F;
+  --t4: #B3B3B3;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 */
+  --bg-white: #FFFFFF;
+  --bg-grey: #F5F5F5;
+  --bg-block: #F7F7F7;   /* 浅灰色按钮背景色？ */
+  --bg-block-blue:#F6F7FA;  /* 浅蓝灰按钮背景色 */
+  --line: rgba(0, 0, 0, 0.08);
+  --stroke: #EEEEEE;
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* 功能色彩 - QQ浏览器品牌色调 */
+  --blue-normal: #205AEF;
+  --blue-light: rgba(32, 90, 239, 0.08);
+  --green-normal: #0BB861;
+  --green-light: rgba(11, 184, 97, 0.08);
+  --red-normal: #F44837;
+  --red-light: rgba(244, 72, 55, 0.08);
+  --yellow-normal: #FFC20D;
+  --yellow-light: rgba(255, 149, 13, 0.08);
+  
+   /* 高亮色 */
+  --highlight: #F44837;
+  --highlight-light: rgba(244, 72, 55, 0.08);
+
+  /* 尺寸 - 圆角 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  /* 尺寸 - 按钮高度 */
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+
+/* 夜间模式 */
+[data-color-scheme='dark'] {
+  /* 字色 - 夜间模式 */
+  --t1: #A3A3A3;
+  --t2: #7F7F7F;
+  --t3: #5F5F5F;
+  --t4: #484848;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 - 夜间模式 */
+  --bg-white: #1A1A1A;
+  --bg-grey: #262626;
+  --bg-block: #262626;
+  --bg-block-blue:#262626;  /* 浅蓝灰按钮背景色 */
+  --line: rgba(255,255,255,0.08);
+  --stroke: #333333;
+  
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* 功能色彩 - 夜间模式（稍微降低饱和度） */
+  --blue-normal: #1F4DC4;
+  --blue-light: rgba(31, 77, 196, 0.15);
+  --green-normal: #0E9853;
+  --green-light: rgba(14, 152, 83, 0.15);
+  --red-normal: #C83F31;
+  --red-light: rgba(200, 63, 49, 0.15);
+  --yellow-normal: #D1A010;
+  --yellow-light: rgba(209, 160, 15, 0.15);
+
+    /* 高亮色 */
+  --highlight: #C83F31;
+  --highlight-light: rgba(200, 63, 49, 0.15);
+  
+  /* 尺寸保持不变 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}

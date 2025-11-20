@@ -1,0 +1,312 @@
+/**
+ * QB小工具 - 色彩样式库
+ * Colors Style Library for QB Tools
+ * 
+ * 使用说明 (Usage):
+ * 1. 通过CSS变量调用颜色，例如: color: var(--qb-newblue);
+ * 2. 夜间模式通过在根元素添加 .dark-mode 类来启用
+ * 3. 颜色分为四大类：基础色板、文本图标、背景框架、线条描边
+ * 
+ * 示例 (Example):
+ * <!-- 日间模式 -->
+ * <div style="background-color: var(--qb-bg-white); color: var(--qb-text-a1);">内容</div>
+ * 
+ * <!-- 夜间模式 -->
+ * <html class="dark-mode">
+ *   <div style="background-color: var(--qb-bg-white); color: var(--qb-text-a1);">内容</div>
+ * </html>
+ * 
+ * 颜色命名规则 (Naming Convention):
+ * - 基础色板: --qb-{颜色名称} (如: --qb-newblue, --qb-red)
+ * - 文本图标: --qb-text-{级别} (如: --qb-text-a1, --qb-text-a2)
+ * - 背景框架: --qb-bg-{类型} (如: --qb-bg-white, --qb-bg-grey)
+ * - 线条描边: --qb-line, --qb-border
+ * 
+ * 通用CSS命名映射 (CSS Standard Mapping):
+ * --qb-primary: 主色调 (映射到 NewBlue)
+ * --qb-danger: 危险/警告色 (映射到 Red)
+ * --qb-success: 成功色 (映射到 Green)
+ * --qb-warning: 警告色 (映射到 Orange)
+ * --qb-info: 信息色 (映射到 Cyan)
+ */
+
+/* ==================== 根变量定义 (日间模式) ==================== */
+:root {
+  /* ========== 基础色板 (Primary Colors) ========== */
+  
+  /* 品牌色 NewBlue - 新框架品牌主色 / 按钮 / 高亮文本 */
+  --qb-newblue: #205AEF;
+  --qb-newblue-dark: #1F4DC4; /* 夜间模式 */
+  
+  /* 功能色 */
+  --qb-red: #F44837;          /* 警示 / 强调 */
+  --qb-red-dark: #C83F31;     /* 夜间模式 */
+  
+  --qb-orange: #FF8A14;       /* 分数 / 评星 / 辅助色 */
+  --qb-orange-dark: #D17415;  /* 夜间模式 */
+  
+  --qb-yellow: #FFC20D;       /* 辅助色 */
+  --qb-yellow-dark: #D1A010;  /* 夜间模式 */
+  
+  --qb-gold: #FBC56E;         /* 金色 / 会员 / 小说 / 等级体系 */
+  --qb-gold-dark: #D1A85C;    /* 夜间模式 */
+  
+  --qb-green: #0BB861;        /* 安全 / 辅助色 */
+  --qb-green-dark: #0E9853;   /* 夜间模式 */
+  
+  --qb-cyan: #0ACC9B;         /* 辅助色 */
+  --qb-cyan-dark: #0DA881;    /* 夜间模式 */
+  
+  --qb-purple: #7632FF;       /* 辅助色 */
+  --qb-purple-dark: #642DD1;  /* 夜间模式 */
+  
+  --qb-brown: #78461A;        /* 辅助色 */
+  --qb-brown-dark: #70441D;   /* 夜间模式 */
+  
+  
+  /* ========== 文本 & 图标 (Text & Icon) ========== */
+  
+  /* 日间模式文本颜色 */
+  --qb-text-a1: #242424;      /* 主文本 (#000000·86%) */
+  --qb-text-a2: #666666;      /* 次要文本 (#000000·60%) */
+  --qb-text-a3: #8F8F8F;      /* 辅助文本 (#000000·44%) */
+  --qb-text-a4: #B3B3B3;      /* 占位文本 (#000000·30%) */
+  
+  /* 高亮文本 */
+  --qb-text-highlight: #205AEF;  /* 高亮文本 (NewBlue) */
+  --qb-text-danger: #F44837;     /* 警示文本 (Red) */
+  
+  /* 夜间模式文本颜色 */
+  --qb-text-a1-dark: #A3A3A3;    /* 主文本 (#FFFFFF·60%) */
+  --qb-text-a2-dark: #7F7F7F;    /* 次要文本 (#FFFFFF·44%) */
+  --qb-text-a3-dark: #5F5F5F;    /* 辅助文本 (#FFFFFF·30%) */
+  --qb-text-a4-dark: #484848;    /* 占位文本 (#FFFFFF·20%) */
+  
+  /* 夜间模式高亮文本 */
+  --qb-text-highlight-dark: #1F4DC4;  /* 高亮文本 (#205AEF·80%) */
+  --qb-text-danger-dark: #C83F31;     /* 警示文本 (#F44837·80%) */
+  
+  
+  /* ========== 背景 & 框架 (Background & Frame) ========== */
+  
+  /* 日间模式背景色 */
+  --qb-bg-grey: #F6F7FA;         /* 浅灰色背景 */
+  --qb-bg-white: #FFFFFF;        /* 卡片 & 列表背景 */
+  --qb-bg-frame: #F5F5F5;        /* 加载占位符 */
+  --qb-bg-black-t: rgba(0, 0, 0, 0.04);  /* 透明黑背景 */
+  --qb-bg-mask: rgba(0, 0, 0, 0.40);     /* 弹窗类组件蒙层 */
+  
+  /* 夜间模式背景色 */
+  --qb-bg-grey-dark: #0D0D0D;    /* 浅灰色背景 */
+  --qb-bg-white-dark: #1A1A1A;   /* 卡片 & 列表背景 */
+  --qb-bg-frame-dark: #262626;   /* 加载占位符 */
+  --qb-bg-black-t-dark: rgba(255, 255, 255, 0.04);  /* 透明黑背景 */
+  --qb-bg-mask-dark: rgba(0, 0, 0, 0.70);           /* 弹窗类组件蒙层 */
+  
+  
+  /* ========== 线条 & 描边 (Line & Border) ========== */
+  
+  /* 日间模式线条描边 */
+  --qb-line: rgba(0, 0, 0, 0.08);    /* 分割线 */
+  --qb-border: rgba(0, 0, 0, 0.04);  /* 图标 & 封面描边 */
+  
+  /* 夜间模式线条描边 */
+  --qb-line-dark: rgba(255, 255, 255, 0.08);    /* 分割线 */
+  --qb-border-dark: rgba(255, 255, 255, 0.04);  /* 图标 & 封面描边 */
+  
+  
+  /* ========== 通用CSS命名映射 (CSS Standard Mapping) ========== */
+  
+  /* 主色调 */
+  --qb-primary: var(--qb-newblue);
+  --qb-primary-color: var(--qb-newblue);
+  
+  /* 功能色映射 */
+  --qb-danger: var(--qb-red);
+  --qb-success: var(--qb-green);
+  --qb-warning: var(--qb-orange);
+  --qb-info: var(--qb-cyan);
+  
+  /* 文本颜色映射 */
+  --qb-text-primary: var(--qb-text-a1);
+  --qb-text-secondary: var(--qb-text-a2);
+  --qb-text-tertiary: var(--qb-text-a3);
+  --qb-text-placeholder: var(--qb-text-a4);
+  
+  /* 背景色映射 */
+  --qb-background: var(--qb-bg-grey);
+  --qb-background-white: var(--qb-bg-white);
+  --qb-background-frame: var(--qb-bg-frame);
+  
+  /* 边框颜色映射 */
+  --qb-border-color: var(--qb-border);
+  --qb-divider: var(--qb-line);
+}
+
+/* ==================== 夜间模式 (Dark Mode) ==================== */
+/* 
+ * 使用方式：在 <html> 或 <body> 标签添加 .dark-mode 类
+ * 示例: <html class="dark-mode">
+ */
+.dark-mode {
+  /* ========== 基础色板 (Primary Colors) ========== */
+  --qb-newblue: var(--qb-newblue-dark);
+  --qb-red: var(--qb-red-dark);
+  --qb-orange: var(--qb-orange-dark);
+  --qb-yellow: var(--qb-yellow-dark);
+  --qb-gold: var(--qb-gold-dark);
+  --qb-green: var(--qb-green-dark);
+  --qb-cyan: var(--qb-cyan-dark);
+  --qb-purple: var(--qb-purple-dark);
+  --qb-brown: var(--qb-brown-dark);
+  
+  /* ========== 文本 & 图标 (Text & Icon) ========== */
+  --qb-text-a1: var(--qb-text-a1-dark);
+  --qb-text-a2: var(--qb-text-a2-dark);
+  --qb-text-a3: var(--qb-text-a3-dark);
+  --qb-text-a4: var(--qb-text-a4-dark);
+  --qb-text-highlight: var(--qb-text-highlight-dark);
+  --qb-text-danger: var(--qb-text-danger-dark);
+  
+  /* ========== 背景 & 框架 (Background & Frame) ========== */
+  --qb-bg-grey: var(--qb-bg-grey-dark);
+  --qb-bg-white: var(--qb-bg-white-dark);
+  --qb-bg-frame: var(--qb-bg-frame-dark);
+  --qb-bg-black-t: var(--qb-bg-black-t-dark);
+  --qb-bg-mask: var(--qb-bg-mask-dark);
+  
+  /* ========== 线条 & 描边 (Line & Border) ========== */
+  --qb-line: var(--qb-line-dark);
+  --qb-border: var(--qb-border-dark);
+  
+  /* ========== 通用CSS命名映射自动跟随 ========== */
+  --qb-primary: var(--qb-newblue);
+  --qb-primary-color: var(--qb-newblue);
+  --qb-danger: var(--qb-red);
+  --qb-success: var(--qb-green);
+  --qb-warning: var(--qb-orange);
+  --qb-info: var(--qb-cyan);
+  --qb-text-primary: var(--qb-text-a1);
+  --qb-text-secondary: var(--qb-text-a2);
+  --qb-text-tertiary: var(--qb-text-a3);
+  --qb-text-placeholder: var(--qb-text-a4);
+  --qb-background: var(--qb-bg-grey);
+  --qb-background-white: var(--qb-bg-white);
+  --qb-background-frame: var(--qb-bg-frame);
+  --qb-border-color: var(--qb-border);
+  --qb-divider: var(--qb-line);
+}
+
+/* ==================== 工具类 (Utility Classes) ==================== */
+
+/* 基础色板工具类 */
+.qb-color-newblue { color: var(--qb-newblue) !important; }
+.qb-color-red { color: var(--qb-red) !important; }
+.qb-color-orange { color: var(--qb-orange) !important; }
+.qb-color-yellow { color: var(--qb-yellow) !important; }
+.qb-color-gold { color: var(--qb-gold) !important; }
+.qb-color-green { color: var(--qb-green) !important; }
+.qb-color-cyan { color: var(--qb-cyan) !important; }
+.qb-color-purple { color: var(--qb-purple) !important; }
+.qb-color-brown { color: var(--qb-brown) !important; }
+
+/* 背景色工具类 */
+.qb-bg-newblue { background-color: var(--qb-newblue) !important; }
+.qb-bg-red { background-color: var(--qb-red) !important; }
+.qb-bg-orange { background-color: var(--qb-orange) !important; }
+.qb-bg-yellow { background-color: var(--qb-yellow) !important; }
+.qb-bg-gold { background-color: var(--qb-gold) !important; }
+.qb-bg-green { background-color: var(--qb-green) !important; }
+.qb-bg-cyan { background-color: var(--qb-cyan) !important; }
+.qb-bg-purple { background-color: var(--qb-purple) !important; }
+.qb-bg-brown { background-color: var(--qb-brown) !important; }
+
+/* 文本颜色工具类 */
+.qb-text-a1 { color: var(--qb-text-a1) !important; }
+.qb-text-a2 { color: var(--qb-text-a2) !important; }
+.qb-text-a3 { color: var(--qb-text-a3) !important; }
+.qb-text-a4 { color: var(--qb-text-a4) !important; }
+.qb-text-highlight { color: var(--qb-text-highlight) !important; }
+.qb-text-danger { color: var(--qb-text-danger) !important; }
+
+/* 背景框架工具类 */
+.qb-bg-grey { background-color: var(--qb-bg-grey) !important; }
+.qb-bg-white { background-color: var(--qb-bg-white) !important; }
+.qb-bg-frame { background-color: var(--qb-bg-frame) !important; }
+.qb-bg-black-t { background-color: var(--qb-bg-black-t) !important; }
+.qb-bg-mask { background-color: var(--qb-bg-mask) !important; }
+
+/* 边框工具类 */
+.qb-border-line { border-color: var(--qb-line) !important; }
+.qb-border-default { border-color: var(--qb-border) !important; }
+
+/* 通用工具类 */
+.qb-color-primary { color: var(--qb-primary) !important; }
+.qb-color-danger { color: var(--qb-danger) !important; }
+.qb-color-success { color: var(--qb-success) !important; }
+.qb-color-warning { color: var(--qb-warning) !important; }
+.qb-color-info { color: var(--qb-info) !important; }
+
+.qb-bg-primary { background-color: var(--qb-primary) !important; }
+.qb-bg-danger { background-color: var(--qb-danger) !important; }
+.qb-bg-success { background-color: var(--qb-success) !important; }
+.qb-bg-warning { background-color: var(--qb-warning) !important; }
+.qb-bg-info { background-color: var(--qb-info) !important; }
+
+/* ==================== 使用示例注释 ==================== */
+
+/*
+使用示例 (Usage Examples):
+
+1. 使用CSS变量:
+   <div style="color: var(--qb-text-a1); background-color: var(--qb-bg-white);">
+     主文本内容
+   </div>
+
+2. 使用工具类:
+   <p class="qb-text-a1">主文本</p>
+   <p class="qb-text-a2">次要文本</p>
+   <p class="qb-text-highlight">高亮文本</p>
+   <div class="qb-bg-white">白色背景</div>
+
+3. 启用夜间模式:
+   <html class="dark-mode">
+     <!-- 所有颜色自动切换到夜间模式 -->
+   </html>
+
+4. JavaScript切换夜间模式:
+   // 启用夜间模式
+   document.documentElement.classList.add('dark-mode');
+   
+   // 禁用夜间模式
+   document.documentElement.classList.remove('dark-mode');
+   
+   // 切换夜间模式
+   document.documentElement.classList.toggle('dark-mode');
+
+5. 按钮颜色集成示例:
+   <button class="qb-btn qb-btn-xl" style="background-color: var(--qb-primary); color: white;">
+     主按钮
+   </button>
+
+6. 文本层级示例:
+   <h1 class="qb-text-a1">主标题</h1>
+   <p class="qb-text-a2">正文内容</p>
+   <span class="qb-text-a3">辅助说明</span>
+   <input placeholder="占位文字" class="qb-text-a4">
+
+7. 分割线示例:
+   <hr style="border-color: var(--qb-line);">
+   <div style="border: 1px solid var(--qb-border);">带边框的容器</div>
+
+8. 蒙层示例:
+   <div class="qb-bg-mask" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0;">
+     <div class="qb-bg-white" style="margin: auto;">弹窗内容</div>
+   </div>
+
+注意事项 (Notes):
+- 日间模式下，建议选择实色（大面积实色文本可提升渲染效率）
+- 在彩色背景时，如上层文本或图标需透出对应色相，可选择透明色
+- 夜间模式只在用户明确需要时启用，通过添加 .dark-mode 类实现
+- 所有颜色变量都支持在夜间模式下自动切换
+*/

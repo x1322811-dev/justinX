@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-color-scheme="light">
+<head>
+  <!-- 内联脚本：立即检测并设置日夜模式，避免闪烁 -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('qb-color-scheme');
+        const scheme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-color-scheme', scheme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>宠物年龄计算器</title>
+  <meta name="description" content="宠物年龄计算器 · 一秒读懂它，一生陪伴它" />
+  <style>
+    /* QQ浏览器模板 - 精简版，避免与shared.css重复 */
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--t1);
+      line-height: 1.5;
+      min-height: auto;
+      height: auto;
+    }
+
+    /* 适配iframe高度传递需求 */
+    html, body {
+      width: 100%;
+    }
+
+    main {
+      width: 100%;
+      min-height: auto;
+      height: auto;
+      position: relative;
+    }
+
+    /* 标题区域样式 */
+    .header-section {
+      margin: 0 0 16px 0;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 28px;
+      color: var(--t1);
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--t2);
+      margin: 0;
+      line-height: 14px;
+    }
+/* -------------------- 基础重置 -------------------- */
+
+/* 统一盒模型 */
+* {
+  box-sizing: border-box;
+  /* 禁用Android默认触摸高亮 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 通用body属性 - 不重新定义body以避免覆盖模板中的动画 */
+html {
+  /* 禁用缩放 */
+  touch-action: manipulation;
+  
+  /* 固定文字大小 */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* 禁止选中文字 */
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* 统一字体渲染 - 使用默认渲染以保持字体粗细一致 */
+  -webkit-touch-callout: none;
+}
+
+/* 统一滚动策略 - 适配WebView和iframe环境 */
+html, body {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/* -------------------- 通用容器 -------------------- */
+
+/* 内容容器 */
+.content-container {
+  background: transparent;
+  padding: 0;
+}
+
+/* -------------------- 工具类 -------------------- */
+
+/* 隐藏元素 */
+.hidden {
+  display: none;
+}
+
+/* 通用占位符 */
+.placeholder {
+  color: var(--t3);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* -------------------- 通用按钮样式 -------------------- */
+
+/* 统一按钮基础样式 */
+.btn,
+button {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+/* -------------------- 统一交互效果 -------------------- */
+
+/* 统一悬停效果 - 只在支持真正hover的设备上启用 */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    opacity: 0.6;
+  }
+}
+
+/* 统一点击效果 - 60%不透明度 + 轻微放大 */
+.btn:active {
+  opacity: 0.6;
+  transform: scale(1.02);
+}
+
+/* 统一不可用状态 - 30%不透明度 */
+.btn:disabled,
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 移除所有按钮的聚焦效果 */
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* -------------------- 表单组件 -------------------- */
+
+/* 通用输入框样式 */
+.input-base {
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-medium);
+  background: var(--bg-white);
+  color: var(--t1);
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-base:focus {
+  border-color: var(--blue-normal);
+}
+
+.input-base::placeholder {
+  color: var(--t3);
+}
+
+/* -------------------- 布局组件 -------------------- */
+
+/* 通用分割线 */
+.divider-thin-light {
+  height: 0.5px;
+  background-color: var(--line);
+  margin: 0 0 16px 0;
+}
+
+/* -------------------- 响应式优化 -------------------- */
+
+/* 防止iOS缩放 */
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"] {
+    font-size: 16px;
+  }
+}
+/* QQ浏览器颜色变量 - 支持日夜间模式 */
+
+/* 日间模式（默认） */
+:root,
+[data-color-scheme='light'] {
+  /* 字色 */
+  --t1: #242424;
+  --t2: #666666;
+  --t3: #8F8F8F;
+  --t4: #b3b3b3;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 */
+  --bg-white: #FFFFFF;
+  --bg-block: #F6F7FA;
+  --line: #DEDFE1;
+  --stroke: #E7E8EB;
+  
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* 功能色彩 - QQ浏览器品牌色调 */
+  --blue-normal: #205AEF;
+  --blue-light: rgba(32, 90, 239, 0.08);
+  --green-normal: #0BB861;
+  --green-light: rgba(11, 184, 97, 0.08);
+  --red-normal: #F44837;
+  --red-light: rgba(244, 72, 55, 0.08);
+  --yellow-normal: #FF9500;
+  --yellow-light: rgba(255, 149, 0, 0.08);
+  
+  /* 尺寸 - 圆角 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  /* 尺寸 - 按钮高度 */
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+
+/* 夜间模式 */
+[data-color-scheme='dark'] {
+  /* 字色 - 夜间模式 */
+  --t1: #E5E5E5;
+  --t2: #A3A3A3;
+  --t3: #737373;
+  --t4: #525252;
+  --t5: #FFFFFF;
+  
+  /* 灰度色 - 夜间模式 */
+  --bg-white: #1A1A1A;
+  --bg-block: #262626;
+  --line: #404040;
+  --stroke: #333333;
+  
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* 功能色彩 - 夜间模式（稍微降低饱和度） */
+  --blue-normal: #4A7EFF;
+  --blue-light: rgba(74, 126, 255, 0.15);
+  --green-normal: #2DD47E;
+  --green-light: rgba(45, 212, 126, 0.15);
+  --red-normal: #FF6B5E;
+  --red-light: rgba(255, 107, 94, 0.15);
+  --yellow-normal: #FFB340;
+  --yellow-light: rgba(255, 179, 64, 0.15);
+  
+  /* 尺寸保持不变 */
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+  --radius-round: 100px;
+  
+  --btn-height-small: 24px;
+  --btn-height-medium: 36px;
+  --btn-height-large: 48px;
+}
+/* 宠物类型选项卡 - Figma设计：简单文字排列 */
+.pet-type-tabs {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 0 0 12px 0;
+}
+
+.pet-type-tab {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--t2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    white-space: nowrap;
+}
+
+/* 选中状态 - Figma设计：黑色文字，500字重 */
+.pet-type-tab.active {
+    color: var(--t1);
+    font-weight: 500;
+}
+
+/* 使用CSS显示emoji，避免JS操作文本内容 */
+.pet-type-tab[data-type="cat"].active::before {
+    content: '🐱';
+    margin-right: 0;
+}
+
+.pet-type-tab[data-type="dog"].active::before {
+    content: '🐶';
+    margin-right: 0;
+}
+
+.pet-type-tab[data-type="rabbit"].active::before {
+    content: '🐰';
+    margin-right: 0;
+}
+
+.pet-type-tab[data-type="hamster"].active::before {
+    content: '🐹';
+    margin-right: 0;
+}
+
+/* 年龄控制区域 - Figma设计：left: 159px, top: 76px */
+.age-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 50px 0 20px;
+    position: relative;
+}
+
+.age-control::before {
+    content: '宠物年龄';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--t2);
+}
+
+/* 年龄按钮 - 浅灰色圆形底 */
+.age-control button {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-block);
+    color: var(--t1);
+    font-size: 24px;
+    font-weight: 400;
+    flex-shrink: 0;
+    border-radius: 50%;
+    /* 其他样式继承自 shared.css 的 button 全局规则 */
+}
+
+/* 禁用状态 - 保留置灰效果 */
+.age-control button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.age-display {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--t1);
+    text-align: center;
+    min-width: 80px;
+}
+
+/* 狗狗尺寸选择器 - Figma设计：48px × 24px */
+.dog-size-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+/* 确保隐藏状态优先级更高 */
+.dog-size-selector.hidden {
+    display: none;
+}
+
+.dog-size-btn {
+    width: 48px;
+    height: 24px;
+    padding: 0;
+    background: var(--bg-block);
+    border: none;
+    border-radius: var(--radius-small);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--t2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dog-size-btn.active {
+    background: var(--blue-light);
+    color: var(--blue-normal);
+}
+
+/* 结果卡片 - 根据内容自适应高度 */
+.result-card {
+    background: var(--bg-block);
+    border-radius: var(--radius-medium);
+    padding: 16px;
+    margin-top: 20px;
+}
+
+/* 生命阶段徽章 - Figma设计：95px × 22px，包含"婴儿期 · 狗狗" */
+.stage-badge {
+    display: inline-block;
+    height: 22px;
+    padding: 0 4px;
+    background: var(--blue-light);
+    color: var(--blue-normal);
+    border-radius: var(--radius-small);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 22px;
+}
+
+/* 人类年龄 - Figma设计：18px字号，500字重 */
+.human-age-value {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--t1);
+    margin-bottom: 8px;
+}
+
+/* 护理建议 - Figma设计：14px字号 */
+.care-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--t2);
+    line-height: 1.5;
+    margin: 0;
+    display: block;
+}
+
+/* 隐藏不需要的元素 */
+.human-age {
+    text-align: left;
+}
+
+.human-age-label,
+.info-label,
+.info-section {
+    display: none;
+}
+
+.info-value {
+    margin: 0;
+    line-height: 1;
+}
+
+/* .hidden 类已在 shared.css 中定义，无需重复 */
+
+
+  </style>
+  
+</head>
+<body>
+  <main>
+    <!-- 标题区域 - 严格按照参考样式 -->
+    <div class="header-section">
+      <div class="header-text">
+        <h1 class="header-title">宠物年龄计算器</h1>
+        <p class="header-subtitle">一秒读懂它，一生陪伴它</p>
+      </div>
+    </div>
+
+    <!-- 工具内容区域 -->
+    <div class="petage-content content-container">
+            <div class="pet-type-tabs">
+                <button class="pet-type-tab active" data-type="cat" data-emoji="🐱">猫猫</button>
+                <button class="pet-type-tab" data-type="dog" data-emoji="🐶">狗狗</button>
+                <button class="pet-type-tab" data-type="rabbit" data-emoji="🐰">兔兔</button>
+                <button class="pet-type-tab" data-type="hamster" data-emoji="🐹">仓鼠</button>
+            </div>
+
+            <div id="dogSizeSelector" class="dog-size-selector hidden">
+                <button class="dog-size-btn active" data-size="small">小型犬</button>
+                <button class="dog-size-btn" data-size="medium">中型犬</button>
+                <button class="dog-size-btn" data-size="large">大型犬</button>
+                <button class="dog-size-btn" data-size="giant">巨型犬</button>
+            </div>
+
+            <div class="age-control">
+                <button id="decreaseBtn">−</button>
+                <div class="age-display">
+                    <span id="ageValue">1个月</span>
+                </div>
+                <button id="increaseBtn">+</button>
+            </div>
+
+            <div class="result-card">
+                <div class="stage-badge" id="lifeStage">婴儿期</div>
+                <div class="human-age">
+                    <div class="human-age-value">相当于人类年龄：<span id="humanAge">15</span>岁</div>
+                </div>
+                <div class="info-value">
+                    <div class="care-text" id="careAdvice">极度脆弱，完全依赖母犬，养护核心时保暖、确保母乳摄入。</div>
+                </div>
+            </div>
+        </div>
+  </main>
+
+
+  <!-- 日夜间模式自动同步脚本 - 来自 dark-mode-final.js -->
+  <script type="text/javascript">
+/**
+ * QB小工具 - 日夜模式自动同步脚本 V2
+ * Dark Mode Auto Sync for QB Tools V2
+ * 
+ * 功能说明：
+ * 1. 优先检测浏览器的日夜模式设置（localStorage），其次检测系统偏好
+ * 2. 通过设置 data-color-scheme 属性来控制样式
+ * 3. 监听系统模式变化并实时切换
+ * 4. 支持手动切换并持久化用户偏好
+ * 
+ * 使用方法：
+ * 在HTML页面中引入此脚本：
+ * <script src="shared/dark-mode-sync-v2.js"></script>
+ * 
+ * CSS中使用方式：
+ * [data-color-scheme='dark'] {
+ *   .header-title { color: #fff; }
+ *   body { background: #000; }
+ * }
+ * 
+ * [data-color-scheme='light'] {
+ *   .header-title { color: #000; }
+ *   body { background: #fff; }
+ * }
+ * 
+ * @version 2.0.1
+ */
+
+(function() {
+  'use strict';
+
+  // 本地存储的键名
+  const STORAGE_KEY = 'qb-color-scheme';
+  
+  /**
+   * 获取浏览器存储的模式偏好
+   * @returns {string|null} 'dark', 'light' 或 null（未设置）
+   */
+  function getBrowserPreference() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法访问 localStorage:', e.message);
+      return null;
+    }
+  }
+
+  /**
+   * 保存模式偏好到浏览器
+   * @param {string} scheme - 'dark' 或 'light'
+   */
+  function saveBrowserPreference(scheme) {
+    try {
+      localStorage.setItem(STORAGE_KEY, scheme);
+      console.log('[Dark Mode Sync V2] 已保存用户偏好:', scheme);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法保存到 localStorage:', e.message);
+    }
+  }
+
+  /**
+   * 检测系统是否为夜间模式
+   * @returns {boolean} true表示夜间模式，false表示日间模式
+   */
+  function isSystemDarkMode() {
+    // 适配darkreader.js
+    if (window.__DARKREADER_COLOR_SCHEME__) {
+      return window.__DARKREADER_COLOR_SCHEME__ === 'dark';
+    }
+
+    if (window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    return false;
+  }
+
+  /**
+   * 获取当前应该使用的模式
+   * 优先级：浏览器设置 > 系统设置
+   * @returns {string} 'dark' 或 'light'
+   */
+  function getCurrentScheme() {
+    // 1. 优先使用浏览器存储的偏好
+    const browserPref = getBrowserPreference();
+    if (browserPref === 'dark' || browserPref === 'light') {
+      console.log('[Dark Mode Sync V2] 使用浏览器偏好:', browserPref);
+      return browserPref;
+    }
+
+    // 2. 其次使用系统偏好
+    const systemIsDark = isSystemDarkMode();
+    const scheme = systemIsDark ? 'dark' : 'light';
+    console.log('[Dark Mode Sync V2] 使用系统偏好:', scheme);
+    return scheme;
+  }
+
+  /**
+   * 检测是否为iOS QQ浏览器
+   */
+  function isQQBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('mqqbrowser') > -1 || ua.indexOf('qq/') > -1;
+  }
+
+  /**
+   * 检测是否为iOS设备
+   */
+  function isIOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(ua);
+  }
+
+  /**
+   * 移除硬编码的白色背景
+   */
+  function removeHardcodedWhiteBackgrounds() {
+    try {
+      // 查找所有可能包含硬编码白色背景的元素
+      const allElements = document.querySelectorAll('*');
+      let removedCount = 0;
+      
+      allElements.forEach(element => {
+        const computedStyle = window.getComputedStyle(element);
+        const bgColor = computedStyle.backgroundColor;
+        
+        // 检测是否为白色背景 (rgb(255, 255, 255) 或 #ffffff 或 #fff)
+        if (bgColor === 'rgb(255, 255, 255)' || bgColor === '#ffffff' || bgColor === '#fff') {
+          const inlineStyle = element.style.backgroundColor;
+          // 只移除内联样式中的白色背景
+          if (inlineStyle && (inlineStyle.toLowerCase() === '#ffffff' || 
+              inlineStyle.toLowerCase() === '#fff' || 
+              inlineStyle.toLowerCase() === 'white' ||
+              inlineStyle.toLowerCase() === 'rgb(255, 255, 255)')) {
+            element.style.backgroundColor = '';
+            removedCount++;
+            console.log('[Dark Mode Sync V2] 已移除硬编码白色背景:', element.tagName, element.className);
+          }
+        }
+      });
+      
+      if (removedCount > 0) {
+        console.log('[Dark Mode Sync V2] 共移除', removedCount, '个硬编码白色背景');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 移除硬编码背景时出错:', e.message);
+    }
+  }
+
+  /**
+   * 强制修复iOS QQ浏览器的输入框背景
+   */
+  function forceFixIOSQQBrowserInputs() {
+    if (!isIOS() || !isQQBrowser()) {
+      return;
+    }
+
+    try {
+      // 查找所有输入框和文本域
+      const inputs = document.querySelectorAll('input, textarea, .qb-input, .qb-textarea, .birthday-input');
+      let fixedCount = 0;
+
+      inputs.forEach(input => {
+        // 强制设置背景色
+        const darkBg = getComputedStyle(document.documentElement).getPropertyValue('--qb-bg-white-dark').trim() || '#1A1A1A';
+        input.style.setProperty('background-color', darkBg, 'important');
+        input.style.setProperty('background', darkBg, 'important');
+        
+        // 强制设置文字颜色
+        const darkText = getComputedStyle(document.documentElement).getPropertyValue('--qb-text-a1-dark').trim() || '#A3A3A3';
+        input.style.setProperty('color', darkText, 'important');
+        input.style.setProperty('-webkit-text-fill-color', darkText, 'important');
+        
+        fixedCount++;
+      });
+
+      if (fixedCount > 0) {
+        console.log('[Dark Mode Sync V2] iOS QQ浏览器: 已强制修复', fixedCount, '个输入框');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 修复iOS QQ浏览器输入框时出错:', e.message);
+    }
+  }
+
+  /**
+   * 应用日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存到浏览器（默认false）
+   */
+  function applyColorScheme(scheme, savePreference = false) {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    // 设置 data-color-scheme 属性到 html 和 body
+    htmlElement.setAttribute('data-color-scheme', scheme);
+    if (bodyElement) {
+      bodyElement.setAttribute('data-color-scheme', scheme);
+    }
+    
+    // 如果是夜间模式，移除硬编码的白色背景
+    if (scheme === 'dark') {
+      // 延迟执行以确保DOM完全加载
+      setTimeout(() => {
+        removeHardcodedWhiteBackgrounds();
+        // iOS QQ浏览器需要额外的强制修复
+        if (isIOS() && isQQBrowser()) {
+          forceFixIOSQQBrowserInputs();
+          // 多次尝试修复，因为QQ浏览器可能会延迟应用样式
+          setTimeout(forceFixIOSQQBrowserInputs, 200);
+          setTimeout(forceFixIOSQQBrowserInputs, 500);
+        }
+      }, 100);
+    }
+    
+    console.log('[Dark Mode Sync V2] 已切换到', scheme === 'dark' ? '夜间模式' : '日间模式');
+    
+    // 如果需要，保存用户偏好
+    if (savePreference) {
+      saveBrowserPreference(scheme);
+    }
+  }
+
+  /**
+   * 初始化日夜模式
+   */
+  function initColorScheme() {
+    const scheme = getCurrentScheme();
+    applyColorScheme(scheme, false);
+    console.log('[Dark Mode Sync V2] 初始化完成，当前模式:', scheme === 'dark' ? '夜间' : '日间');
+  }
+
+  /**
+   * 监听系统日夜模式变化
+   * 注意：只有在用户未手动设置偏好时，才响应系统变化
+   */
+  function watchSystemColorScheme() {
+    if (window.matchMedia) {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      const handleChange = (e) => {
+        // 只有在没有浏览器偏好设置时，才响应系统变化
+        const browserPref = getBrowserPreference();
+        if (!browserPref) {
+          const scheme = e.matches ? 'dark' : 'light';
+          applyColorScheme(scheme, false);
+          console.log('[Dark Mode Sync V2] 系统模式已变化:', scheme === 'dark' ? '夜间' : '日间');
+        } else {
+          console.log('[Dark Mode Sync V2] 检测到系统模式变化，但浏览器偏好优先，保持当前设置');
+        }
+      };
+      
+      // 监听变化（现代浏览器）
+      if (darkModeQuery.addEventListener) {
+        darkModeQuery.addEventListener('change', handleChange);
+      } 
+      // 兼容旧版浏览器
+      else if (darkModeQuery.addListener) {
+        darkModeQuery.addListener(handleChange);
+      }
+      
+      console.log('[Dark Mode Sync V2] 已开始监听系统模式变化');
+    }
+  }
+
+  /**
+   * 向父窗口通知当前模式（可选功能）
+   */
+  function notifyParentWindow(scheme) {
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'iframe-color-scheme-change',
+          colorScheme: scheme,
+          source: 'qb-tool-iframe'
+        }, '*');
+        console.log('[Dark Mode Sync V2] 已通知父窗口模式变化:', scheme);
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法通知父窗口:', e.message);
+    }
+  }
+
+  /**
+   * 切换日夜模式
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function toggleColorScheme(savePreference = true) {
+    const currentScheme = document.documentElement.getAttribute('data-color-scheme');
+    const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+    applyColorScheme(newScheme, savePreference);
+    notifyParentWindow(newScheme);
+    return newScheme;
+  }
+
+  /**
+   * 设置指定的日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function setColorScheme(scheme, savePreference = true) {
+    if (scheme !== 'dark' && scheme !== 'light') {
+      console.error('[Dark Mode Sync V2] 无效的模式:', scheme);
+      return;
+    }
+    applyColorScheme(scheme, savePreference);
+    notifyParentWindow(scheme);
+  }
+
+  /**
+   * 清除浏览器偏好，恢复使用系统设置
+   */
+  function resetToSystemPreference() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('[Dark Mode Sync V2] 已清除浏览器偏好');
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法清除 localStorage:', e.message);
+    }
+    initColorScheme();
+  }
+
+  // ==================== 自动执行 ====================
+
+  // 页面加载时立即初始化（在脚本执行时就尝试设置）
+  if (document.readyState === 'loading') {
+    // 立即设置一次，避免闪烁
+    const scheme = getCurrentScheme();
+    document.documentElement.setAttribute('data-color-scheme', scheme);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initColorScheme();
+      watchSystemColorScheme();
+    });
+  } else {
+    // 如果脚本加载时DOM已就绪，立即执行
+    initColorScheme();
+    watchSystemColorScheme();
+  }
+
+  // ==================== 暴露全局方法 ====================
+
+  window.QBColorScheme = {
+    // 获取当前模式
+    get current() {
+      return document.documentElement.getAttribute('data-color-scheme') || 'light';
+    },
+    
+    // 检测系统是否为夜间模式
+    isSystemDark: isSystemDarkMode,
+    
+    // 获取浏览器存储的偏好
+    getBrowserPreference: getBrowserPreference,
+    
+    // 设置指定模式（会保存偏好）
+    set: (scheme) => setColorScheme(scheme, true),
+    
+    // 设置指定模式（不保存偏好）
+    setTemporary: (scheme) => setColorScheme(scheme, false),
+    
+    // 切换日夜模式
+    toggle: toggleColorScheme,
+    
+    // 重置为系统偏好
+    reset: resetToSystemPreference,
+    
+    // 强制刷新模式
+    refresh: initColorScheme
+  };
+
+  console.log('[Dark Mode Sync V2] 脚本已加载，全局方法已暴露: window.QBColorScheme');
+  console.log('[Dark Mode Sync V2] 使用示例:');
+  console.log('  - 切换模式: QBColorScheme.toggle()');
+  console.log('  - 设置夜间: QBColorScheme.set("dark")');
+  console.log('  - 设置日间: QBColorScheme.set("light")');
+  console.log('  - 重置偏好: QBColorScheme.reset()');
+
+})();
+  </script>
+
+  <!-- iframe高度自适应通用脚本 - 来自 iframe-height-bridge-10201500.js -->
+  <script type="text/javascript">
+/**
+ * iframe高度自适应通用脚本
+ * 
+ * 功能：自动检测页面内容高度变化，并通知父级iframe调整高度
+ * 适用场景：任何嵌入在iframe中的动态内容页面
+ * 
+ * 使用方法：
+ * 1. 在页面内容切换时调用：window.updateIframeHeight()
+ * 2. 或调用：window.onContentChange()
+ * 
+ * @version 1.0.0
+ */
+
+(function() {
+    'use strict';
+
+    /**
+     * 注入动态高度样式
+     * 确保页面内容可以根据实际高度自动调整
+     * 只在 iframe 环境中注入，避免影响独立页面
+     */
+    function injectDynamicHeightStyles() {
+        const styleId = 'iframe-dynamic-height-styles';
+        
+        // 避免重复注入
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        
+        // 只在 iframe 中注入样式
+        const isInIframe = window.parent !== window;
+        if (!isInIframe) {
+            console.log('[iframe-height] 非iframe环境，跳过样式注入');
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            /* iframe 高度自适应 - 通用样式 */
+            body {
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            html {
+                height: auto !important;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('[iframe-height] 通用动态高度样式已注入');
+    }
+
+    /**
+     * 计算当前页面实际内容高度
+     * @returns {number} 页面高度（像素）
+     */
+    function calculatePageHeight() {
+        // 强制浏览器重新计算布局
+        document.body.offsetHeight;
+        
+        // 优先方案：获取主容器的实际高度
+        // 按优先级查找常见的主容器元素
+        const mainContainer = document.querySelector('main') || 
+                            document.querySelector('#app') ||
+                            document.querySelector('.app') ||
+                            document.querySelector('.container') ||
+                            document.querySelector('[role="main"]') ||
+                            document.querySelector('.qb-module');
+        
+        if (mainContainer) {
+            const rect = mainContainer.getBoundingClientRect();
+            const containerHeight = rect.height;
+            
+            // 计算body的额外空间
+            const bodyStyle = window.getComputedStyle(document.body);
+            const bodyPaddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+            const bodyPaddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+            const bodyMarginTop = parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = parseFloat(bodyStyle.marginBottom) || 0;
+            
+            const totalHeight = containerHeight + bodyPaddingTop + bodyPaddingBottom + 
+                              bodyMarginTop + bodyMarginBottom;
+            
+            return Math.ceil(totalHeight);
+        }
+        
+        // 备用方案：使用body和html的高度
+        const body = document.body;
+        const html = document.documentElement;
+        
+        const heights = [
+            body.scrollHeight,
+            body.offsetHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ];
+        
+        return Math.max(...heights);
+    }
+
+    /**
+     * 更新父级iframe的高度
+     * 支持两种方式：直接修改iframe样式 + postMessage通信
+     */
+    function updateIframeHeight() {
+        // 使用requestAnimationFrame确保在渲染帧获取准确高度
+        requestAnimationFrame(() => {
+            const height = calculatePageHeight();
+            
+            // 方式1: 尝试直接修改父级iframe元素的高度
+            try {
+                if (window.parent && window.parent !== window) {
+                    const iframes = window.parent.document.querySelectorAll('iframe');
+                    for (let iframe of iframes) {
+                        try {
+                            if (iframe.contentWindow === window) {
+                                iframe.style.height = height + 'px';
+                                console.log('[iframe-height] 直接更新成功:', height + 'px');
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，继续尝试下一个
+                        }
+                    }
+                }
+            } catch (e) {
+                // 无法访问父级，可能是跨域
+            }
+            
+            // 方式2: 通过postMessage通知父窗口（备用方案，支持跨域）
+            try {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'setIframeHeight',
+                        height: height
+                    }, '*');
+                    console.log('[iframe-height] postMessage发送:', height + 'px');
+                }
+            } catch (e) {
+                console.warn('[iframe-height] 更新失败:', e.message);
+            }
+        });
+    }
+
+    /**
+     * 页面内容切换时调用此函数
+     * 会立即触发一次，然后延迟触发两次，确保获取准确高度
+     */
+    function onContentChange() {
+        updateIframeHeight();                    // 立即触发
+        setTimeout(updateIframeHeight, 50);      // 50ms后触发
+        setTimeout(updateIframeHeight, 150);     // 150ms后触发
+    }
+
+    // 防抖定时器
+    let debounceTimer = null;
+
+    /**
+     * 带防抖的高度更新
+     * @param {number} delay 防抖延迟时间（毫秒）
+     */
+    function debouncedUpdate(delay = 10) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateIframeHeight, delay);
+    }
+
+    // ==================== 自动监听机制 ====================
+
+    // 1. 监听DOM变化
+    const observer = new MutationObserver(() => {
+        debouncedUpdate(10);
+    });
+
+    observer.observe(document.body, {
+        childList: true,      // 监听子节点的添加/删除
+        subtree: true,        // 监听所有后代节点
+        attributes: true,     // 监听属性变化
+        characterData: true   // 监听文本内容变化
+    });
+
+    // 2. 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        debouncedUpdate(50);
+    });
+
+    // 3. 监听图片加载
+    document.addEventListener('load', (e) => {
+        if (e.target.tagName === 'IMG') {
+            updateIframeHeight();
+        }
+    }, true);
+
+    // 4. 页面加载完成后立即更新
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            injectDynamicHeightStyles();
+            updateIframeHeight();
+        });
+    } else {
+        injectDynamicHeightStyles();
+        updateIframeHeight();
+    }
+
+    // 5. 监听来自父窗口的高度请求
+    window.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'request-height' || event.data.type === 'requestHeight')) {
+            updateIframeHeight();
+        }
+    });
+
+    // ==================== 暴露全局方法 ====================
+
+    // 将更新函数暴露到全局，供页面内容切换时调用
+    window.updateIframeHeight = updateIframeHeight;
+    window.onContentChange = onContentChange;
+
+    console.log('[iframe-height] 自适应脚本已加载');
+
+})();
+  </script>
+  <script>
+
+const PET_AGE_DATA = {
+    rabbit: [
+        { pet: 1, human: 8, stage: '幼年期', care: '快速成长期，需要高纤维食物（干草为主），充足饮水，避免过多零食。' },
+        { pet: 2, human: 16, stage: '青年期', care: '精力旺盛，需要足够的活动空间和玩具，定期检查牙齿健康。' },
+        { pet: 3, human: 24, stage: '壮年期', care: '身体状态最佳，保持均衡饮食，提供充足的运动和社交。' },
+        { pet: 4, human: 32, stage: '壮年期', care: '维持健康体重，注意关节保养，定期体检。' },
+        { pet: 5, human: 40, stage: '中年期', care: '新陈代谢减缓，需控制饮食量，关注牙齿和消化系统健康。' },
+        { pet: 6, human: 48, stage: '中年期', care: '活动量减少，需提供柔软舒适的休息环境，加强健康监测。' },
+        { pet: 7, human: 56, stage: '中老年期', care: '感官功能开始退化，需要更安静的环境，增加体检频率。' },
+        { pet: 8, human: 64, stage: '中老年期', care: '关节和牙齿问题风险增加，提供易咀嚼的食物。' },
+        { pet: 9, human: 72, stage: '老年期', care: '身体机能衰退，需要特别照顾，保持温暖舒适的生活环境。' },
+        { pet: 10, human: 80, stage: '老年期', care: '行动迟缓，需要全天候的细致护理和定期健康监测。' },
+        { pet: 11, human: 88, stage: '高龄期', care: '高龄兔，需要极大的耐心和理解，提供最温柔的关怀。' },
+        { pet: 12, human: 96, stage: '高龄期', care: '长寿兔，每一天都是恩赐，以舒适度和生活质量为中心。' },
+        { pet: 13, human: 104, stage: '长寿兔', care: '生命奇迹，需要全天候的专业护理和医疗支持。' },
+        { pet: 14, human: 112, stage: '长寿兔', care: '超长寿兔，提供最细致的照料，珍惜每一刻陪伴时光。' },
+        { pet: 15, human: 120, stage: '长寿兔', care: '极长寿兔，养护重点是完全以它的舒适度为中心，给予最大的爱与关怀。' }
+    ],
+    hamster: [
+        { pet: 1, human: 20, stage: '青年期', care: '活力充沛，需要充足的运动空间和玩具，提供新鲜食物和干净饮水。' },
+        { pet: 2, human: 40, stage: '壮年期', care: '身体状态最佳，保持笼舍清洁，提供均衡饮食和适量运动。' },
+        { pet: 3, human: 60, stage: '中老年期', care: '新陈代谢减缓，需控制食量，关注体重变化，定期健康检查。' },
+        { pet: 4, human: 80, stage: '老年期', care: '活动量明显减少，需提供柔软的垫料，易消化的食物，保持温暖环境。' },
+        { pet: 5, human: 100, stage: '高龄期', care: '高龄仓鼠，需要特别细致的照顾，提供最舒适的生活环境，珍惜陪伴时光。' }
+    ],
+    cat: [
+        { pet: 0.083, human: 1, stage: '婴儿期', care: '如同婴儿，感官初开，极其脆弱，需保暖并依赖母乳或人工喂养。' },
+        { pet: 0.25, human: 3, stage: '幼儿期', care: '进入社会化关键期，活泼好奇，是完成首次疫苗接种和引导良好行为的时候。' },
+        { pet: 0.5, human: 10, stage: '青春期', care: '进入青春期并开始换牙，精力充沛，是进行行为规范和考虑绝育的时机。' },
+        { pet: 1, human: 15, stage: '青年期', care: '身心接近成年但仍是少年心性，可更换为成年猫粮并保证充足的运动和陪伴。' },
+        { pet: 2, human: 24, stage: '壮年期', care: '正式步入壮年期，身体机能达到顶峰，需关注体重管理，保持年度体检习惯。' },
+        { pet: 3, human: 28, stage: '壮年期', care: '壮年期的黄金阶段，性格稳定，健康状况最佳，养护重点是维持健康饮食和规律作息。' },
+        { pet: 4, human: 32, stage: '壮年期', care: '壮年期的稳定阶段，可能因活动量减少而有发胖风险，需鼓励玩耍，避免肥胖。' },
+        { pet: 5, human: 36, stage: '壮年期', care: '壮年期后期，需开始留意口腔健康和关节保养，为步入中年做准备。' },
+        { pet: 6, human: 40, stage: '中年期', care: '初入中年（成年期），器官功能可能开始缓慢退化，年度体检变得尤为重要。' },
+        { pet: 7, human: 44, stage: '中年期', care: '中年阶段，新陈代谢放缓，需重点关注体重和关节，提供易消化的食物。' },
+        { pet: 8, human: 48, stage: '中年期', care: '中年中期，牙齿和肾脏问题风险增加，体检时应加强这些项目的检查。' },
+        { pet: 9, human: 52, stage: '中年期', care: '中年后期，即将步入中老年，活动量明显减少，需提供柔软舒适的休息环境。' },
+        { pet: 10, human: 56, stage: '中老年期', care: '正式进入中老年，建议更换为老年猫粮，并将体检频率增加至每半年一次。' },
+        { pet: 11, human: 60, stage: '中老年期', care: '中老年期中期，感官功能开始退化，需要更安静、稳定的生活环境。' },
+        { pet: 12, human: 64, stage: '中老年期', care: '中老年期中期，听力视力下降，可能出现认知变化，需要主人更多的耐心和安抚。' },
+        { pet: 13, human: 68, stage: '中老年期', care: '中老年期后期，慢性病（如肾病）风险显著增高，需通过定期体检切监控。' },
+        { pet: 14, human: 72, stage: '老年期', care: '步入老年期，身体机能全面衰退，养护重点转为提升生活质量和缓解不适。' },
+        { pet: 15, human: 76, stage: '老年期', care: '老年期，相当于人类古稀之年，需要全天候的细致护理和定期的健康监测。' },
+        { pet: 16, human: 80, stage: '高龄期', care: '高龄猫，肌肉萎缩，行动迟缓，需提供易咀嚼的软食和便于进出的生活设施。' },
+        { pet: 17, human: 84, stage: '高龄期', care: '高龄猫，睡眠时间极长，可能出现认知障碍，需要极大的耐心和理解。' },
+        { pet: 18, human: 88, stage: '高龄猫', care: '高龄猫，非常嗜睡，需要温暖柔软的猫窝和防滑垫以保证其安全与舒适。' },
+        { pet: 19, human: 92, stage: '长寿猫', care: '长寿猫，是生命奇迹，养护核心是通过支持性护理保障其生活质量和舒适度。' },
+        { pet: 20, human: 96, stage: '长寿猫', care: '长寿猫，身体机能显著衰退，需要全天候的细致护理以安度晚年。' },
+        { pet: '20+', human: '100+', stage: '长寿猫', care: '百岁猫瑞，每一天都是恩赐，养护重点是完全以它的舒适度和生活质量为中心。' }
+    ],
+    dog: {
+        small: [
+            { pet: 0.083, human: 1, stage: '婴儿期', care: '极度脆弱，完全依赖母犬，养护核心是保暖、确保母乳摄入。' },
+            { pet: 0.25, human: 5, stage: '幼儿期', care: '好奇心强，开始换牙，需完成核心疫苗接种并开始社会化引导。' },
+            { pet: 0.5, human: 8, stage: '青春期', care: '进入"叛逆"青春期，精力旺盛，需进行严格训练并保证充足运动。' },
+            { pet: 1, human: 15, stage: '青年期', care: '身心接近成熟，可更换为成年犬粮，保持充足运动。' },
+            { pet: 2, human: 24, stage: '壮年期', care: '身体完全成熟，机能巅峰，养护重点是体重管理与年度体检。' },
+            { pet: 3, human: 28, stage: '壮年期', care: '壮年黄金期，性格稳定，健康状况最佳，需维持年度体检。' },
+            { pet: 4, human: 32, stage: '壮年期', care: '壮年稳定期，活动量可能减少，需过度饮食控制避免肥胖。' },
+            { pet: 5, human: 36, stage: '壮年期', care: '壮年后期，状态仍佳，保持每日充足活动与健康饮食。' },
+            { pet: 6, human: 40, stage: '中年期', care: '初入中年，衰老缓慢，保持年度体检以适度运动即可。' },
+            { pet: 7, human: 44, stage: '中年期', care: '中年期，需警惕肥胖和慢性病，饮食管理是重点。' },
+            { pet: 8, human: 48, stage: '中年期', care: '中年后期，感官功能开始退化，需要更多耐心与稳定环境。' },
+            { pet: 9, human: 52, stage: '中年期', care: '中年后期，感官功能开始退化，需要更多耐心与稳定环境。' },
+            { pet: 10, human: 56, stage: '中老年期', care: '正式进入中老年，建议更换为老年狗粮，并将体检频率增加至每半年一次。' },
+            { pet: 11, human: 60, stage: '中老年期', care: '中老年期，需警惕认知能力变化，提供安静稳定的生活环境。' },
+            { pet: 12, human: 64, stage: '中老年期', care: '中老年期，牙齿可能开始脱落，需提供软质食物并加强口腔护理。' },
+            { pet: 13, human: 68, stage: '中老年期', care: '中老年期，抵抗力减弱，需注重保暖和避免应激。' },
+            { pet: 14, human: 72, stage: '老年期', care: '进入老年期，需将体检频率提升至每半年一次，密切关注健康变化。' },
+            { pet: 15, human: 76, stage: '老年期', care: '老年期，睡眠时间变长，需提供柔软温暖的休息场所。' },
+            { pet: 16, human: 80, stage: '高龄期', care: '高龄期，需要提供易咀嚼的软食以保证其生活环境。' },
+            { pet: 17, human: 84, stage: '高龄期', care: '高龄期，可能出现定向力障碍，需要耐心引导和安抚。' },
+            { pet: 18, human: 88, stage: '高龄期', care: '高龄期，需提供易咀嚼的软食和舒适稳定的生活环境。' },
+            { pet: 19, human: 92, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: 20, human: 96, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: '20+', human: '100+', stage: '长寿犬', care: '百岁犬瑞，每一天都是恩赐，养护以维护其生活质量为核心。' }
+        ],
+        medium: [
+            { pet: 0.083, human: 1, stage: '婴儿期', care: '极度脆弱，完全依赖母犬，养护核心是保暖、确保母乳摄入。' },
+            { pet: 0.25, human: 5, stage: '幼儿期', care: '好奇心强，开始换牙，需完成核心疫苗接种并开始社会化引导。' },
+            { pet: 0.5, human: 8, stage: '青春期', care: '进入"叛逆"青春期，精力旺盛，需进行严格训练并保证充足运动。' },
+            { pet: 1, human: 15, stage: '青年期', care: '身心接近成熟，可更换为成年犬粮，保持充足运动。' },
+            { pet: 2, human: 24, stage: '壮年期', care: '身体完全成熟，机能巅峰，养护重点是体重管理与年度体检。' },
+            { pet: 3, human: 28, stage: '壮年期', care: '壮年黄金期，性格稳定，健康状况最佳，需维持年度体检。' },
+            { pet: 4, human: 32, stage: '壮年期', care: '壮年稳定期，活动量可能减少，需过度饮食控制避免肥胖。' },
+            { pet: 5, human: 38, stage: '壮年期', care: '壮年后期，状态仍佳，保持每日充足活动与健康饮食。' },
+            { pet: 6, human: 42, stage: '中年期', care: '初入中年，衰老缓慢，保持年度体检以适度运动即可。' },
+            { pet: 7, human: 47, stage: '中年期', care: '中年期，需警惕肥胖和慢性病，饮食管理是重点。' },
+            { pet: 8, human: 51, stage: '中年期', care: '中年后期，感官功能开始退化，需要更多耐心与稳定环境。' },
+            { pet: 9, human: 56, stage: '中老年期', care: '正式进入中老年，建议更换为老年狗粮，并将体检频率增加至每半年一次。' },
+            { pet: 10, human: 60, stage: '中老年期', care: '中老年期，需重点关注心脏与肾脏功能，饮食应易消化。' },
+            { pet: 11, human: 65, stage: '中老年期', care: '中老年期，感官进一步退化，需更多耐心陪伴并定期进行健康监测。' },
+            { pet: 12, human: 69, stage: '中老年期', care: '中老年期，可能出现睡眠规律颠倒，需要理解与安抚。' },
+            { pet: 13, human: 74, stage: '老年期', care: '步入老年，需要更精细的饮食管理和定期的健康检查。' },
+            { pet: 14, human: 78, stage: '老年期', care: '老年期，需要温暖舒适的环境和易于消化的软质食物。' },
+            { pet: 15, human: 83, stage: '高龄期', care: '高龄期，需要极细致的护理和定期的健康监测。' },
+            { pet: 16, human: 87, stage: '高龄期', care: '高龄期，需要极大的耐心和理解，提供最安度晚年。' },
+            { pet: 17, human: 92, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: 18, human: 96, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: 19, human: 100, stage: '长寿犬', care: '百岁犬瑞，每一天都是恩赐，养护以维护其生活质量为核心。' },
+            { pet: 20, human: 105, stage: '长寿犬', care: '长寿标杆，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: '20+', human: '110+', stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' }
+        ],
+        large: [
+            { pet: 0.083, human: 1, stage: '婴儿期', care: '极度脆弱，完全依赖母犬，养护核心是保暖、确保母乳摄入。' },
+            { pet: 0.25, human: 5, stage: '幼儿期', care: '好奇心强，开始换牙，需完成核心疫苗接种并开始社会化引导。' },
+            { pet: 0.5, human: 7, stage: '青春期', care: '成长快速，骨骼发育关键期，需控制运动量，避免关节损伤。' },
+            { pet: 1, human: 14, stage: '青年期', care: '接近生理成熟但骨骼未完全固化，仍需避免过度负重。' },
+            { pet: 2, human: 22, stage: '壮年期', care: '正式成熟，精力充沛，需保证每日规律运动以维持良好状态。' },
+            { pet: 3, human: 28, stage: '壮年期', care: '壮年黄金期，性格稳定，健康状况最佳，需维持年度体检。' },
+            { pet: 4, human: 34, stage: '壮年期', care: '壮年稳定期，活动量可能减少，需过度饮食控制避免肥胖。' },
+            { pet: 5, human: 40, stage: '中年期', care: '初入中年，需重点关注心脏与关节健康，体检项目应包含生化全项。' },
+            { pet: 6, human: 45, stage: '中年期', care: '中年期，需警惕肥胖和慢性病，饮食管理是重点。' },
+            { pet: 7, human: 50, stage: '中年期', care: '中年后期，感官功能开始退化，需要更多耐心与稳定环境。' },
+            { pet: 8, human: 55, stage: '中老年期', care: '正式进入中老年，建议更换为老年犬粮，并将体检频率增加至每半年一次。' },
+            { pet: 9, human: 61, stage: '中老年期', care: '中老年期，活动能力下降，需提供防滑垫并控制运动强度。' },
+            { pet: 10, human: 66, stage: '中老年期', care: '中老年期，相当于人类古稀之年，需要极细致的护理和每半年一次体检。' },
+            { pet: 11, human: 72, stage: '老年期', care: '正式进入老年期，需要全天候的细致护理，安度晚年。' },
+            { pet: 12, human: 77, stage: '老年期', care: '老年期，行动迟缓，需提供柔软睡垫和便于进出的生活设施。' },
+            { pet: 13, human: 82, stage: '高龄期', care: '高龄期，需要极大的耐心和理解，陪伴安度晚年。' },
+            { pet: 14, human: 88, stage: '高龄期', care: '高龄期，相当于人类米寿，需要全天候的细致护理。' },
+            { pet: 15, human: 93, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: 16, human: 99, stage: '长寿犬', care: '长寿典范，养护核心是通过支持性护理保障其生活舒适度。' },
+            { pet: 17, human: 104, stage: '长寿犬', care: '百岁犬瑞，每一天都是恩赐，养护以维护其生活质量为核心。' },
+            { pet: 18, human: 110, stage: '长寿犬', care: '长寿标杆，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 19, human: 116, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 20, human: 115, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: '20+', human: '120+', stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' }
+        ],
+        giant: [
+            { pet: 0.083, human: 1, stage: '婴儿期', care: '极度脆弱，完全依赖母犬，养护核心是保暖、确保母乳摄入。' },
+            { pet: 0.25, human: 5, stage: '幼儿期', care: '好奇心强，开始换牙，需完成核心疫苗接种并开始社会化引导。' },
+            { pet: 0.5, human: 6, stage: '青春期', care: '骨骼负荷重，成长期更长，需提供均衡营养并严格避免剧烈运动。' },
+            { pet: 1, human: 12, stage: '青年期', care: '仍处于快速生长期，需持续关注骨骼与关节健康，营养要均衡。' },
+            { pet: 2, human: 20, stage: '壮年期', care: '步入成年期，但大型犬衰老更快，应开始关注关节保养。' },
+            { pet: 3, human: 28, stage: '壮年期', care: '壮年黄金期，性格稳定，健康状况最佳，需维持年度体检。' },
+            { pet: 4, human: 35, stage: '壮年期', care: '壮年稳定期，活动量可能减少，需过度饮食控制避免肥胖。' },
+            { pet: 5, human: 42, stage: '中年期', care: '初入中年，需重点关注心脏与关节健康，体检项目应包含生化全项。' },
+            { pet: 6, human: 50, stage: '中年期', care: '中年后期，感官功能开始退化，需要更多耐心与稳定环境。' },
+            { pet: 7, human: 57, stage: '中老年期', care: '正式进入中老年，建议更换为老年狗粮，并将体检频率增加至每半年一次。' },
+            { pet: 8, human: 64, stage: '中老年期', care: '正式进入中老年，关节负担加重，需提供柔软睡垫并开始补充关节营养。' },
+            { pet: 9, human: 71, stage: '老年期', care: '步入老年，身体机能显著衰退，养护核心是维持生活舒适与尊严。' },
+            { pet: 10, human: 79, stage: '老年期', care: '高龄期，慢性病高发，需通过支持性护理保障其生活质量。' },
+            { pet: 11, human: 86, stage: '高龄期', care: '高龄期，需要极大的耐心和理解，陪伴安度晚年。' },
+            { pet: 12, human: 93, stage: '长寿犬', care: '长寿犬，是生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 13, human: 100, stage: '长寿犬', care: '百岁犬瑞，每一天都是恩赐，养护以维护其生活质量为核心。' },
+            { pet: 14, human: 108, stage: '长寿犬', care: '长寿标杆，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 15, human: 115, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 16, human: 124, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 17, human: 132, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 18, human: 140, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 19, human: 150, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: 20, human: 160, stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' },
+            { pet: '20+', human: '170+', stage: '长寿犬', care: '生命奇迹，需要全天候的细致护理以保障其生活舒适度。' }
+        ]
+    }
+};
+
+class PetAgeCalculator {
+    constructor() {
+        this.petType = 'cat';
+        this.dogSize = 'small';
+        this.ageIndex = 0;
+        this.catAges = [0.083, 0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '20+'];
+        this.dogAges = {
+            small: [0.083, 0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '20+'],
+            medium: [0.083, 0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '20+'],
+            large: [0.083, 0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '20+'],
+            giant: [0.083, 0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '20+']
+        };
+        this.rabbitAges = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        this.hamsterAges = [1, 2, 3, 4, 5];
+        
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.updateDisplay();
+    }
+
+    bindEvents() {
+        document.querySelectorAll('.pet-type-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                const type = e.target.dataset.type;
+                this.switchPetType(type);
+            });
+        });
+
+        document.querySelectorAll('.dog-size-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const size = e.target.dataset.size;
+                this.switchDogSize(size);
+            });
+        });
+
+        document.getElementById('decreaseBtn').addEventListener('click', () => {
+            if (this.ageIndex > 0) {
+                this.ageIndex--;
+                this.updateDisplay();
+            }
+        });
+
+        document.getElementById('increaseBtn').addEventListener('click', () => {
+            let maxIndex;
+            if (this.petType === 'cat') {
+                maxIndex = this.catAges.length - 1;
+            } else if (this.petType === 'dog') {
+                maxIndex = this.dogAges[this.dogSize].length - 1;
+            } else if (this.petType === 'rabbit') {
+                maxIndex = this.rabbitAges.length - 1;
+            } else if (this.petType === 'hamster') {
+                maxIndex = this.hamsterAges.length - 1;
+            }
+            if (this.ageIndex < maxIndex) {
+                this.ageIndex++;
+                this.updateDisplay();
+            }
+        });
+    }
+
+    switchPetType(type) {
+        this.petType = type;
+        this.ageIndex = 0;
+        
+        document.querySelectorAll('.pet-type-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.type === type);
+        });
+
+        const dogSizeSelector = document.getElementById('dogSizeSelector');
+        if (type === 'dog') {
+            dogSizeSelector.classList.remove('hidden');
+        } else {
+            dogSizeSelector.classList.add('hidden');
+        }
+
+        this.updateDisplay();
+    }
+
+    switchDogSize(size) {
+        this.dogSize = size;
+        
+        document.querySelectorAll('.dog-size-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.size === size);
+        });
+
+        this.updateDisplay();
+    }
+
+    getCurrentAge() {
+        if (this.petType === 'cat') {
+            return this.catAges[this.ageIndex];
+        } else if (this.petType === 'dog') {
+            return this.dogAges[this.dogSize][this.ageIndex];
+        } else if (this.petType === 'rabbit') {
+            return this.rabbitAges[this.ageIndex];
+        } else if (this.petType === 'hamster') {
+            return this.hamsterAges[this.ageIndex];
+        }
+    }
+
+    formatAge(age) {
+        if (typeof age === 'string') {
+            return `${age}岁`;
+        }
+        if (age < 1) {
+            const months = Math.round(age * 12);
+            return `${months}个月`;
+        } else {
+            return `${Math.round(age)}岁`;
+        }
+    }
+
+    getCurrentData() {
+        const currentAge = this.getCurrentAge();
+        let data;
+        
+        if (this.petType === 'cat') {
+            data = PET_AGE_DATA.cat;
+        } else if (this.petType === 'dog') {
+            data = PET_AGE_DATA.dog[this.dogSize];
+        } else if (this.petType === 'rabbit') {
+            data = PET_AGE_DATA.rabbit;
+        } else if (this.petType === 'hamster') {
+            data = PET_AGE_DATA.hamster;
+        }
+
+        // 处理字符串类型的年龄（如"20+"）
+        if (typeof currentAge === 'string') {
+            const exactMatch = data.find(item => item.pet === currentAge);
+            if (exactMatch) return exactMatch;
+        }
+
+        // 处理数字类型的年龄
+        const exactMatch = data.find(item => typeof item.pet === 'number' && Math.abs(item.pet - currentAge) < 0.01);
+        if (exactMatch) return exactMatch;
+
+        const sorted = [...data].filter(item => typeof item.pet === 'number').sort((a, b) => a.pet - b.pet);
+        for (let i = 0; i < sorted.length - 1; i++) {
+            if (currentAge >= sorted[i].pet && currentAge < sorted[i + 1].pet) {
+                const ratio = (currentAge - sorted[i].pet) / (sorted[i + 1].pet - sorted[i].pet);
+                const humanAge = Math.round(sorted[i].human + (sorted[i + 1].human - sorted[i].human) * ratio);
+                return {
+                    pet: currentAge,
+                    human: humanAge,
+                    stage: sorted[i].stage,
+                    care: sorted[i].care
+                };
+            }
+        }
+
+        return sorted[sorted.length - 1];
+    }
+
+    updateDisplay() {
+        const currentAge = this.getCurrentAge();
+        const data = this.getCurrentData();
+        
+        // 获取宠物类型名称
+        const petTypeNames = {
+            'cat': '猫猫',
+            'dog': '狗狗',
+            'rabbit': '兔兔',
+            'hamster': '仓鼠'
+        };
+        const petTypeName = petTypeNames[this.petType] || '宠物';
+        
+        document.getElementById('ageValue').textContent = this.formatAge(currentAge);
+        document.getElementById('humanAge').textContent = data.human;
+        // Figma设计：生命阶段徽章显示"婴儿期 · 狗狗"格式
+        document.getElementById('lifeStage').textContent = `${data.stage} · ${petTypeName}`;
+        document.getElementById('careAdvice').textContent = data.care;
+
+        // 正确计算所有宠物类型的最大索引
+        let maxIndex;
+        if (this.petType === 'cat') {
+            maxIndex = this.catAges.length - 1;
+        } else if (this.petType === 'dog') {
+            maxIndex = this.dogAges[this.dogSize].length - 1;
+        } else if (this.petType === 'rabbit') {
+            maxIndex = this.rabbitAges.length - 1;
+        } else if (this.petType === 'hamster') {
+            maxIndex = this.hamsterAges.length - 1;
+        }
+        
+        document.getElementById('decreaseBtn').disabled = this.ageIndex <= 0;
+        document.getElementById('increaseBtn').disabled = this.ageIndex >= maxIndex;
+    }
+}
+
+new PetAgeCalculator();
+
+  </script>
+</body>
+</html>

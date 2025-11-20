@@ -1,0 +1,564 @@
+/**
+ * QB小工具 - 文字排版样式库
+ * Typography Style Library for QB Tools
+ * 
+ * 使用说明 (Usage):
+ * 1. 字体家族：PingFang SC（苹方）
+ * 2. 字重规范：Bold (500/600), Regular (400)
+ * 3. 字号规范：10px - 24px
+ * 4. 行高规范：字号 + 4px 或 字号 + 8px
+ * 5. 颜色层级：遵循colors.css文件
+ * 
+ * 文字层级 (Typography Hierarchy):
+ * - Heading1-3: 标题（大、中、小）
+ * - Body1-2: 正文（大、小）
+ * - Caption1-3: 辅助文字（大、中、小）
+ * 
+ * 字重分类 (Font Weight):
+ * - Bold: medium (500) / semibold (600)
+ * - Regular: regular (400)
+ */
+
+/* ==================== 字体家族 (Font Family) ==================== */
+:root {
+  --qb-font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --qb-font-family-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+/* ==================== 全局字体设置 ==================== */
+body {
+  font-family: var(--qb-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== Bold 字重样式 ==================== */
+
+/* Heading1 - 标题·大 (24/32-medium) */
+.qb-heading1-bold,
+.qb-h1-bold {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：大卡标题（12字以内） */
+
+/* Heading2 - 标题·中 (20/28-medium) */
+.qb-heading2-bold,
+.qb-h2-bold {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：大卡标题（12字以上） */
+
+/* Heading3 - 标题·小 (18/24-medium) */
+.qb-heading3-bold,
+.qb-h3-bold {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：大卡模块标题 */
+
+/* Body1 - 正文·大 (16/24-medium) */
+.qb-body1-bold {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：大卡聚合子标题、强化的小模块标题、tab选中态 */
+
+/* Body2 - 正文·小 (14/22-medium) */
+.qb-body2-bold {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：强化的正文信息 */
+
+/* Caption1 - 辅助·大 (12/16-medium) */
+.qb-caption1-bold {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--qb-text-a2, #666666);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：强化的辅助信息 */
+
+/* ==================== Regular 字重样式 ==================== */
+
+/* Heading1 - 标题·大 (24/32-regular) */
+.qb-heading1,
+.qb-h1 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：短答案（14字以内） */
+
+/* Heading2 - 标题·中 (20/28-regular) */
+.qb-heading2,
+.qb-h2 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：短答案（14字以上）、普通结果标题 */
+
+/* Heading3 - 标题·小 (18/24-regular) */
+.qb-heading3,
+.qb-h3 {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：普通标题 */
+
+/* Body1 - 正文·大 (16/24-regular) */
+.qb-body1,
+.qb-text-large {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：聚合子标题、长答案 */
+
+/* Body2 - 正文·小 (14/22-regular) */
+.qb-body2,
+.qb-text-base {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：tab未选中、普通信息、摘要、来源、组件文字（按钮、链接等） */
+
+/* Caption1 - 辅助·大 (12/16-regular) */
+.qb-caption1,
+.qb-text-small {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--qb-text-a2, #666666);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：辅助信息、标签文字、小图标文字、列表文字 */
+
+/* Caption2 - 辅助·中 (11/15-regular) */
+.qb-caption2,
+.qb-text-xs {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 15px;
+  color: var(--qb-text-a3, #8F8F8F);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：标签文字 */
+
+/* Caption3 - 辅助·小 (10/14-regular) */
+.qb-caption3,
+.qb-text-xxs {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  color: var(--qb-text-a3, #8F8F8F);
+  margin: 0;
+  padding: 0;
+}
+
+/* 使用场景：标签文字 */
+
+/* ==================== 字重工具类 (Font Weight) ==================== */
+
+.qb-font-light { font-weight: 300 !important; }
+.qb-font-regular { font-weight: 400 !important; }
+.qb-font-medium { font-weight: 500 !important; }
+.qb-font-semibold { font-weight: 600 !important; }
+.qb-font-bold { font-weight: 700 !important; }
+
+/* ==================== 字号工具类 (Font Size) ==================== */
+
+.qb-text-10 { font-size: 10px !important; line-height: 14px !important; }
+.qb-text-11 { font-size: 11px !important; line-height: 15px !important; }
+.qb-text-12 { font-size: 12px !important; line-height: 16px !important; }
+.qb-text-14 { font-size: 14px !important; line-height: 22px !important; }
+.qb-text-16 { font-size: 16px !important; line-height: 24px !important; }
+.qb-text-18 { font-size: 18px !important; line-height: 24px !important; }
+.qb-text-20 { font-size: 20px !important; line-height: 28px !important; }
+.qb-text-24 { font-size: 24px !important; line-height: 32px !important; }
+
+/* ==================== 行高工具类 (Line Height) ==================== */
+
+.qb-leading-none { line-height: 1 !important; }
+.qb-leading-tight { line-height: 1.25 !important; }
+.qb-leading-snug { line-height: 1.375 !important; }
+.qb-leading-normal { line-height: 1.5 !important; }
+.qb-leading-relaxed { line-height: 1.625 !important; }
+.qb-leading-loose { line-height: 2 !important; }
+
+/* ==================== 文本对齐 (Text Align) ==================== */
+
+.qb-text-left { text-align: left !important; }
+.qb-text-center { text-align: center !important; }
+.qb-text-right { text-align: right !important; }
+.qb-text-justify { text-align: justify !important; }
+
+/* ==================== 文本装饰 (Text Decoration) ==================== */
+
+.qb-underline { text-decoration: underline !important; }
+.qb-line-through { text-decoration: line-through !important; }
+.qb-no-underline { text-decoration: none !important; }
+
+/* ==================== 文本转换 (Text Transform) ==================== */
+
+.qb-uppercase { text-transform: uppercase !important; }
+.qb-lowercase { text-transform: lowercase !important; }
+.qb-capitalize { text-transform: capitalize !important; }
+.qb-normal-case { text-transform: none !important; }
+
+/* ==================== 文本溢出处理 (Text Overflow) ==================== */
+
+/* 单行省略 */
+.qb-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* 多行省略 - 2行 */
+.qb-line-clamp-2 {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 多行省略 - 3行 */
+.qb-line-clamp-3 {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 多行省略 - 4行 */
+.qb-line-clamp-4 {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 4 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 换行控制 */
+.qb-break-normal { word-break: normal !important; overflow-wrap: normal !important; }
+.qb-break-words { overflow-wrap: break-word !important; }
+.qb-break-all { word-break: break-all !important; }
+
+/* 空格处理 */
+.qb-whitespace-normal { white-space: normal !important; }
+.qb-whitespace-nowrap { white-space: nowrap !important; }
+.qb-whitespace-pre { white-space: pre !important; }
+.qb-whitespace-pre-line { white-space: pre-line !important; }
+.qb-whitespace-pre-wrap { white-space: pre-wrap !important; }
+
+/* ==================== 文本颜色层级 (Text Color) ==================== */
+/* 颜色遵循colors.css文件 */
+
+/* 主文本 */
+.qb-text-primary {
+  color: var(--qb-text-a1, #242424) !important;
+}
+
+/* 次要文本 */
+.qb-text-secondary {
+  color: var(--qb-text-a2, #666666) !important;
+}
+
+/* 辅助文本 */
+.qb-text-tertiary {
+  color: var(--qb-text-a3, #8F8F8F) !important;
+}
+
+/* 占位文本 */
+.qb-text-placeholder {
+  color: var(--qb-text-a4, #B3B3B3) !important;
+}
+
+/* 高亮文本 */
+.qb-text-highlight {
+  color: var(--qb-text-highlight, #205AEF) !important;
+}
+
+/* 警示文本 */
+.qb-text-danger {
+  color: var(--qb-text-danger, #F44837) !important;
+}
+
+/* 成功文本 */
+.qb-text-success {
+  color: var(--qb-success, #0BB861) !important;
+}
+
+/* 警告文本 */
+.qb-text-warning {
+  color: var(--qb-warning, #FF8A14) !important;
+}
+
+/* 信息文本 */
+.qb-text-info {
+  color: var(--qb-info, #0ACC9B) !important;
+}
+
+/* 白色文本 */
+.qb-text-white {
+  color: #FFFFFF !important;
+}
+
+/* 黑色文本 */
+.qb-text-black {
+  color: #000000 !important;
+}
+
+/* ==================== 语义化HTML标签样式 ==================== */
+
+h1, .h1 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 16px 0;
+}
+
+h2, .h2 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 12px 0;
+}
+
+h3, .h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 12px 0;
+}
+
+h4, .h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 8px 0;
+}
+
+h5, .h5 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 8px 0;
+}
+
+h6, .h6 {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 8px 0;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 12px 0;
+}
+
+a {
+  color: var(--qb-text-highlight, #205AEF);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+a:active {
+  opacity: 0.6;
+}
+
+strong, b {
+  font-weight: 500;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* ==================== 列表样式 ==================== */
+
+ul, ol {
+  margin: 0 0 12px 0;
+  padding-left: 24px;
+}
+
+ul li, ol li {
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin-bottom: 4px;
+}
+
+/* 无样式列表 */
+.qb-list-none {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+/* ==================== 响应式字体 (Responsive Typography) ==================== */
+
+/* Mobile: 320px - 768px */
+@media (max-width: 767px) {
+  .qb-heading1-bold, .qb-h1-bold, .qb-heading1, .qb-h1, h1, .h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .qb-heading2-bold, .qb-h2-bold, .qb-heading2, .qb-h2, h2, .h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .qb-heading3-bold, .qb-h3-bold, .qb-heading3, .qb-h3, h3, .h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .qb-body1-bold, .qb-body1, .qb-text-large {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+/* ==================== 使用示例注释 ==================== */
+
+/*
+使用示例 (Usage Examples):
+
+1. 标题样式:
+   <h1 class="qb-heading1-bold">大卡标题（12字以内）</h1>
+   <h2 class="qb-heading2-bold">大卡标题（12字以上）</h2>
+   <h3 class="qb-heading3-bold">大卡模块标题</h3>
+
+2. 正文样式:
+   <p class="qb-body1">聚合子标题、长答案</p>
+   <p class="qb-body2">普通信息、摘要、来源</p>
+
+3. 辅助文字:
+   <span class="qb-caption1">辅助信息、标签文字</span>
+   <span class="qb-caption2">标签文字</span>
+   <span class="qb-caption3">小标签文字</span>
+
+4. 文本颜色:
+   <p class="qb-text-primary">主文本</p>
+   <p class="qb-text-secondary">次要文本</p>
+   <p class="qb-text-tertiary">辅助文本</p>
+   <p class="qb-text-highlight">高亮文本</p>
+   <p class="qb-text-danger">警示文本</p>
+
+5. 文本溢出:
+   <p class="qb-truncate">单行省略文本...</p>
+   <p class="qb-line-clamp-2">两行省略文本...</p>
+   <p class="qb-line-clamp-3">三行省略文本...</p>
+
+6. 组合使用:
+   <h2 class="qb-heading2-bold qb-text-highlight">高亮标题</h2>
+   <p class="qb-body2 qb-text-secondary qb-truncate">次要文本单行省略</p>
+
+7. Tab选中态:
+   <div class="qb-body1-bold qb-text-highlight">选中的Tab</div>
+   <div class="qb-body2 qb-text-secondary">未选中的Tab</div>
+
+8. 按钮文字:
+   <button class="qb-btn qb-body2">按钮文字</button>
+
+9. 链接文字:
+   <a href="#" class="qb-body2 qb-text-highlight">链接文字</a>
+
+10. 强化文本:
+    <p class="qb-body2-bold">强化的正文信息</p>
+    <span class="qb-caption1-bold">强化的辅助信息</span>
+
+注意事项 (Notes):
+- 所有文字样式默认margin和padding为0
+- 颜色层级遵循colors.css文件定义
+- 字体家族默认使用PingFang SC（苹方）
+- 行高规范：字号 + 4px 或 字号 + 8px
+- Bold字重使用medium (500)，Regular字重使用regular (400)
+- 响应式设计会在移动端自动缩小字号
+*/

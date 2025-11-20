@@ -1,0 +1,32 @@
+{
+  "name": "almanac-modular",
+  "version": "1.0.0",
+  "description": "模块化工具 - 支持独立组件和品牌模板",
+  "main": "index.html",
+  "scripts": {
+    "build": "node scripts/generate.js build",
+    "build:force": "node scripts/generate.js build --force",
+    "build:tool": "node scripts/generate.js tool",
+    "watch": "node scripts/generate.js watch",
+    "dev": "npm run build && echo '✅ 开发版本已生成'",
+    "list": "node scripts/generate.js list",
+    "clean": "rm -rf dist/",
+    "legacy:build": "node scripts/generate-almanac.js"
+  },
+  "keywords": [
+    "almanac",
+    "lunar-calendar",
+    "chinese-calendar",
+    "modular",
+    "template"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "files": [
+    "almanac-pure.html",
+    "index.html",
+    "templates/",
+    "generate-almanac.js",
+    "README.md"
+  ]
+}

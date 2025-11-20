@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>五行穿衣每日指南</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="title-section">
+            <button class="date-nav prev" id="prevDay" aria-label="前一天">前一天</button>
+            <h1 class="title">五行穿衣每日指南</h1>
+            <button class="date-nav next" id="nextDay" aria-label="后一天">后一天</button>
+        </header>
+        
+        <!-- 日期区域 -->
+        <section class="date-section">
+            <div class="date-content">
+                <div class="day-number" id="dayNumber">5</div>
+                <div class="date-info">
+                    <div class="solar-year" id="solarYear">2025年</div>
+                    <div class="solar-month" id="solarMonth">十一月</div>
+                    <div class="solar-week" id="solarWeek">星期三</div>
+                </div>
+            </div>
+            <div class="lunar-info">
+                <div class="lunar-day" id="lunarDay">十月二十一</div>
+                <div class="lunar-date" id="lunarDate">乙巳年 丙戌月 戊寅日</div>
+            </div>
+        </section>
+        
+        <!-- 颜色推荐区域 -->
+        <section class="color-recommendations" id="colorRecommendations">
+            <!-- 动态生成 -->
+        </section>
+    </div>
+    
+    <script src="lunar-lite.js"></script>
+    <script src="wearing-tips.js"></script>
+    <script src="color-map.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* -------------------- 基础重置 -------------------- */
+
+/* 统一盒模型 */
+* {
+  box-sizing: border-box;
+  /* 禁用Android默认触摸高亮 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 通用body属性 - 不重新定义body以避免覆盖模板中的动画 */
+html {
+  /* 禁用缩放 */
+  touch-action: manipulation;
+  
+  /* 固定文字大小 */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* 禁止选中文字 */
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* 统一字体渲染 - 使用默认渲染以保持字体粗细一致 */
+  -webkit-touch-callout: none;
+}
+
+/* 统一滚动策略 - 适配WebView和iframe环境 */
+html, body {
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+/* -------------------- 工具类 -------------------- */
+
+/* 隐藏元素 */
+.hidden {
+  display: none;
+}
+
+/* -------------------- 通用按钮样式 -------------------- */
+
+/* 统一按钮基础样式 */
+.btn,
+button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+/* -------------------- 统一交互效果 -------------------- */
+
+/* 统一悬停效果 - 只在支持真正hover的设备上启用 */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    opacity: 0.6;
+  }
+}
+
+/* 统一点击效果 - 60%不透明度 + 轻微放大 */
+.btn:active {
+  opacity: 0.6;
+  transform: scale(1.02);
+}
+
+/* 统一不可用状态 - 30%不透明度 */
+.btn:disabled,
+.btn[disabled],
+.btn[aria-disabled="true"],
+.btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 移除所有按钮的聚焦效果 */
+.btn:focus,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* -------------------- 响应式优化 -------------------- */
+
+/* 防止iOS缩放 */
+@media (max-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+}

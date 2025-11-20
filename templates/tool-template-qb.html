@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-color-scheme="light">
+<head>
+  <!-- 内联脚本：立即检测并设置日夜模式，避免闪烁 -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('qb-color-scheme');
+        const scheme = stored || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-color-scheme', scheme);
+      } catch(e) {}
+    })();
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>{{TOOL_TITLE}}</title>
+  <meta name="description" content="{{TOOL_TITLE}} · {{TOOL_SUBTITLE}}" />
+  <style>
+    /* QQ浏览器模板 - 精简版，避免与shared.css重复 */
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--t1);
+      line-height: 1.5;
+      min-height: auto;
+      height: auto;
+    }
+
+    /* 适配iframe高度传递需求 */
+    html, body {
+      width: 100%;
+    }
+
+    main {
+      width: 100%;
+      min-height: auto;
+      height: auto;
+      position: relative;
+    }
+
+    /* 标题区域样式 */
+    .header-section {
+      margin: 0 0 16px 0;
+    }
+
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0;
+      line-height: 28px;
+      color: var(--t1);
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--t2);
+      margin: 0;
+      line-height: 14px;
+    }
+
+  </style>
+
+</head>
+
+<body data-platform="qb">
+  <main>
+    <!-- 标题区域 - 严格按照参考样式 -->
+    <div class="header-section">
+      <div class="header-text">
+        <h1 class="header-title">{{TOOL_TITLE}}</h1>
+        <p class="header-subtitle">{{TOOL_SUBTITLE}}</p>
+      </div>
+    </div>
+
+    <!-- 工具内容区域 -->
+    {{TOOL_CONTENT}}
+  </main>
+
+  <!-- 日夜间模式自动同步脚本 -->
+  <script src="dark-mode-final.js"></script>
+  
+  <!-- iframe高度自适应通用脚本 -->
+  <script src="iframe-height-bridge.js"></script>
+</body>
+</html>

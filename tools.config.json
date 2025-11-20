@@ -1,0 +1,34 @@
+{
+  "platforms": {
+    "tn": {
+      "name": "腾讯新闻",
+      "template": "templates/tool-template.html",
+      "outputDir": "dist/tn/"
+    },
+    "qb": {
+      "name": "QQ浏览器", 
+      "template": "templates/tool-template-qb.html",
+      "outputDir": "dist/qb/"
+    }
+  },
+  "tools": [
+    {
+      "name": "almanac",
+      "title": "每日黄历",
+      "subtitle": "承千年智慧，择一日良辰",
+      "component": "components/almanac/almanac-pure.html",
+      "css": "../components/common.css",
+      "additionalCss": "../components/almanac/almanac.css",
+      "platforms": {
+        "tn": {
+          "output": "dist/tn/almanac.html"
+        },
+        "qb": {
+          "output": "dist/qb/almanac.html"
+        }
+      }
+    }
+
+  ],
+  "defaultOutput": "dist/"
+}

@@ -1,0 +1,565 @@
+/**
+ * QB小工具 - 布局样式库
+ * Layout Style Library for QB Tools
+ * 
+ * 使用说明 (Usage):
+ * 1. 基于4px网格系统，所有间距为4px的倍数
+ * 2. 栅格系统：12列栅格，无两侧边距
+ * 3. 间距规范：4px, 6px, 8px, 12px, 16px, 24px
+ * 4. 模块间距：标题区域 + 内容区域
+ * 5. 容器自适应宽度，无固定高度
+ * 
+ * 核心特性 (Core Features):
+ * - Body无内边距，透明背景
+ * - 自动计算高度并通过postMessage通知父页面
+ * - 响应式断点：mobile (320px-768px), tablet (768px-1024px), desktop (1024px+)
+ * - 支持标题区域可选显示
+ * 
+ * 间距使用场景 (Spacing Usage):
+ * - 4px:  头像与名称之间
+ * - 6px:  标签与文字/标签之间（特殊）
+ * - 8px:  组件与组件之间
+ * - 12px: 字段与字段之间、左侧图片与右侧文字之间、卡片四周边距
+ * - 16px: 内容与内容之间
+ * - 24px: 模块分段文本之间
+ */
+
+/* ==================== 全局重置 ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== Body基础样式 ==================== */
+body {
+  /* 无内边距，两侧不留边距 */
+  margin: 0;
+  padding: 0;
+  
+  /* 透明背景 */
+  background-color: transparent;
+  
+  /* 隐藏溢出 */
+  overflow: hidden;
+  
+  /* 自适应宽度 */
+  width: 100%;
+  
+  /* 无固定高度，自动计算 */
+  min-height: auto;
+  height: auto;
+  
+  /* 字体设置 */
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--qb-text-a1, #242424);
+}
+
+/* ==================== 栅格系统 (Grid System) ==================== */
+/* 12列栅格，基于4px网格系统，无两侧边距 */
+
+.qb-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.qb-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+/* 栅格列 - 12列系统 */
+.qb-col {
+  flex: 1 0 0%;
+  padding: 0;
+}
+
+.qb-col-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+.qb-col-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+.qb-col-3 { flex: 0 0 25%; max-width: 25%; }
+.qb-col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.qb-col-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+.qb-col-6 { flex: 0 0 50%; max-width: 50%; }
+.qb-col-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+.qb-col-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+.qb-col-9 { flex: 0 0 75%; max-width: 75%; }
+.qb-col-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+.qb-col-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+.qb-col-12 { flex: 0 0 100%; max-width: 100%; }
+
+/* ==================== 间距系统 (Spacing System) ==================== */
+/* 基于4px网格系统 */
+
+/* Margin 外边距 */
+.qb-m-0 { margin: 0 !important; }
+.qb-m-4 { margin: 4px !important; }
+.qb-m-6 { margin: 6px !important; }
+.qb-m-8 { margin: 8px !important; }
+.qb-m-12 { margin: 12px !important; }
+.qb-m-16 { margin: 16px !important; }
+.qb-m-24 { margin: 24px !important; }
+
+/* Margin Top */
+.qb-mt-0 { margin-top: 0 !important; }
+.qb-mt-4 { margin-top: 4px !important; }
+.qb-mt-6 { margin-top: 6px !important; }
+.qb-mt-8 { margin-top: 8px !important; }
+.qb-mt-12 { margin-top: 12px !important; }
+.qb-mt-16 { margin-top: 16px !important; }
+.qb-mt-24 { margin-top: 24px !important; }
+
+/* Margin Right */
+.qb-mr-0 { margin-right: 0 !important; }
+.qb-mr-4 { margin-right: 4px !important; }
+.qb-mr-6 { margin-right: 6px !important; }
+.qb-mr-8 { margin-right: 8px !important; }
+.qb-mr-12 { margin-right: 12px !important; }
+.qb-mr-16 { margin-right: 16px !important; }
+.qb-mr-24 { margin-right: 24px !important; }
+
+/* Margin Bottom */
+.qb-mb-0 { margin-bottom: 0 !important; }
+.qb-mb-4 { margin-bottom: 4px !important; }
+.qb-mb-6 { margin-bottom: 6px !important; }
+.qb-mb-8 { margin-bottom: 8px !important; }
+.qb-mb-12 { margin-bottom: 12px !important; }
+.qb-mb-16 { margin-bottom: 16px !important; }
+.qb-mb-24 { margin-bottom: 24px !important; }
+
+/* Margin Left */
+.qb-ml-0 { margin-left: 0 !important; }
+.qb-ml-4 { margin-left: 4px !important; }
+.qb-ml-6 { margin-left: 6px !important; }
+.qb-ml-8 { margin-left: 8px !important; }
+.qb-ml-12 { margin-left: 12px !important; }
+.qb-ml-16 { margin-left: 16px !important; }
+.qb-ml-24 { margin-left: 24px !important; }
+
+/* Margin Horizontal (左右) */
+.qb-mx-0 { margin-left: 0 !important; margin-right: 0 !important; }
+.qb-mx-4 { margin-left: 4px !important; margin-right: 4px !important; }
+.qb-mx-6 { margin-left: 6px !important; margin-right: 6px !important; }
+.qb-mx-8 { margin-left: 8px !important; margin-right: 8px !important; }
+.qb-mx-12 { margin-left: 12px !important; margin-right: 12px !important; }
+.qb-mx-16 { margin-left: 16px !important; margin-right: 16px !important; }
+.qb-mx-24 { margin-left: 24px !important; margin-right: 24px !important; }
+
+/* Margin Vertical (上下) */
+.qb-my-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+.qb-my-4 { margin-top: 4px !important; margin-bottom: 4px !important; }
+.qb-my-6 { margin-top: 6px !important; margin-bottom: 6px !important; }
+.qb-my-8 { margin-top: 8px !important; margin-bottom: 8px !important; }
+.qb-my-12 { margin-top: 12px !important; margin-bottom: 12px !important; }
+.qb-my-16 { margin-top: 16px !important; margin-bottom: 16px !important; }
+.qb-my-24 { margin-top: 24px !important; margin-bottom: 24px !important; }
+
+/* Padding 内边距 */
+.qb-p-0 { padding: 0 !important; }
+.qb-p-4 { padding: 4px !important; }
+.qb-p-6 { padding: 6px !important; }
+.qb-p-8 { padding: 8px !important; }
+.qb-p-12 { padding: 12px !important; }
+.qb-p-16 { padding: 16px !important; }
+.qb-p-24 { padding: 24px !important; }
+
+/* Padding Top */
+.qb-pt-0 { padding-top: 0 !important; }
+.qb-pt-4 { padding-top: 4px !important; }
+.qb-pt-6 { padding-top: 6px !important; }
+.qb-pt-8 { padding-top: 8px !important; }
+.qb-pt-12 { padding-top: 12px !important; }
+.qb-pt-16 { padding-top: 16px !important; }
+.qb-pt-24 { padding-top: 24px !important; }
+
+/* Padding Right */
+.qb-pr-0 { padding-right: 0 !important; }
+.qb-pr-4 { padding-right: 4px !important; }
+.qb-pr-6 { padding-right: 6px !important; }
+.qb-pr-8 { padding-right: 8px !important; }
+.qb-pr-12 { padding-right: 12px !important; }
+.qb-pr-16 { padding-right: 16px !important; }
+.qb-pr-24 { padding-right: 24px !important; }
+
+/* Padding Bottom */
+.qb-pb-0 { padding-bottom: 0 !important; }
+.qb-pb-4 { padding-bottom: 4px !important; }
+.qb-pb-6 { padding-bottom: 6px !important; }
+.qb-pb-8 { padding-bottom: 8px !important; }
+.qb-pb-12 { padding-bottom: 12px !important; }
+.qb-pb-16 { padding-bottom: 16px !important; }
+.qb-pb-24 { padding-bottom: 24px !important; }
+
+/* Padding Left */
+.qb-pl-0 { padding-left: 0 !important; }
+.qb-pl-4 { padding-left: 4px !important; }
+.qb-pl-6 { padding-left: 6px !important; }
+.qb-pl-8 { padding-left: 8px !important; }
+.qb-pl-12 { padding-left: 12px !important; }
+.qb-pl-16 { padding-left: 16px !important; }
+.qb-pl-24 { padding-left: 24px !important; }
+
+/* Padding Horizontal (左右) */
+.qb-px-0 { padding-left: 0 !important; padding-right: 0 !important; }
+.qb-px-4 { padding-left: 4px !important; padding-right: 4px !important; }
+.qb-px-6 { padding-left: 6px !important; padding-right: 6px !important; }
+.qb-px-8 { padding-left: 8px !important; padding-right: 8px !important; }
+.qb-px-12 { padding-left: 12px !important; padding-right: 12px !important; }
+.qb-px-16 { padding-left: 16px !important; padding-right: 16px !important; }
+.qb-px-24 { padding-left: 24px !important; padding-right: 24px !important; }
+
+/* Padding Vertical (上下) */
+.qb-py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.qb-py-4 { padding-top: 4px !important; padding-bottom: 4px !important; }
+.qb-py-6 { padding-top: 6px !important; padding-bottom: 6px !important; }
+.qb-py-8 { padding-top: 8px !important; padding-bottom: 8px !important; }
+.qb-py-12 { padding-top: 12px !important; padding-bottom: 12px !important; }
+.qb-py-16 { padding-top: 16px !important; padding-bottom: 16px !important; }
+.qb-py-24 { padding-top: 24px !important; padding-bottom: 24px !important; }
+
+/* Gap 间隙（用于Flex和Grid布局） */
+.qb-gap-0 { gap: 0 !important; }
+.qb-gap-4 { gap: 4px !important; }
+.qb-gap-6 { gap: 6px !important; }
+.qb-gap-8 { gap: 8px !important; }
+.qb-gap-12 { gap: 12px !important; }
+.qb-gap-16 { gap: 16px !important; }
+.qb-gap-24 { gap: 24px !important; }
+
+/* ==================== 模块间距 (Module Spacing) ==================== */
+
+/* 模块容器 - Body内包括标题区域和内容区域 */
+.qb-module {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* 标题区域 */
+.qb-module-header {
+  width: 100%;
+  margin-bottom: 12px; /* 标题与内容之间的间距 */
+}
+
+/* 主标题 */
+.qb-module-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px; /* 行高 */
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0;
+}
+
+/* 副标题/副文本 */
+.qb-module-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px; /* 行高 */
+  color: var(--qb-text-a2, #666666);
+  margin-top: 8px; /* 主标题与副标题之间的间距 */
+  padding: 0;
+}
+
+/* 内容区域 */
+.qb-module-content {
+  width: 100%;
+  background-color: var(--qb-bg-frame, #F8F8F8);
+  padding: 0;
+}
+
+/* 隐藏标题区域（当没有标题时） */
+.qb-module-header.hidden,
+.qb-module-header[hidden] {
+  display: none;
+  margin: 0;
+}
+
+/* ==================== 常用布局模式 ==================== */
+
+/* Flex布局 */
+.qb-flex {
+  display: flex;
+}
+
+.qb-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.qb-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.qb-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.qb-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+/* Flex对齐 */
+.qb-justify-start { justify-content: flex-start; }
+.qb-justify-end { justify-content: flex-end; }
+.qb-justify-center { justify-content: center; }
+.qb-justify-between { justify-content: space-between; }
+.qb-justify-around { justify-content: space-around; }
+.qb-justify-evenly { justify-content: space-evenly; }
+
+.qb-align-start { align-items: flex-start; }
+.qb-align-end { align-items: flex-end; }
+.qb-align-center { align-items: center; }
+.qb-align-baseline { align-items: baseline; }
+.qb-align-stretch { align-items: stretch; }
+
+/* Grid布局 */
+.qb-grid {
+  display: grid;
+}
+
+.qb-grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.qb-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.qb-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.qb-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.qb-grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+.qb-grid-cols-12 { grid-template-columns: repeat(12, 1fr); }
+
+/* ==================== 卡片样式 ==================== */
+
+/* 卡片容器 - 四周边距12px */
+.qb-card {
+  background-color: var(--qb-bg-white, #FFFFFF);
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+}
+
+/* ==================== 响应式断点 (Responsive Breakpoints) ==================== */
+
+/* Mobile: 320px - 768px */
+@media (max-width: 767px) {
+  .qb-col-mobile-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-mobile-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-mobile-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-mobile-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-mobile-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-mobile-12 { flex: 0 0 100%; max-width: 100%; }
+  
+  .qb-module-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .qb-module-subtitle {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .qb-col-tablet-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-tablet-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-tablet-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-tablet-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-tablet-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-tablet-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .qb-col-tablet-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  .qb-col-desktop-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-desktop-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-desktop-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-desktop-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-desktop-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-desktop-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .qb-col-desktop-9 { flex: 0 0 75%; max-width: 75%; }
+  .qb-col-desktop-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+/* ==================== 工具类 ==================== */
+
+/* 宽度 */
+.qb-w-full { width: 100% !important; }
+.qb-w-auto { width: auto !important; }
+
+/* 高度 */
+.qb-h-auto { height: auto !important; }
+
+/* 显示/隐藏 */
+.qb-hidden { display: none !important; }
+.qb-visible { display: block !important; }
+
+/* 文本对齐 */
+.qb-text-left { text-align: left !important; }
+.qb-text-center { text-align: center !important; }
+.qb-text-right { text-align: right !important; }
+
+/* 溢出处理 */
+.qb-overflow-hidden { overflow: hidden !important; }
+.qb-overflow-auto { overflow: auto !important; }
+.qb-overflow-scroll { overflow: scroll !important; }
+
+/* ==================== PostMessage高度自适应脚本 ==================== */
+
+/*
+在HTML中添加以下JavaScript代码以实现高度自适应和父页面通信：
+
+<script>
+// 高度自适应函数
+function updateHeight() {
+  const height = document.body.scrollHeight;
+  
+  // 发送高度信息给父页面
+  if (window.parent !== window) {
+    window.parent.postMessage({
+      type: 'qb-resize',
+      height: height
+    }, '*');
+  }
+}
+
+// 页面加载完成后更新高度
+window.addEventListener('load', updateHeight);
+
+// 监听DOM变化，自动更新高度
+const observer = new MutationObserver(updateHeight);
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true,
+  characterData: true
+});
+
+// 监听窗口大小变化
+window.addEventListener('resize', updateHeight);
+
+// Alert函数 - 发送给父页面处理
+function qbAlert(message, type = 'info') {
+  if (window.parent !== window) {
+    window.parent.postMessage({
+      type: 'qb-alert',
+      message: message,
+      alertType: type
+    }, '*');
+  } else {
+    // 如果没有父页面，使用原生alert
+    alert(message);
+  }
+}
+
+// 导出全局函数
+window.qbAlert = qbAlert;
+window.updateHeight = updateHeight;
+</script>
+
+使用示例：
+qbAlert('这是一条提示信息', 'info');
+qbAlert('操作成功！', 'success');
+qbAlert('发生错误！', 'error');
+qbAlert('警告信息', 'warning');
+*/
+
+/* ==================== 使用示例注释 ==================== */
+
+/*
+使用示例 (Usage Examples):
+
+1. 基础模块结构（带标题）:
+   <body>
+     <div class="qb-module">
+       <div class="qb-module-header">
+         <h1 class="qb-module-title">主标题</h1>
+         <p class="qb-module-subtitle">副文本</p>
+       </div>
+       <div class="qb-module-content">
+         <!-- 内容区域 -->
+       </div>
+     </div>
+   </body>
+
+2. 无标题模块:
+   <body>
+     <div class="qb-module">
+       <div class="qb-module-header hidden">
+         <!-- 标题区域隐藏 -->
+       </div>
+       <div class="qb-module-content">
+         <!-- 内容区域 -->
+       </div>
+     </div>
+   </body>
+
+3. 栅格布局:
+   <div class="qb-row">
+     <div class="qb-col-6">左侧内容</div>
+     <div class="qb-col-6">右侧内容</div>
+   </div>
+
+4. 间距使用:
+   <div class="qb-card">
+     <div class="qb-mb-12">字段1</div>
+     <div class="qb-mb-12">字段2</div>
+     <div class="qb-mt-16">内容区域</div>
+   </div>
+
+5. Flex布局:
+   <div class="qb-flex qb-justify-between qb-align-center qb-gap-8">
+     <div>左侧</div>
+     <div>右侧</div>
+   </div>
+
+6. 响应式栅格:
+   <div class="qb-row">
+     <div class="qb-col-12 qb-col-tablet-6 qb-col-desktop-4">
+       响应式列
+     </div>
+   </div>
+
+7. 头像与名称（4px间距）:
+   <div class="qb-flex qb-align-center qb-gap-4">
+     <img src="avatar.jpg" alt="头像">
+     <span>用户名</span>
+   </div>
+
+8. 标签组（6px间距）:
+   <div class="qb-flex qb-gap-6">
+     <span class="tag">标签1</span>
+     <span class="tag">标签2</span>
+   </div>
+
+9. 组件间距（8px）:
+   <div class="qb-flex qb-flex-column qb-gap-8">
+     <button>按钮1</button>
+     <button>按钮2</button>
+   </div>
+
+10. 卡片内容（12px边距）:
+    <div class="qb-card">
+      <div class="qb-flex qb-gap-12">
+        <img src="image.jpg" alt="图片">
+        <div>文字内容</div>
+      </div>
+    </div>
+
+注意事项 (Notes):
+- Body无内边距，两侧不留边距
+- 使用透明背景，不设置背景颜色
+- 不使用固定高度和position定位
+- 通过postMessage与父页面通信
+- 所有间距基于4px网格系统
+- 标题区域可选，没有标题时添加hidden类
+*/

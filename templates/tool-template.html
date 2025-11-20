@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>{{TOOL_TITLE}}</title>
+  <meta name="description" content="{{TOOL_TITLE}} · {{TOOL_SUBTITLE}}" />
+  <script type="text/javascript" src="//mat1.gtimg.com/www/js/newsapp/jsapi/news.js?_tsid=1" async=""></script>
+
+  <style>
+/* 开发预览用CSS变量 - 构建时会被替换 */
+/* BUILD_PLACEHOLDER_START */
+:root {
+  /* 模板预览必需的CSS变量 */
+  --t1: #333333;        /* 主要文本颜色 */
+  --t2: #5C5C5C;        /* 次要文本颜色 */
+  --bg-white: #FFFFFF;  /* 容器和卡片背景 */
+  --bg-grey: #f5f5f5;   /* 页面背景 */
+}
+/* BUILD_PLACEHOLDER_END */
+
+/* 工具模板 - 主题变量定义 */
+body,
+.light-theme {
+  --logo-url: url("https://inews.gtimg.com/newsapp_bt/0/0929205936427_7225/0");
+}
+
+.dark-theme {
+  --logo-url: url("https://inews.gtimg.com/newsapp_bt/0/1009122307384_5356/0");
+}
+
+/* 全局重置和基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow: hidden !important;
+  height: auto;
+  min-height: auto;
+}
+
+body {
+  background-color: var(--bg-grey);
+  color: var(--t1);
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 淡入动画定义 - 优化版本，避免与高度响应冲突 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  margin: 0 12px 6px 12px;
+  padding: 16px;
+  background-color: var(--bg-white);
+  border-radius: 12px;
+  width: calc(100% - 24px);
+}
+
+/* 标题样式 */
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--t1);
+  margin: 0;
+  line-height: 28px;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--t2);
+  margin: 0;
+  line-height: 14px;
+}
+
+/* 工具卡片容器 */
+.tool-card {
+  background-color: var(--bg-white);
+  border-radius: 12px;
+}
+
+/* 头部区域样式 */
+.header-section {
+  margin: 12px;
+  padding: 0;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-logo {
+  width: 210px;
+  max-width: 100%;
+  height: 14px;
+  background-image: var(--logo-url);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.header-status {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--t2);
+  line-height: 12px;
+}
+
+/* 标题区域间距 */
+.header-text-spaced {
+  margin-top: 12px;
+}
+
+  </style>
+</head>
+<body data-platform="tn">
+  <!-- 头部区域 -->
+  <div class="header-section">
+    <div class="header-top">
+      <div class="header-logo" role="img" aria-label="Logo"></div>
+      <span class="header-status">已为你生成工具</span>
+    </div>
+    <!-- 工具标题区域 -->
+    <div class="header-text header-text-spaced">
+      <h1 class="header-title">{{TOOL_TITLE}}</h1>
+      <p class="header-subtitle">{{TOOL_SUBTITLE}}</p>
+    </div>
+  </div>
+
+  <!-- 工具内容区域 -->
+  <main class="container">
+    <div class="tool-card">
+      {{TOOL_CONTENT}}
+    </div>
+  </main>
+
+
+
+  <!-- 主题控制脚本 -->
+  <script type="text/javascript">
+    function setTheme(value) {
+      document.body.classList.remove("light-theme", "dark-theme");
+      const isNight = value === "2" || value === "night" || value === "dark";
+      document.body.classList.add(isNight ? "dark-theme" : "light-theme");
+    }
+
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    // 页面初始化时app会主动给网页地址注入参数isnm来通知网页当前app的主题模式，网页需要根据地址链接参数来做对应模式适配
+    try {
+      const theme = getParam("isnm") || getParam("theme");
+      if (theme) setTheme(theme);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // app切换日夜间模式时，会主动调用网页提供的回调函数
+    window.webCellManager = {
+      themeChanged: function(theme) {
+        try {
+          setTheme(theme);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    // 高度监测功能
+    function updateHeight() {
+      try {
+        const contentHeight = Math.ceil(document.body.getBoundingClientRect().height)  || 400;
+        const webViewWidth = window.innerWidth;
+        const aspectRatio = webViewWidth / contentHeight;
+
+        window?.TencentNews?.invoke('adjustWebViewInfo', {
+          aspectRatio: aspectRatio
+        });
+        window?.TencentNews?.invoke('onWebCellReady');
+        
+      } catch (e) {
+        console.error('高度更新失败:', e);
+      }
+    }
+
+    // 页面加载完成后初始化
+    window.addEventListener('load', updateHeight);
+
+    // 窗口大小变化时更新高度
+    window.addEventListener('resize', updateHeight);
+
+    // 监听内容变化
+    if (window.MutationObserver) {
+      const observer = new MutationObserver(updateHeight);
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class']
+      });
+    }
+  </script>
+</body>
+</html>

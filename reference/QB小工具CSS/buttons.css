@@ -1,0 +1,309 @@
+/**
+ * QB小工具 - 按钮样式库
+ * Buttons Style Library for QB Tools
+ * 
+ * 使用说明 (Usage):
+ * 1. 基础类名: .qb-btn
+ * 2. 尺寸类名: .qb-btn-xl / .qb-btn-l / .qb-btn-m / .qb-btn-s
+ * 3. 类型类名: .qb-btn-primary / .qb-btn-secondary / .qb-btn-tertiary / .qb-btn-white / .qb-btn-progress
+ * 4. 状态类名: :hover / :active / :disabled
+ * 
+ * 示例 (Example):
+ * <button class="qb-btn qb-btn-xl qb-btn-primary">按钮</button>
+ * <button class="qb-btn qb-btn-l qb-btn-secondary">按钮</button>
+ * <button class="qb-btn qb-btn-m qb-btn-tertiary" disabled>按钮</button>
+ * 
+ * 颜色变量说明 (Color Variables):
+ * 按钮颜色可通过CSS变量进行全局替换，需配合colors.css使用
+ * --qb-primary-color: 主色调 (默认: #205AEF)
+ * --qb-text-primary: 主文字颜色 (默认: #242424)
+ * --qb-bg-gray: 灰色背景 (默认: #F5F5F5)
+ * --qb-white: 白色 (默认: #FFFFFF)
+ * 
+ * 尺寸规范 (Size Specifications):
+ * XL: 高度40px, 字体14px, 圆角8px, 内边距左右40px
+ * L:  高度32px, 字体14px, 圆角8px, 内边距左右14px
+ * M:  高度28px, 字体12px, 圆角8px, 内边距左右14px
+ * S:  高度24px, 字体12px, 圆角6px, 内边距左右14px
+ * 
+ * 注意事项 (Notes):
+ * - 按钮文字始终居中对齐
+ * - 按钮可通过width属性拓展宽度，但高度必须遵守规范
+ * - 按钮字体大小与尺寸固定对应，不可单独修改
+ */
+
+/* ==================== 基础按钮样式 ==================== */
+.qb-btn {
+  /* 布局 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  
+  /* 文字 */
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  
+  /* 交互 */
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  outline: none;
+  transition: opacity 0.2s ease;
+  
+  /* 默认颜色变量 */
+  --qb-primary-color: #205AEF;
+  --qb-text-primary: #242424;
+  --qb-bg-gray: #F5F5F5;
+  --qb-white: #FFFFFF;
+}
+
+/* ==================== 按钮尺寸 ==================== */
+
+/* XL尺寸: 40px高度 */
+.qb-btn-xl {
+  height: 40px;
+  padding: 0 40px;
+  font-size: 14px;
+  line-height: 40px;
+  border-radius: 8px;
+}
+
+/* L尺寸: 32px高度 */
+.qb-btn-l {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 14px;
+  line-height: 32px;
+  border-radius: 8px;
+}
+
+/* M尺寸: 28px高度 */
+.qb-btn-m {
+  height: 28px;
+  padding: 0 14px;
+  font-size: 12px;
+  line-height: 28px;
+  border-radius: 8px;
+}
+
+/* S尺寸: 24px高度 */
+.qb-btn-s {
+  height: 24px;
+  padding: 0 14px;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 6px;
+}
+
+/* ==================== 按钮类型 ==================== */
+
+/* 一级按钮 (Primary) - 蓝色实心 */
+.qb-btn-primary {
+  background-color: var(--qb-primary-color);
+  color: var(--qb-white);
+}
+
+.qb-btn-primary:hover {
+  opacity: 0.6;
+}
+
+.qb-btn-primary:active {
+  opacity: 0.6;
+}
+
+.qb-btn-primary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 二级按钮 (Secondary) - 带边框透明背景 */
+.qb-btn-secondary {
+  background-color: transparent;
+  background-image: linear-gradient(var(--qb-primary-color), var(--qb-primary-color));
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  color: var(--qb-primary-color);
+  position: relative;
+}
+
+.qb-btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--qb-primary-color);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.08;
+}
+
+.qb-btn-secondary:hover {
+  opacity: 0.6;
+}
+
+.qb-btn-secondary:active {
+  opacity: 0.6;
+}
+
+.qb-btn-secondary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 三级按钮 (Tertiary) - 灰色背景 */
+.qb-btn-tertiary {
+  background-color: var(--qb-bg-gray);
+  color: var(--qb-text-primary);
+}
+
+.qb-btn-tertiary:hover {
+  opacity: 0.6;
+}
+
+.qb-btn-tertiary:active {
+  opacity: 0.6;
+}
+
+.qb-btn-tertiary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 反白按钮 (White) - 白色背景 */
+.qb-btn-white {
+  background-color: var(--qb-white);
+  color: var(--qb-text-primary);
+}
+
+.qb-btn-white:hover {
+  opacity: 0.6;
+}
+
+.qb-btn-white:active {
+  opacity: 0.6;
+}
+
+.qb-btn-white:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* 进度按钮 (Progress) - 带进度条效果 */
+.qb-btn-progress {
+  background-color: transparent;
+  background-image: linear-gradient(var(--qb-primary-color), var(--qb-primary-color));
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  color: var(--qb-primary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 进度按钮背景层 */
+.qb-btn-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--qb-primary-color);
+  opacity: 0.08;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+/* 进度条层 */
+.qb-btn-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--progress, 50%); /* 默认50%进度，可通过内联样式修改 */
+  background-color: var(--qb-primary-color);
+  border-radius: inherit;
+  z-index: 1;
+  transition: width 0.3s ease;
+}
+
+/* 进度按钮文字层 */
+.qb-btn-progress > span {
+  position: relative;
+  z-index: 2;
+}
+
+/* 进度按钮左侧文字（进度条覆盖部分）为白色 */
+.qb-btn-progress > span::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--progress, 50%) * 2); /* 覆盖宽度 */
+  color: var(--qb-white);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.qb-btn-progress:hover {
+  opacity: 0.6;
+}
+
+.qb-btn-progress:active {
+  opacity: 0.6;
+}
+
+.qb-btn-progress:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ==================== 宽度扩展 ==================== */
+
+/* 全宽按钮 */
+.qb-btn-block {
+  width: 100%;
+  display: flex;
+}
+
+/* 自定义宽度 - 通过内联样式设置 width 属性 */
+/* 示例: <button class="qb-btn qb-btn-xl qb-btn-primary" style="width: 200px;">按钮</button> */
+
+/* ==================== 组合示例注释 ==================== */
+
+/*
+使用示例 (Usage Examples):
+
+1. XL尺寸一级按钮:
+   <button class="qb-btn qb-btn-xl qb-btn-primary">按钮</button>
+
+2. L尺寸二级按钮:
+   <button class="qb-btn qb-btn-l qb-btn-secondary">按钮</button>
+
+3. M尺寸三级按钮（禁用状态）:
+   <button class="qb-btn qb-btn-m qb-btn-tertiary" disabled>按钮</button>
+
+4. S尺寸反白按钮:
+   <button class="qb-btn qb-btn-s qb-btn-white">按钮</button>
+
+5. XL尺寸进度按钮（50%进度）:
+   <button class="qb-btn qb-btn-xl qb-btn-progress" style="--progress: 50%;">
+     <span data-text="50%">50%</span>
+   </button>
+
+6. 全宽按钮:
+   <button class="qb-btn qb-btn-xl qb-btn-primary qb-btn-block">按钮</button>
+
+7. 自定义宽度按钮:
+   <button class="qb-btn qb-btn-l qb-btn-primary" style="width: 200px;">按钮</button>
+*/

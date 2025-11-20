@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+<title>配色提取小工具</title>
+<style data-original-href="shared/colors.css">
+
+/* 原始文件: shared/colors.css */
+:root { --qb-newblue: #205AEF;
+  --qb-newblue-dark: #1F4DC4; 
+  
+  
+  --qb-red: #F44837;          
+  --qb-red-dark: #C83F31;     
+  
+  --qb-orange: #FF8A14;       
+  --qb-orange-dark: #D17415;  
+  
+  --qb-yellow: #FFC20D;       
+  --qb-yellow-dark: #D1A010;  
+  
+  --qb-gold: #FBC56E;         
+  --qb-gold-dark: #D1A85C;    
+  
+  --qb-green: #0BB861;        
+  --qb-green-dark: #0E9853;   
+  
+  --qb-cyan: #0ACC9B;         
+  --qb-cyan-dark: #0DA881;    
+  
+  --qb-purple: #7632FF;       
+  --qb-purple-dark: #642DD1;  
+  
+  --qb-brown: #78461A;        
+  --qb-brown-dark: #70441D;   
+  
+  
+  
+  
+  
+  --qb-text-a1: #242424;      
+  --qb-text-a2: #666666;      
+  --qb-text-a3: #8F8F8F;      
+  --qb-text-a4: #B3B3B3;      
+  
+  
+  --qb-text-highlight: #205AEF;  
+  --qb-text-danger: #F44837;     
+  
+  
+  --qb-text-a1-dark: #A3A3A3;    
+  --qb-text-a2-dark: #7F7F7F;    
+  --qb-text-a3-dark: #5F5F5F;    
+  --qb-text-a4-dark: #484848;    
+  
+  
+  --qb-text-highlight-dark: #1F4DC4;  
+  --qb-text-danger-dark: #C83F31;     
+  
+  
+  
+  
+  
+  --qb-bg-grey: #F6F7FA;         
+  --qb-bg-white: #FFFFFF;        
+  --qb-bg-frame: #F5F5F5;        
+  --qb-bg-black-t: rgba(0, 0, 0, 0.04);  
+  --qb-bg-mask: rgba(0, 0, 0, 0.40);     
+  
+  
+  --qb-bg-grey-dark: #0D0D0D;    
+  --qb-bg-white-dark: #1A1A1A;   
+  --qb-bg-frame-dark: #262626;   
+  --qb-bg-black-t-dark: rgba(255, 255, 255, 0.04);  
+  --qb-bg-mask-dark: rgba(0, 0, 0, 0.70);           
+  
+  
+  
+  
+  
+  --qb-line: rgba(0, 0, 0, 0.08);    
+  --qb-border: rgba(0, 0, 0, 0.04);  
+  
+  
+  --qb-line-dark: rgba(255, 255, 255, 0.08);    
+  --qb-border-dark: rgba(255, 255, 255, 0.04);  
+  
+  
+  
+  
+  
+  --qb-primary: var(--qb-newblue);
+  --qb-primary-color: var(--qb-newblue);
+  
+  
+  --qb-danger: var(--qb-red);
+  --qb-success: var(--qb-green);
+  --qb-warning: var(--qb-orange);
+  --qb-info: var(--qb-cyan);
+  
+  
+  --qb-text-primary: var(--qb-text-a1);
+  --qb-text-secondary: var(--qb-text-a2);
+  --qb-text-tertiary: var(--qb-text-a3);
+  --qb-text-placeholder: var(--qb-text-a4);
+  
+  
+  --qb-background: var(--qb-bg-grey);
+  --qb-background-white: var(--qb-bg-white);
+  --qb-background-frame: var(--qb-bg-frame);
+  
+  
+  --qb-border-color: var(--qb-border);
+  --qb-divider: var(--qb-line); }
+
+</style>
+<style data-original-href="shared/layout.css">
+
+/* 原始文件: shared/layout.css */
+* { margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+html { font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+body { margin: 0;
+  padding: 0;
+  
+  
+  background-color: transparent;
+  
+  
+  overflow: hidden;
+  
+  
+  width: 100%;
+  
+  
+  min-height: auto;
+  height: auto;
+  
+  
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--qb-text-a1, #242424); }
+.qb-mb-12 { margin-bottom: 12px !important; }
+.qb-mb-16 { margin-bottom: 16px !important; }
+.qb-module { width: 100%;
+  background-color: transparent; }
+.qb-module-header { width: 100%;
+  margin-bottom: 12px; }
+.qb-module-title { font-size: 24px;
+  font-weight: 600;
+  line-height: 32px; 
+  color: var(--qb-text-a1, #242424);
+  margin: 0;
+  padding: 0; }
+.qb-module-subtitle { font-size: 14px;
+  font-weight: 400;
+  line-height: 22px; 
+  color: var(--qb-text-a2, #666666);
+  margin-top: 8px; 
+  padding: 0; }
+.qb-module-content { width: 100%;
+  background-color: transparent;
+  padding: 0; }
+.qb-module-title { font-size: 20px;
+    line-height: 28px; }
+.qb-module-subtitle { font-size: 12px;
+    line-height: 20px; }
+@media (max-width: 767px) {
+  .qb-col-mobile-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-mobile-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-mobile-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-mobile-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-mobile-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-mobile-12 { flex: 0 0 100%; max-width: 100%; }
+  
+  .qb-module-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .qb-module-subtitle {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .qb-col-tablet-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-tablet-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-tablet-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-tablet-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-tablet-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-tablet-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .qb-col-tablet-12 { flex: 0 0 100%; max-width: 100%; }
+}
+@media (min-width: 1024px) {
+  .qb-col-desktop-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  .qb-col-desktop-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  .qb-col-desktop-3 { flex: 0 0 25%; max-width: 25%; }
+  .qb-col-desktop-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  .qb-col-desktop-6 { flex: 0 0 50%; max-width: 50%; }
+  .qb-col-desktop-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  .qb-col-desktop-9 { flex: 0 0 75%; max-width: 75%; }
+  .qb-col-desktop-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+</style>
+<style data-original-href="shared/buttons.css">
+
+/* 原始文件: shared/buttons.css */
+.qb-btn { display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  
+  
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  
+  
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  outline: none;
+  transition: opacity 0.2s ease;
+  
+  
+  --qb-primary-color: #205AEF;
+  --qb-text-primary: #242424;
+  --qb-bg-gray: #F5F5F5;
+  --qb-white: #FFFFFF; }
+.qb-btn-xl { height: 40px;
+  padding: 0 40px;
+  font-size: 14px;
+  line-height: 40px;
+  border-radius: 8px; }
+.qb-btn-primary { background-color: var(--qb-primary-color);
+  color: var(--qb-white); }
+.qb-btn-primary:hover { opacity: 0.6; }
+.qb-btn-primary:active { opacity: 0.6; }
+.qb-btn-progress > span { position: relative;
+  z-index: 2; }
+.qb-btn-progress > span::before { content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--progress, 50%) * 2); 
+  color: var(--qb-white);
+  overflow: hidden;
+  white-space: nowrap; }
+.qb-btn-block { width: 100%;
+  display: flex; }
+
+</style>
+<style data-original-href="shared/typography.css">
+
+/* 原始文件: shared/typography.css */
+:root { --qb-font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --qb-font-family-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace; }
+body { font-family: var(--qb-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+p { font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--qb-text-a1, #242424);
+  margin: 0 0 12px 0; }
+@media (max-width: 767px) {
+  .qb-heading1-bold, .qb-h1-bold, .qb-heading1, .qb-h1, h1, .h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .qb-heading2-bold, .qb-h2-bold, .qb-heading2, .qb-h2, h2, .h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .qb-heading3-bold, .qb-h3-bold, .qb-heading3, .qb-h3, h3, .h3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .qb-body1-bold, .qb-body1, .qb-text-large {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+</style>
+<style>
+
+    /* 重置body和html样式，确保高度计算准确 */
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: auto !important;
+      min-height: 0 !important;
+    }
+    /* 容器内局部自定义（遵循规范，补足功能所需） */
+    .cp-description {
+      color: var(--qb-text-a2);
+    }
+    .cp-upload-area {
+      border: 1px dashed var(--qb-border-color);
+      background: var(--qb-background-white);
+      border-radius: 12px;
+      padding: 40px 20px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .cp-upload-area .hint {
+      color: var(--qb-text-a3);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .cp-hidden-input {
+      display: none;
+    }
+    .cp-thumb {
+      width: 100%;
+      height: 200px;           /* 高度限定 200 */
+      border-radius: 12px;
+      overflow: hidden;        /* 裁切溢出 */
+      background: var(--qb-bg-frame);
+      border: 1px solid var(--qb-border-color);
+      position: relative;      /* 为标签定位 */
+    }
+    .cp-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;       /* 宽度拉满，高度裁切 */
+      display: block;
+    }
+    .cp-example-badge {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+    }
+    .cp-swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+    .cp-swatch {
+      height: 48px;
+      border-radius: 10px;     /* 圆角 */
+      cursor: pointer;
+      position: relative;
+      border: 1px solid var(--qb-border-color);
+    }
+    .cp-swatch-label {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--qb-text-a2);
+      text-align: center;
+      word-break: break-all;
+    }
+    .cp-tip {
+      color: var(--qb-text-a3);
+      font-size: 12px;
+      text-align: center;
+    }
+    .cp-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .cp-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      background: var(--qb-bg-white);
+      color: var(--qb-text-a1);
+      border: 1px solid var(--qb-border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: none;
+      z-index: 9999;
+    }
+    @media (max-width: 420px) {
+      .cp-swatches { grid-template-columns: repeat(5, 1fr); }
+      .cp-swatch { height: 44px; }
+    }
+  
+</style>
+<style>
+
+            /* 独立HTML文件基础样式 */
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+                background-color: transparent;
+                overflow: hidden;
+                width: 100%;
+                min-height: auto;
+                height: auto;
+            }
+            
+            /* 确保所有元素正常显示 */
+            * {
+                box-sizing: border-box;
+            }
+            
+            /* 移除可能的iframe相关样式 */
+            .qb-module {
+                width: 100%;
+                background-color: transparent;
+            }
+        
+</style>
+<style data-original-href="shared/dark-mode-universal.css">
+
+/**
+ * QB小工具 - 通用夜间模式样式
+ * Universal Dark Mode Styles for QB Tools
+ * 
+ * 功能说明：
+ * 1. 为所有QB小工具提供统一的夜间模式样式
+ * 2. 基于 [data-color-scheme='dark'] 选择器
+ * 3. 使用预定义的CSS变量（--qb-*-dark）
+ * 4. 覆盖常用组件和元素的样式
+ * 
+ * 使用方法：
+ * 在HTML页面中引入此样式文件：
+ * <link rel="stylesheet" href="shared/dark-mode-universal.css">
+ * 
+ * 或者在现有CSS中导入：
+ * @import url('shared/dark-mode-universal.css');
+ * 
+ * @version 1.0.0
+ */
+
+/* ==================== 基础文字和标题 ==================== */
+
+/* 主标题 */
+[data-color-scheme='dark'] .qb-module-title,
+[data-color-scheme='dark'] h1,
+[data-color-scheme='dark'] .qb-h1,
+[data-color-scheme='dark'] .qb-heading1 {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 副标题 */
+[data-color-scheme='dark'] .qb-module-subtitle,
+[data-color-scheme='dark'] h2,
+[data-color-scheme='dark'] .qb-h2,
+[data-color-scheme='dark'] .qb-heading2 {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* 三级标题 */
+[data-color-scheme='dark'] h3,
+[data-color-scheme='dark'] .qb-h3,
+[data-color-scheme='dark'] .qb-heading3 {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 正文文字 */
+[data-color-scheme='dark'] .qb-body1,
+[data-color-scheme='dark'] .qb-body1-bold,
+[data-color-scheme='dark'] .qb-body2-bold,
+[data-color-scheme='dark'] p {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 次要文字 */
+[data-color-scheme='dark'] .qb-text-secondary,
+[data-color-scheme='dark'] .qb-caption,
+[data-color-scheme='dark'] small {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* 辅助文字 */
+[data-color-scheme='dark'] .qb-text-tertiary,
+[data-color-scheme='dark'] .qb-hint {
+    color: var(--qb-text-a3-dark, #5F5F5F) !important;
+}
+
+/* 占位符文字 */
+[data-color-scheme='dark'] .qb-text-placeholder,
+[data-color-scheme='dark'] ::placeholder {
+    color: var(--qb-text-a4-dark, #484848) !important;
+}
+
+/* ==================== 背景和容器 ==================== */
+
+/* 只对有明确背景色需求的容器设置背景 - 排除主要模块容器 */
+[data-color-scheme='dark'] .qb-card:not(.qb-module),
+[data-color-scheme='dark'] .qb-panel:not(.qb-module) {
+    background-color: var(--qb-bg-grey-dark, #0D0D0D) !important;
+}
+
+/* 确保主要模块容器保持透明背景 */
+[data-color-scheme='dark'] .qb-module {
+    background-color: transparent !important;
+}
+
+/* 白色背景容器 */
+[data-color-scheme='dark'] .qb-bg-white,
+[data-color-scheme='dark'] .canvas-wrapper,
+[data-color-scheme='dark'] .image-container,
+[data-color-scheme='dark'] .preview-container {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+}
+
+/* 框架背景 */
+[data-color-scheme='dark'] .qb-bg-frame,
+[data-color-scheme='dark'] .sidebar,
+[data-color-scheme='dark'] .toolbar {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+}
+
+/* ==================== 按钮和交互元素 ==================== */
+
+/* 普通按钮 - 排除主要按钮 */
+[data-color-scheme='dark'] .qb-btn:not(.qb-btn-primary),
+[data-color-scheme='dark'] .btn:not(.qb-btn-primary),
+[data-color-scheme='dark'] button:not(.qb-btn-primary) {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 主要按钮保持原有样式 */
+[data-color-scheme='dark'] .qb-btn-primary {
+    background-color: var(--qb-primary, #205AEF) !important;
+    color: #ffffff !important;
+    border-color: var(--qb-primary, #205AEF) !important;
+}
+
+/* 确保主要按钮的悬停和激活状态 */
+[data-color-scheme='dark'] .qb-btn-primary:hover {
+    opacity: 0.6 !important;
+    background-color: var(--qb-primary, #205AEF) !important;
+}
+
+[data-color-scheme='dark'] .qb-btn-primary:active {
+    opacity: 0.6 !important;
+    background-color: var(--qb-primary, #205AEF) !important;
+}
+
+/* 选项按钮 */
+[data-color-scheme='dark'] .density-btn,
+[data-color-scheme='dark'] .option-btn,
+[data-color-scheme='dark'] .toggle-btn {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 按钮悬停状态 */
+[data-color-scheme='dark'] .density-btn:hover,
+[data-color-scheme='dark'] .option-btn:hover,
+[data-color-scheme='dark'] .toggle-btn:hover,
+[data-color-scheme='dark'] .qb-btn:hover {
+    border-color: var(--qb-primary, #205AEF) !important;
+}
+
+/* 按钮激活状态 */
+[data-color-scheme='dark'] .density-btn.active,
+[data-color-scheme='dark'] .option-btn.active,
+[data-color-scheme='dark'] .toggle-btn.active {
+    border-color: var(--qb-primary, #205AEF) !important;
+    background-color: rgba(32, 90, 239, 0.15) !important;
+}
+
+/* 按钮内的标签和描述 */
+[data-color-scheme='dark'] .density-label,
+[data-color-scheme='dark'] .option-label,
+[data-color-scheme='dark'] .btn-label {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+[data-color-scheme='dark'] .density-desc,
+[data-color-scheme='dark'] .option-desc,
+[data-color-scheme='dark'] .btn-desc {
+    color: var(--qb-text-a3-dark, #5F5F5F) !important;
+}
+
+/* ==================== 输入框和表单元素 ==================== */
+
+/* 输入框 */
+[data-color-scheme='dark'] input,
+[data-color-scheme='dark'] textarea,
+[data-color-scheme='dark'] select,
+[data-color-scheme='dark'] .qb-input,
+[data-color-scheme='dark'] .qb-textarea {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 输入框焦点状态 */
+[data-color-scheme='dark'] input:focus,
+[data-color-scheme='dark'] textarea:focus,
+[data-color-scheme='dark'] select:focus,
+[data-color-scheme='dark'] .qb-input:focus,
+[data-color-scheme='dark'] .qb-textarea:focus {
+    border-color: var(--qb-primary, #205AEF) !important;
+}
+
+/* ==================== 特殊组件 ==================== */
+
+/* 滑杆组件 */
+[data-color-scheme='dark'] .compare-slider,
+[data-color-scheme='dark'] .slider {
+    background-color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+[data-color-scheme='dark'] .compare-slider:before,
+[data-color-scheme='dark'] .slider:before {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+[data-color-scheme='dark'] .compare-slider:after,
+[data-color-scheme='dark'] .slider:after {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 覆盖层 */
+[data-color-scheme='dark'] .original-overlay,
+[data-color-scheme='dark'] .overlay,
+[data-color-scheme='dark'] .modal-overlay {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+}
+
+/* 提示和标签 */
+[data-color-scheme='dark'] .download-btn,
+[data-color-scheme='dark'] .example-badge,
+[data-color-scheme='dark'] .press-hint,
+[data-color-scheme='dark'] .tooltip,
+[data-color-scheme='dark'] .badge {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* ==================== 边框和分割线 ==================== */
+
+/* 边框 */
+[data-color-scheme='dark'] .qb-border,
+[data-color-scheme='dark'] .border {
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 分割线 */
+[data-color-scheme='dark'] .qb-divider,
+[data-color-scheme='dark'] .divider,
+[data-color-scheme='dark'] hr {
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+    background-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* ==================== 列表和网格 ==================== */
+
+/* 列表项 */
+[data-color-scheme='dark'] .qb-list-item,
+[data-color-scheme='dark'] .list-item,
+[data-color-scheme='dark'] li {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* 网格项 */
+[data-color-scheme='dark'] .grid-item,
+[data-color-scheme='dark'] .card-item {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* ==================== 状态指示 ==================== */
+
+/* 加载状态 */
+[data-color-scheme='dark'] .processing,
+[data-color-scheme='dark'] .loading {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+[data-color-scheme='dark'] .spinner {
+    border-color: var(--qb-bg-frame-dark, #262626) !important;
+    border-top-color: var(--qb-primary, #205AEF) !important;
+}
+
+/* ==================== 响应式适配 ==================== */
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+    [data-color-scheme='dark'] .qb-module-title {
+        color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    }
+    
+    [data-color-scheme='dark'] .qb-module-subtitle {
+        color: var(--qb-text-a2-dark, #7F7F7F) !important;
+    }
+}
+
+/* ==================== 特殊修复 ==================== */
+
+/* iOS QQ浏览器输入框修复 */
+[data-color-scheme='dark'] input[type="text"],
+[data-color-scheme='dark'] input[type="email"],
+[data-color-scheme='dark'] input[type="password"],
+[data-color-scheme='dark'] input[type="number"],
+[data-color-scheme='dark'] textarea {
+    -webkit-text-fill-color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 强制移除硬编码白色背景 */
+[data-color-scheme='dark'] * {
+    /* 这个规则会被JavaScript动态处理 */
+}
+
+/* ==================== 配色工具特定样式 ==================== */
+
+/* 配色工具的特殊元素 */
+[data-color-scheme='dark'] .cp-description {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+[data-color-scheme='dark'] .cp-upload-area {
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+}
+
+[data-color-scheme='dark'] .cp-upload-area .hint {
+    color: var(--qb-text-a3-dark, #5F5F5F) !important;
+}
+
+[data-color-scheme='dark'] .cp-thumb {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+[data-color-scheme='dark'] .cp-example-badge {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: #ffffff !important;
+}
+
+[data-color-scheme='dark'] .cp-swatch {
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+[data-color-scheme='dark'] .cp-swatch-label {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+[data-color-scheme='dark'] .cp-tip {
+    color: var(--qb-text-a3-dark, #5F5F5F) !important;
+}
+
+[data-color-scheme='dark'] .cp-toast {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+</style>
+<script>
+/**
+ * iframe高度自适应通用脚本
+ * 
+ * 功能：自动检测页面内容高度变化，并通知父级iframe调整高度
+ * 适用场景：任何嵌入在iframe中的动态内容页面
+ * 
+ * 使用方法：
+ * 1. 在HTML页面底部引入此脚本：<script src="iframe-height-bridge.js" /> 
+ * 2. 或直接将此脚本内容复制到页面的<script>标签中
+ * 3. 在页面内容切换时调用：window.updateIframeHeight()
+ * 
+ * @version 1.0.0
+ */
+
+(function() {
+    'use strict';
+
+    /**
+     * 注入动态高度样式
+     * 确保页面内容可以根据实际高度自动调整
+     * 只在 iframe 环境中注入，避免影响独立页面
+     */
+    function injectDynamicHeightStyles() {
+        const styleId = 'iframe-dynamic-height-styles';
+        
+        // 避免重复注入
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        
+        // 只在 iframe 中注入样式
+        const isInIframe = window.parent !== window;
+        if (!isInIframe) {
+            console.log('[iframe-height] 非iframe环境，跳过样式注入');
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            /* iframe 高度自适应 - 通用样式 */
+            body {
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            html {
+                height: auto !important;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('[iframe-height] 通用动态高度样式已注入');
+    }
+
+    /**
+     * 计算当前页面实际内容高度
+     * @returns {number} 页面高度（像素）
+     */
+    function calculatePageHeight() {
+        // 强制浏览器重新计算布局
+        document.body.offsetHeight;
+        
+        // 优先方案：获取主容器的实际高度
+        // 按优先级查找常见的主容器元素
+        const mainContainer = document.querySelector('main') || 
+                            document.querySelector('#app') ||
+                            document.querySelector('.app') ||
+                            document.querySelector('.container') ||
+                            document.querySelector('[role="main"]') ||
+                            document.querySelector('.qb-module');
+        
+        if (mainContainer) {
+            const rect = mainContainer.getBoundingClientRect();
+            const containerHeight = rect.height;
+            
+            // 计算body的额外空间
+            const bodyStyle = window.getComputedStyle(document.body);
+            const bodyPaddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+            const bodyPaddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+            const bodyMarginTop = parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = parseFloat(bodyStyle.marginBottom) || 0;
+            
+            const totalHeight = containerHeight + bodyPaddingTop + bodyPaddingBottom + 
+                              bodyMarginTop + bodyMarginBottom;
+            
+            return Math.ceil(totalHeight);
+        }
+        
+        // 备用方案：使用body和html的高度
+        const body = document.body;
+        const html = document.documentElement;
+        
+        const heights = [
+            body.scrollHeight,
+            body.offsetHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ];
+        
+        return Math.max(...heights);
+    }
+
+    /**
+     * 更新父级iframe的高度
+     * 支持两种方式：直接修改iframe样式 + postMessage通信
+     */
+    function updateIframeHeight() {
+        // 使用requestAnimationFrame确保在渲染帧获取准确高度
+        requestAnimationFrame(() => {
+            const height = calculatePageHeight();
+            
+            // 方式1: 尝试直接修改父级iframe元素的高度
+            try {
+                if (window.parent && window.parent !== window) {
+                    const iframes = window.parent.document.querySelectorAll('iframe');
+                    for (let iframe of iframes) {
+                        try {
+                            if (iframe.contentWindow === window) {
+                                iframe.style.height = height + 'px';
+                                console.log('[iframe-height] 直接更新成功:', height + 'px');
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，继续尝试下一个
+                        }
+                    }
+                }
+            } catch (e) {
+                // 无法访问父级，可能是跨域
+            }
+            
+            // 方式2: 通过postMessage通知父窗口（备用方案，支持跨域）
+            try {
+                if (window.parent && window.parent !== window) {
+                    // 优先使用 originalPostMessage，如果不存在则使用 postMessage
+                    const postMessageMethod = window.parent.originalPostMessage || window.parent.postMessage;
+                    postMessageMethod.call(window.parent, {
+                        type: 'setIframeHeight',
+                        height: height
+                    }, '*');
+                    console.log('[iframe-height] postMessage发送:', height + 'px');
+                }
+            } catch (e) {
+                console.warn('[iframe-height] 更新失败:', e.message);
+            }
+        });
+    }
+
+    /**
+     * 页面内容切换时调用此函数
+     * 会立即触发一次，然后延迟触发两次，确保获取准确高度
+     */
+    function onContentChange() {
+        updateIframeHeight();                    // 立即触发
+        setTimeout(updateIframeHeight, 50);      // 50ms后触发
+        setTimeout(updateIframeHeight, 150);     // 150ms后触发
+    }
+
+    // 防抖定时器
+    let debounceTimer = null;
+
+    /**
+     * 带防抖的高度更新
+     * @param {number} delay 防抖延迟时间（毫秒）
+     */
+    function debouncedUpdate(delay = 10) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateIframeHeight, delay);
+    }
+
+    // ==================== 自动监听机制 ====================
+
+    // 1. 监听DOM变化
+    const observer = new MutationObserver(() => {
+        debouncedUpdate(10);
+    });
+
+    observer.observe(document.body, {
+        childList: true,      // 监听子节点的添加/删除
+        subtree: true,        // 监听所有后代节点
+        attributes: true,     // 监听属性变化
+        characterData: true   // 监听文本内容变化
+    });
+
+    // 2. 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        debouncedUpdate(50);
+    });
+
+    // 3. 监听图片加载
+    document.addEventListener('load', (e) => {
+        if (e.target.tagName === 'IMG') {
+            updateIframeHeight();
+        }
+    }, true);
+
+    // 4. 页面加载完成后立即更新
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            injectDynamicHeightStyles();
+            updateIframeHeight();
+        });
+    } else {
+        injectDynamicHeightStyles();
+        updateIframeHeight();
+    }
+
+    // 5. 监听来自父窗口的高度请求
+    window.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'request-height' || event.data.type === 'requestHeight')) {
+            updateIframeHeight();
+        }
+    });
+
+    // ==================== 暴露全局方法 ====================
+
+    // 将更新函数暴露到全局，供页面内容切换时调用
+    window.updateIframeHeight = updateIframeHeight;
+    window.onContentChange = onContentChange;
+
+    console.log('[iframe-height] 自适应脚本已加载');
+
+})();
+</script>
+</head>
+<body>
+<div class="qb-module">
+    
+    <div class="qb-module-header">
+      <h1 class="qb-module-title">配色提取工具</h1>
+      <p class="qb-module-subtitle">上传一张图片，自动分析并提取配色。</p>
+    </div>
+
+    
+    <div class="qb-module-content">
+      
+      <div id="cp-result">
+        
+        <div class="cp-thumb qb-mb-16">
+          <img id="cp-thumb-img" alt="上传图片预览" crossorigin="anonymous"></img>
+          <span id="cp-example-badge" class="cp-example-badge">示意图片</span>
+        </div>
+
+        
+        <div class="cp-swatches qb-mb-12" id="cp-swatches"></div>
+
+        
+        <p class="cp-tip qb-mb-16">提示：点击任意色块即可复制该颜色的 HEX 色值</p>
+
+        
+        <div class="cp-actions">
+          <button id="cp-reupload" class="qb-btn qb-btn-xl qb-btn-primary qb-btn-block">上传图片进行分析</button>
+          <input id="cp-file" class="cp-hidden-input" type="file" accept="image/*"></input>
+        </div>
+      </div>
+    </div>
+  </div>
+<div id="cp-toast" class="cp-toast">已复制到剪贴板</div>
+<script>
+
+    !function(t,r){"object"==typeof exports&&"undefined"!=typeof module?module.exports=r():"function"==typeof define&&define.amd?define(r):(t||self).ColorThief=r()}(this,function(){if(!t)var t={map:function(t,r){var n={};return r?t.map(function(t,o){return n.index=o,r.call(n,t)}):t.slice()},naturalOrder:function(t,r){return t<r?-1:t>r?1:0},sum:function(t,r){var n={};return t.reduce(r?function(t,o,e){return n.index=e,t+r.call(n,o)}:function(t,r){return t+r},0)},max:function(r,n){return Math.max.apply(null,n?t.map(r,n):r)}};var r=function(){var r=5,n=8-r,o=1e3;function e(t,n,o){return(t<<2*r)+(n<<r)+o}function i(t){var r=[],n=!1;function o(){r.sort(t),n=!0}return{push:function(t){r.push(t),n=!1},peek:function(t){return n||o(),void 0===t&&(t=r.length-1),r[t]},pop:function(){return n||o(),r.pop()},size:function(){return r.length},map:function(t){return r.map(t)},debug:function(){return n||o(),r}}}function u(t,r,n,o,e,i,u){var a=this;a.r1=t,a.r2=r,a.g1=n,a.g2=o,a.b1=e,a.b2=i,a.histo=u}function a(){this.vboxes=new i(function(r,n){return t.naturalOrder(r.vbox.count()*r.vbox.volume(),n.vbox.count()*n.vbox.volume())})}function c(r,n){if(n.count()){var o=n.r2-n.r1+1,i=n.g2-n.g1+1,u=t.max([o,i,n.b2-n.b1+1]);if(1==n.count())return[n.copy()];var a,c,f,s,l=0,h=[],v=[];if(u==o)for(a=n.r1;a<=n.r2;a++){for(s=0,c=n.g1;c<=n.g2;c++)for(f=n.b1;f<=n.b2;f++)s+=r[e(a,c,f)]||0;h[a]=l+=s}else if(u==i)for(a=n.g1;a<=n.g2;a++){for(s=0,c=n.r1;c<=n.r2;c++)for(f=n.b1;f<=n.b2;f++)s+=r[e(c,a,f)]||0;h[a]=l+=s}else for(a=n.b1;a<=n.b2;a++){for(s=0,c=n.r1;c<=n.r2;c++)for(f=n.g1;f<=n.g2;f++)s+=r[e(c,f,a)]||0;h[a]=l+=s}return h.forEach(function(t,r){v[r]=l-t}),function(t){var r,o,e,i,u,c=t+"1",f=t+"2",s=0;for(a=n[c];a<=n[f];a++)if(h[a]>l/2){for(e=n.copy(),i=n.copy(),u=(r=a-n[c])<=(o=n[f]-a)?Math.min(n[f]-1,~~(a+o/2)):Math.max(n[c],~~(a-1-r/2));!h[u];)u++;for(s=v[u];!s&&h[u-1];)s=v[--u];return e[f]=u,i[c]=e[f]+1,[e,i]}}(u==o?"r":u==i?"g":"b")}}return u.prototype={volume:function(t){var r=this;return r._volume&&!t||(r._volume=(r.r2-r.r1+1)*(r.g2-r.g1+1)*(r.b2-r.b1+1)),r._volume},count:function(t){var r=this,n=r.histo;if(!r._count_set||t){var o,i,u,a=0;for(o=r.r1;o<=r.r2;o++)for(i=r.g1;i<=r.g2;i++)for(u=r.b1;u<=r.b2;u++)a+=n[e(o,i,u)]||0;r._count=a,r._count_set=!0}return r._count},copy:function(){var t=this;return new u(t.r1,t.r2,t.g1,t.g2,t.b1,t.b2,t.histo)},avg:function(t){var n=this,o=n.histo;if(!n._avg||t){var i,u,a,c,f=0,s=1<<8-r,l=0,h=0,v=0;for(u=n.r1;u<=n.r2;u++)for(a=n.g1;a<=n.g2;a++)for(c=n.b1;c<=n.b2;c++)f+=i=o[e(u,a,c)]||0,l+=i*(u+.5)*s,h+=i*(a+.5)*s,v+=i*(c+.5)*s;n._avg=f?[~~(l/f),~~(h/f),~~(v/f)]:[~~(s*(n.r1+n.r2+1)/2),~~(s*(n.g1+n.g2+1)/2),~~(s*(n.b1+n.b2+1)/2)]}return n._avg},contains:function(t){var r=this,o=t[0]>>n;return gval=t[1]>>n,bval=t[2]>>n,o>=r.r1&&o<=r.r2&&gval>=r.g1&&gval<=r.g2&&bval>=r.b1&&bval<=r.b2}},a.prototype={push:function(t){this.vboxes.push({vbox:t,color:t.avg()})},palette:function(){return this.vboxes.map(function(t){return t.color})},size:function(){return this.vboxes.size()},map:function(t){for(var r=this.vboxes,n=0;n<r.size();n++)if(r.peek(n).vbox.contains(t))return r.peek(n).color;return this.nearest(t)},nearest:function(t){for(var r,n,o,e=this.vboxes,i=0;i<e.size();i++)((n=Math.sqrt(Math.pow(t[0]-e.peek(i).color[0],2)+Math.pow(t[1]-e.peek(i).color[1],2)+Math.pow(t[2]-e.peek(i).color[2],2)))<r||void 0===r)&&(r=n,o=e.peek(i).color);return o},forcebw:function(){var r=this.vboxes;r.sort(function(r,n){return t.naturalOrder(t.sum(r.color),t.sum(n.color))});var n=r[0].color;n[0]<5&&n[1]<5&&n[2]<5&&(r[0].color=[0,0,0]);var o=r.length-1,e=r[o].color;e[0]>251&&e[1]>251&&e[2]>251&&(r[o].color=[255,255,255])}},{quantize:function(f,s){if(!f.length||s<2||s>256)return!1;var l=function(t){var o,i=new Array(1<<3*r);return t.forEach(function(t){o=e(t[0]>>n,t[1]>>n,t[2]>>n),i[o]=(i[o]||0)+1}),i}(f);l.forEach(function(){});var h=function(t,r){var o,e,i,a=1e6,c=0,f=1e6,s=0,l=1e6,h=0;return t.forEach(function(t){(o=t[0]>>n)<a?a=o:o>c&&(c=o),(e=t[1]>>n)<f?f=e:e>s&&(s=e),(i=t[2]>>n)<l?l=i:i>h&&(h=i)}),new u(a,c,f,s,l,h,r)}(f,l),v=new i(function(r,n){return t.naturalOrder(r.count(),n.count())});function g(t,r){for(var n,e=t.size(),i=0;i<o;){if(e>=r)return;if(i++>o)return;if((n=t.pop()).count()){var u=c(l,n),a=u[0],f=u[1];if(!a)return;t.push(a),f&&(t.push(f),e++)}else t.push(n),i++}}v.push(h),g(v,.75*s);for(var p=new i(function(r,n){return t.naturalOrder(r.count()*r.volume(),n.count()*n.volume())});v.size();)p.push(v.pop());g(p,s);for(var b=new a;p.size();)b.push(p.pop());return b}}}().quantize,n=function(t){this.canvas=document.createElement("canvas"),this.context=this.canvas.getContext("2d"),this.width=this.canvas.width=t.naturalWidth,this.height=this.canvas.height=t.naturalHeight,this.context.drawImage(t,0,0,this.width,this.height)};n.prototype.getImageData=function(){return this.context.getImageData(0,0,this.width,this.height)};var o=function(){};return o.prototype.getColor=function(t,r){return void 0===r&&(r=10),this.getPalette(t,5,r)[0]},o.prototype.getPalette=function(t,o,e){var i=function(t){var r=t.colorCount,n=t.quality;if(void 0!==r&&Number.isInteger(r)){if(1===r)throw new Error("colorCount should be between 2 and 20. To get one color, call getColor() instead of getPalette()");r=Math.max(r,2),r=Math.min(r,20)}else r=10;return(void 0===n||!Number.isInteger(n)||n<1)&&(n=10),{colorCount:r,quality:n}}({colorCount:o,quality:e}),u=new n(t),a=function(t,r,n){for(var o,e,i,u,a,c=t,f=[],s=0;s<r;s+=n)e=c[0+(o=4*s)],i=c[o+1],u=c[o+2],(void 0===(a=c[o+3])||a>=125)&&(e>250&&i>250&&u>250||f.push([e,i,u]));return f}(u.getImageData().data,u.width*u.height,i.quality),c=r(a,i.colorCount);return c?c.palette():null},o.prototype.getColorFromUrl=function(t,r,n){var o=this,e=document.createElement("img");e.addEventListener("load",function(){var i=o.getPalette(e,5,n);r(i[0],t)}),e.src=t},o.prototype.getImageData=function(t,r){var n=new XMLHttpRequest;n.open("GET",t,!0),n.responseType="arraybuffer",n.onload=function(){if(200==this.status){var t=new Uint8Array(this.response);i=t.length;for(var n=new Array(i),o=0;o<t.length;o++)n[o]=String.fromCharCode(t[o]);var e=n.join(""),u=window.btoa(e);r("data:image/png;base64,"+u)}},n.send()},o.prototype.getColorAsync=function(t,r,n){var o=this;this.getImageData(t,function(t){var e=document.createElement("img");e.addEventListener("load",function(){var t=o.getPalette(e,5,n);r(t[0],this)}),e.src=t})},o});
+  
+</script>
+<script type="text/javascript" data-original-src="shared/dark-mode-sync-v2.js">
+
+/**
+ * QB小工具 - 日夜模式自动同步脚本 V2
+ * Dark Mode Auto Sync for QB Tools V2
+ * 
+ * 功能说明：
+ * 1. 优先检测浏览器的日夜模式设置（localStorage），其次检测系统偏好
+ * 2. 通过设置 data-color-scheme 属性来控制样式
+ * 3. 监听系统模式变化并实时切换
+ * 4. 支持手动切换并持久化用户偏好
+ * 
+ * 使用方法：
+ * 在HTML页面中引入此脚本：
+ * <script src="shared/dark-mode-sync-v2.js"></script>
+ * 
+ * CSS中使用方式：
+ * [data-color-scheme='dark'] {
+ *   .header-title { color: #fff; }
+ *   body { background: #000; }
+ * }
+ * 
+ * [data-color-scheme='light'] {
+ *   .header-title { color: #000; }
+ *   body { background: #fff; }
+ * }
+ * 
+ * @version 2.0.1
+ */
+
+(function() {
+  'use strict';
+
+  // 本地存储的键名
+  const STORAGE_KEY = 'qb-color-scheme';
+  
+  /**
+   * 获取浏览器存储的模式偏好
+   * @returns {string|null} 'dark', 'light' 或 null（未设置）
+   */
+  function getBrowserPreference() {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法访问 localStorage:', e.message);
+      return null;
+    }
+  }
+
+  /**
+   * 保存模式偏好到浏览器
+   * @param {string} scheme - 'dark' 或 'light'
+   */
+  function saveBrowserPreference(scheme) {
+    try {
+      localStorage.setItem(STORAGE_KEY, scheme);
+      console.log('[Dark Mode Sync V2] 已保存用户偏好:', scheme);
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法保存到 localStorage:', e.message);
+    }
+  }
+
+  /**
+   * 检测系统是否为夜间模式
+   * @returns {boolean} true表示夜间模式，false表示日间模式
+   */
+  function isSystemDarkMode() {
+    // 适配darkreader.js
+    if (window.__DARKREADER_COLOR_SCHEME__) {
+      return window.__DARKREADER_COLOR_SCHEME__ === 'dark';
+    }
+
+    if (window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    return false;
+  }
+
+  /**
+   * 获取当前应该使用的模式
+   * 优先级：浏览器设置 > 系统设置
+   * @returns {string} 'dark' 或 'light'
+   */
+  function getCurrentScheme() {
+    // 1. 优先使用浏览器存储的偏好
+    const browserPref = getBrowserPreference();
+    if (browserPref === 'dark' || browserPref === 'light') {
+      console.log('[Dark Mode Sync V2] 使用浏览器偏好:', browserPref);
+      return browserPref;
+    }
+
+    // 2. 其次使用系统偏好
+    const systemIsDark = isSystemDarkMode();
+    const scheme = systemIsDark ? 'dark' : 'light';
+    console.log('[Dark Mode Sync V2] 使用系统偏好:', scheme);
+    return scheme;
+  }
+
+  /**
+   * 检测是否为iOS QQ浏览器
+   */
+  function isQQBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('mqqbrowser') > -1 || ua.indexOf('qq/') > -1;
+  }
+
+  /**
+   * 检测是否为iOS设备
+   */
+  function isIOS() {
+    const ua = navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(ua);
+  }
+
+  /**
+   * 移除硬编码的白色背景（更精确的版本）
+   */
+  function removeHardcodedWhiteBackgrounds() {
+    try {
+      // 只查找特定的可能有问题的元素，避免影响主要容器
+      const targetSelectors = [
+        'input[type="text"]',
+        'input[type="email"]', 
+        'input[type="password"]',
+        'input[type="number"]',
+        'textarea',
+        '.qb-input',
+        '.qb-textarea',
+        '.birthday-input'
+      ];
+      
+      let removedCount = 0;
+      
+      targetSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(element => {
+          const inlineStyle = element.style.backgroundColor;
+          // 只移除内联样式中的白色背景
+          if (inlineStyle && (inlineStyle.toLowerCase() === '#ffffff' || 
+              inlineStyle.toLowerCase() === '#fff' || 
+              inlineStyle.toLowerCase() === 'white' ||
+              inlineStyle.toLowerCase() === 'rgb(255, 255, 255)')) {
+            element.style.backgroundColor = '';
+            removedCount++;
+            console.log('[Dark Mode Sync V2] 已移除硬编码白色背景:', element.tagName, element.className);
+          }
+        });
+      });
+      
+      if (removedCount > 0) {
+        console.log('[Dark Mode Sync V2] 共移除', removedCount, '个硬编码白色背景');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 移除硬编码背景时出错:', e.message);
+    }
+  }
+
+  /**
+   * 强制修复iOS QQ浏览器的输入框背景
+   */
+  function forceFixIOSQQBrowserInputs() {
+    if (!isIOS() || !isQQBrowser()) {
+      return;
+    }
+
+    try {
+      // 查找所有输入框和文本域
+      const inputs = document.querySelectorAll('input, textarea, .qb-input, .qb-textarea, .birthday-input');
+      let fixedCount = 0;
+
+      inputs.forEach(input => {
+        // 强制设置背景色
+        const darkBg = getComputedStyle(document.documentElement).getPropertyValue('--qb-bg-white-dark').trim() || '#1A1A1A';
+        input.style.setProperty('background-color', darkBg, 'important');
+        input.style.setProperty('background', darkBg, 'important');
+        
+        // 强制设置文字颜色
+        const darkText = getComputedStyle(document.documentElement).getPropertyValue('--qb-text-a1-dark').trim() || '#A3A3A3';
+        input.style.setProperty('color', darkText, 'important');
+        input.style.setProperty('-webkit-text-fill-color', darkText, 'important');
+        
+        fixedCount++;
+      });
+
+      if (fixedCount > 0) {
+        console.log('[Dark Mode Sync V2] iOS QQ浏览器: 已强制修复', fixedCount, '个输入框');
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 修复iOS QQ浏览器输入框时出错:', e.message);
+    }
+  }
+
+  /**
+   * 应用日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存到浏览器（默认false）
+   */
+  function applyColorScheme(scheme, savePreference = false) {
+    const htmlElement = document.documentElement;
+    const bodyElement = document.body;
+    
+    // 设置 data-color-scheme 属性到 html 和 body
+    htmlElement.setAttribute('data-color-scheme', scheme);
+    if (bodyElement) {
+      bodyElement.setAttribute('data-color-scheme', scheme);
+    }
+    
+    // 如果是夜间模式，移除硬编码的白色背景
+    if (scheme === 'dark') {
+      // 延迟执行以确保DOM完全加载
+      setTimeout(() => {
+        removeHardcodedWhiteBackgrounds();
+        // iOS QQ浏览器需要额外的强制修复
+        if (isIOS() && isQQBrowser()) {
+          forceFixIOSQQBrowserInputs();
+          // 多次尝试修复，因为QQ浏览器可能会延迟应用样式
+          setTimeout(forceFixIOSQQBrowserInputs, 200);
+          setTimeout(forceFixIOSQQBrowserInputs, 500);
+        }
+      }, 100);
+    }
+    
+    console.log('[Dark Mode Sync V2] 已切换到', scheme === 'dark' ? '夜间模式' : '日间模式');
+    
+    // 如果需要，保存用户偏好
+    if (savePreference) {
+      saveBrowserPreference(scheme);
+    }
+  }
+
+  /**
+   * 初始化日夜模式
+   */
+  function initColorScheme() {
+    const scheme = getCurrentScheme();
+    applyColorScheme(scheme, false);
+    console.log('[Dark Mode Sync V2] 初始化完成，当前模式:', scheme === 'dark' ? '夜间' : '日间');
+  }
+
+  /**
+   * 监听系统日夜模式变化
+   * 注意：只有在用户未手动设置偏好时，才响应系统变化
+   */
+  function watchSystemColorScheme() {
+    if (window.matchMedia) {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      const handleChange = (e) => {
+        // 只有在没有浏览器偏好设置时，才响应系统变化
+        const browserPref = getBrowserPreference();
+        if (!browserPref) {
+          const scheme = e.matches ? 'dark' : 'light';
+          applyColorScheme(scheme, false);
+          console.log('[Dark Mode Sync V2] 系统模式已变化:', scheme === 'dark' ? '夜间' : '日间');
+        } else {
+          console.log('[Dark Mode Sync V2] 检测到系统模式变化，但浏览器偏好优先，保持当前设置');
+        }
+      };
+      
+      // 监听变化（现代浏览器）
+      if (darkModeQuery.addEventListener) {
+        darkModeQuery.addEventListener('change', handleChange);
+      } 
+      // 兼容旧版浏览器
+      else if (darkModeQuery.addListener) {
+        darkModeQuery.addListener(handleChange);
+      }
+      
+      console.log('[Dark Mode Sync V2] 已开始监听系统模式变化');
+    }
+  }
+
+  /**
+   * 向父窗口通知当前模式（可选功能）
+   */
+  function notifyParentWindow(scheme) {
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({
+          type: 'iframe-color-scheme-change',
+          colorScheme: scheme,
+          source: 'qb-tool-iframe'
+        }, '*');
+        console.log('[Dark Mode Sync V2] 已通知父窗口模式变化:', scheme);
+      }
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法通知父窗口:', e.message);
+    }
+  }
+
+  /**
+   * 切换日夜模式
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function toggleColorScheme(savePreference = true) {
+    const currentScheme = document.documentElement.getAttribute('data-color-scheme');
+    const newScheme = currentScheme === 'dark' ? 'light' : 'dark';
+    applyColorScheme(newScheme, savePreference);
+    notifyParentWindow(newScheme);
+    return newScheme;
+  }
+
+  /**
+   * 设置指定的日夜模式
+   * @param {string} scheme - 'dark' 或 'light'
+   * @param {boolean} savePreference - 是否保存用户偏好（默认true）
+   */
+  function setColorScheme(scheme, savePreference = true) {
+    if (scheme !== 'dark' && scheme !== 'light') {
+      console.error('[Dark Mode Sync V2] 无效的模式:', scheme);
+      return;
+    }
+    applyColorScheme(scheme, savePreference);
+    notifyParentWindow(scheme);
+  }
+
+  /**
+   * 清除浏览器偏好，恢复使用系统设置
+   */
+  function resetToSystemPreference() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('[Dark Mode Sync V2] 已清除浏览器偏好');
+    } catch (e) {
+      console.debug('[Dark Mode Sync V2] 无法清除 localStorage:', e.message);
+    }
+    initColorScheme();
+  }
+
+  // ==================== 自动执行 ====================
+
+  // 页面加载时立即初始化（在脚本执行时就尝试设置）
+  if (document.readyState === 'loading') {
+    // 立即设置一次，避免闪烁
+    const scheme = getCurrentScheme();
+    document.documentElement.setAttribute('data-color-scheme', scheme);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initColorScheme();
+      watchSystemColorScheme();
+    });
+  } else {
+    // 如果脚本加载时DOM已就绪，立即执行
+    initColorScheme();
+    watchSystemColorScheme();
+  }
+
+  // ==================== 暴露全局方法 ====================
+
+  window.QBColorScheme = {
+    // 获取当前模式
+    get current() {
+      return document.documentElement.getAttribute('data-color-scheme') || 'light';
+    },
+    
+    // 检测系统是否为夜间模式
+    isSystemDark: isSystemDarkMode,
+    
+    // 获取浏览器存储的偏好
+    getBrowserPreference: getBrowserPreference,
+    
+    // 设置指定模式（会保存偏好）
+    set: (scheme) => setColorScheme(scheme, true),
+    
+    // 设置指定模式（不保存偏好）
+    setTemporary: (scheme) => setColorScheme(scheme, false),
+    
+    // 切换日夜模式
+    toggle: toggleColorScheme,
+    
+    // 重置为系统偏好
+    reset: resetToSystemPreference,
+    
+    // 强制刷新模式
+    refresh: initColorScheme
+  };
+
+  console.log('[Dark Mode Sync V2] 脚本已加载，全局方法已暴露: window.QBColorScheme');
+  console.log('[Dark Mode Sync V2] 使用示例:');
+  console.log('  - 切换模式: QBColorScheme.toggle()');
+  console.log('  - 设置夜间: QBColorScheme.set("dark")');
+  console.log('  - 设置日间: QBColorScheme.set("light")');
+  console.log('  - 重置偏好: QBColorScheme.reset()');
+
+})();
+
+</script>
+<script type="text/javascript" data-original-src="shared/iframe-height-bridge.js">
+
+/**
+ * iframe高度自适应通用脚本
+ * 
+ * 功能：自动检测页面内容高度变化，并通知父级iframe调整高度
+ * 适用场景：任何嵌入在iframe中的动态内容页面
+ * 
+ * 使用方法：
+ * 1. 在HTML页面底部引入此脚本：<script src="iframe-height-bridge.js" /> 
+ * 2. 或直接将此脚本内容复制到页面的<script>标签中
+ * 3. 在页面内容切换时调用：window.updateIframeHeight()
+ * 
+ * @version 1.0.0
+ */
+
+(function() {
+    'use strict';
+
+    /**
+     * 注入动态高度样式
+     * 确保页面内容可以根据实际高度自动调整
+     * 只在 iframe 环境中注入，避免影响独立页面
+     */
+    function injectDynamicHeightStyles() {
+        const styleId = 'iframe-dynamic-height-styles';
+        
+        // 避免重复注入
+        if (document.getElementById(styleId)) {
+            return;
+        }
+        
+        // 只在 iframe 中注入样式
+        const isInIframe = window.parent !== window;
+        if (!isInIframe) {
+            console.log('[iframe-height] 非iframe环境，跳过样式注入');
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            /* iframe 高度自适应 - 通用样式 */
+            body {
+                min-height: auto !important;
+                height: auto !important;
+            }
+            
+            html {
+                height: auto !important;
+            }
+        `;
+        
+        document.head.appendChild(style);
+        console.log('[iframe-height] 通用动态高度样式已注入');
+    }
+
+    /**
+     * 计算当前页面实际内容高度
+     * @returns {number} 页面高度（像素）
+     */
+    function calculatePageHeight() {
+        // 强制浏览器重新计算布局
+        document.body.offsetHeight;
+        
+        // 优先方案：获取主容器的实际高度
+        // 按优先级查找常见的主容器元素
+        const mainContainer = document.querySelector('main') || 
+                            document.querySelector('#app') ||
+                            document.querySelector('.app') ||
+                            document.querySelector('.container') ||
+                            document.querySelector('[role="main"]') ||
+                            document.querySelector('.qb-module');
+        
+        if (mainContainer) {
+            const rect = mainContainer.getBoundingClientRect();
+            const containerHeight = rect.height;
+            
+            // 计算body的额外空间
+            const bodyStyle = window.getComputedStyle(document.body);
+            const bodyPaddingTop = parseFloat(bodyStyle.paddingTop) || 0;
+            const bodyPaddingBottom = parseFloat(bodyStyle.paddingBottom) || 0;
+            const bodyMarginTop = parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = parseFloat(bodyStyle.marginBottom) || 0;
+            
+            const totalHeight = containerHeight + bodyPaddingTop + bodyPaddingBottom + 
+                              bodyMarginTop + bodyMarginBottom;
+            
+            return Math.ceil(totalHeight);
+        }
+        
+        // 备用方案：使用body和html的高度
+        const body = document.body;
+        const html = document.documentElement;
+        
+        const heights = [
+            body.scrollHeight,
+            body.offsetHeight,
+            html.scrollHeight,
+            html.offsetHeight
+        ];
+        
+        return Math.max(...heights);
+    }
+
+    /**
+     * 更新父级iframe的高度
+     * 支持两种方式：直接修改iframe样式 + postMessage通信
+     */
+    function updateIframeHeight() {
+        // 使用requestAnimationFrame确保在渲染帧获取准确高度
+        requestAnimationFrame(() => {
+            const height = calculatePageHeight();
+            
+            // 方式1: 尝试直接修改父级iframe元素的高度
+            try {
+                if (window.parent && window.parent !== window) {
+                    const iframes = window.parent.document.querySelectorAll('iframe');
+                    for (let iframe of iframes) {
+                        try {
+                            if (iframe.contentWindow === window) {
+                                iframe.style.height = height + 'px';
+                                console.log('[iframe-height] 直接更新成功:', height + 'px');
+                                break;
+                            }
+                        } catch (e) {
+                            // 跨域限制，继续尝试下一个
+                        }
+                    }
+                }
+            } catch (e) {
+                // 无法访问父级，可能是跨域
+            }
+            
+            // 方式2: 通过postMessage通知父窗口（备用方案，支持跨域）
+            try {
+                if (window.parent && window.parent !== window) {
+                    // 优先使用 originalPostMessage，如果不存在则使用 postMessage
+                    const postMessageMethod = window.parent.originalPostMessage || window.parent.postMessage;
+                    postMessageMethod.call(window.parent, {
+                        type: 'setIframeHeight',
+                        height: height
+                    }, '*');
+                    console.log('[iframe-height] postMessage发送:', height + 'px');
+                }
+            } catch (e) {
+                console.warn('[iframe-height] 更新失败:', e.message);
+            }
+        });
+    }
+
+    /**
+     * 页面内容切换时调用此函数
+     * 会立即触发一次，然后延迟触发两次，确保获取准确高度
+     */
+    function onContentChange() {
+        updateIframeHeight();                    // 立即触发
+        setTimeout(updateIframeHeight, 50);      // 50ms后触发
+        setTimeout(updateIframeHeight, 150);     // 150ms后触发
+    }
+
+    // 防抖定时器
+    let debounceTimer = null;
+
+    /**
+     * 带防抖的高度更新
+     * @param {number} delay 防抖延迟时间（毫秒）
+     */
+    function debouncedUpdate(delay = 10) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateIframeHeight, delay);
+    }
+
+    // ==================== 自动监听机制 ====================
+
+    // 1. 监听DOM变化
+    const observer = new MutationObserver(() => {
+        debouncedUpdate(10);
+    });
+
+    observer.observe(document.body, {
+        childList: true,      // 监听子节点的添加/删除
+        subtree: true,        // 监听所有后代节点
+        attributes: true,     // 监听属性变化
+        characterData: true   // 监听文本内容变化
+    });
+
+    // 2. 监听窗口大小变化
+    window.addEventListener('resize', () => {
+        debouncedUpdate(50);
+    });
+
+    // 3. 监听图片加载
+    document.addEventListener('load', (e) => {
+        if (e.target.tagName === 'IMG') {
+            updateIframeHeight();
+        }
+    }, true);
+
+    // 4. 页面加载完成后立即更新
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            injectDynamicHeightStyles();
+            updateIframeHeight();
+        });
+    } else {
+        injectDynamicHeightStyles();
+        updateIframeHeight();
+    }
+
+    // 5. 监听来自父窗口的高度请求
+    window.addEventListener('message', (event) => {
+        if (event.data && (event.data.type === 'request-height' || event.data.type === 'requestHeight')) {
+            updateIframeHeight();
+        }
+    });
+
+    // ==================== 暴露全局方法 ====================
+
+    // 将更新函数暴露到全局，供页面内容切换时调用
+    window.updateIframeHeight = updateIframeHeight;
+    window.onContentChange = onContentChange;
+
+    console.log('[iframe-height] 自适应脚本已加载');
+
+})();
+
+
+</script>
+<script>
+
+    (function () {
+      const fileInput = document.getElementById('cp-file');
+      const resultView = document.getElementById('cp-result');
+      const thumbImg = document.getElementById('cp-thumb-img');
+      const swatchesWrap = document.getElementById('cp-swatches');
+      const reuploadBtn = document.getElementById('cp-reupload');
+      const toast = document.getElementById('cp-toast');
+      const exampleBadge = document.getElementById('cp-example-badge');
+      const colorThief = new ColorThief();
+
+      // 示例图片URL
+      const EXAMPLE_IMAGE_URL = 'https://img04.sogoucdn.com/app/a/200797/6f1e5785-29dc-407a-b7ac-5c344b8e98d4';
+
+      // 页面加载时自动加载示例图片
+      window.addEventListener('load', () => {
+        loadExampleImage();
+      });
+
+      // 更换图片按钮
+      reuploadBtn.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      // 文件选择
+      fileInput.addEventListener('change', onFileSelected);
+
+      function onFileSelected(e) {
+        const file = e.target.files && e.target.files[0];
+        if (file) handleFile(file);
+      }
+
+      function handleFile(file) {
+        // 基本校验
+        if (!file.type.startsWith('image/')) {
+          showToast('请选择图片文件');
+          return;
+        }
+        // 隐藏示意图片标签
+        if (exampleBadge) {
+          exampleBadge.style.display = 'none';
+        }
+        const url = URL.createObjectURL(file);
+        analyzeImage(url);
+      }
+
+      // 加载示例图片
+      function loadExampleImage() {
+        analyzeImage(EXAMPLE_IMAGE_URL);
+      }
+
+      function analyzeImage(imageUrl) {
+        thumbImg.src = imageUrl;
+
+        // 图片必须在 DOM 中且完全加载后再进行取色
+        thumbImg.onload = () => {
+          try {
+            // 获取 5 色调色板（返回 [r,g,b] 数组）
+            const palette = colorThief.getPalette(thumbImg, 5);
+            renderSwatches(palette);
+            // 触发高度更新
+            if (window.updateIframeHeight) {
+              setTimeout(window.updateIframeHeight, 100);
+            }
+          } catch (err) {
+            console.error(err);
+            showToast('分析失败，请更换图片重试');
+          }
+        };
+        thumbImg.onerror = () => {
+          showToast('图片加载失败，请重试');
+        };
+      }
+
+      function renderSwatches(palette) {
+        swatchesWrap.innerHTML = '';
+        const hexList = palette.map(rgbToHex);
+        hexList.forEach((hex) => {
+          const item = document.createElement('div');
+          const swatch = document.createElement('div');
+          const label = document.createElement('div');
+
+          swatch.className = 'cp-swatch';
+          swatch.style.backgroundColor = hex;
+
+          label.className = 'cp-swatch-label';
+          label.textContent = hex;
+
+          item.appendChild(swatch);
+          item.appendChild(label);
+
+          // 点击复制
+          swatch.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(hex);
+              showToast('已复制：' + hex);
+            } catch {
+              fallbackCopyText(hex);
+            }
+          });
+
+          swatchesWrap.appendChild(item);
+        });
+      }
+
+      function rgbToHex([r, g, b]) {
+        return '#' + [r, g, b].map((n) => n.toString(16).padStart(2, '0')).join('').toUpperCase();
+      }
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => {
+          toast.style.display = 'none';
+        }, 1600);
+      }
+
+      function fallbackCopyText(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('已复制：' + text);
+        } catch {
+          showToast('复制失败：' + text);
+        } finally {
+          document.body.removeChild(ta);
+        }
+      }
+    })();
+  
+</script>
+</body>
+</html>

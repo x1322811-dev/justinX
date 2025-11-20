@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>老黄历</title>
+  <link rel="stylesheet" href="../shared/shared.css">
+  <link rel="stylesheet" href="../shared/variables-tn.css">
+  <link rel="stylesheet" href="./almanac.css">
+</head>
+
+<body>
+  <main>
+    <div class="almanac-card content-container">
+  <!-- 日期选择区域 -->
+  <div class="date-header">
+    <div class="solar-date-section" id="solarDateSection">
+      <span id="solarDate">2025年9月28日 星期日</span>
+      <svg class="dropdown-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M2 2L6 6L10 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <button class="btn back-today-btn" id="backTodayBtn">回到今日</button>
+
+    <!-- 日期选择器面板 -->
+    <div class="date-picker-panel" id="datePickerPanel" style="display: none;">
+      <div class="date-picker-header">
+        <button class="btn nav-btn" id="prevYear">‹‹</button>
+        <button class="btn nav-btn" id="prevMonth">‹</button>
+        <div class="date-picker-title">
+          <select id="yearSelect" class="year-select"></select>
+          <select id="monthSelect" class="month-select"></select>
+        </div>
+        <button class="btn nav-btn" id="nextMonth">›</button>
+        <button class="btn nav-btn" id="nextYear">››</button>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="weekdays">
+          <div class="weekday">日</div>
+          <div class="weekday">一</div>
+          <div class="weekday">二</div>
+          <div class="weekday">三</div>
+          <div class="weekday">四</div>
+          <div class="weekday">五</div>
+          <div class="weekday">六</div>
+        </div>
+        <div class="days-grid" id="daysGrid"></div>
+      </div>
+
+    </div>
+
+    <input type="date" id="pick" style="display: none;" />
+  </div>
+
+  <!-- 农历大字显示 -->
+  <div class="lunar-main">
+    <button class="btn lunar-nav-btn" id="prevDay">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M11 13L7 9L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <span id="lunarDate">八月初七</span>
+    <button class="btn lunar-nav-btn" id="nextDay">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M7 5L11 9L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- 干支和生肖信息 -->
+  <div class="ganzhi-section">
+    <span id="ganzhiInfo">乙巳年 乙酉月 庚子日</span>
+    <span class="separator">｜</span>
+    <span id="zodiacInfo">生肖 蛇</span>
+  </div>
+
+  <!-- 分割线 -->
+  <div class="divider-thin-light"></div>
+
+  <!-- 宜事项区域 -->
+  <div class="suitable-section">
+    <div class="section-header">
+      <h3 class="section-title suitable-title" data-text="宜"></h3>
+      <div class="direction-info">
+        <span class="direction-item">喜神 <span class="direction-value" id="xishen">乾</span></span>
+        <span class="direction-item">福神 <span class="direction-value" id="fushen">坤</span></span>
+        <span class="direction-item">财神 <span class="direction-value" id="caishen">震</span></span>
+      </div>
+    </div>
+    <div class="items-container" id="yi">
+      <div class="item-chip suitable-chip">祭祀</div>
+      <div class="item-chip suitable-chip">平治道涂</div>
+      <div class="item-chip suitable-chip">沐浴</div>
+      <div class="item-chip suitable-chip">修造</div>
+      <div class="item-chip suitable-chip">动土</div>
+      <div class="item-chip suitable-chip">安床</div>
+      <div class="item-chip suitable-chip">开光</div>
+    </div>
+  </div>
+
+  <!-- 忌事项区域 -->
+  <div class="avoid-section">
+    <div class="section-header">
+      <h3 class="section-title avoid-title" data-text="忌"></h3>
+      <div class="chongsha-info">
+        <span class="chongsha-item">冲煞 <span class="chongsha-value" id="chongshaInfo">午/南</span></span>
+      </div>
+    </div>
+    <div class="items-container" id="ji">
+      <div class="item-chip avoid-chip">开市</div>
+      <div class="item-chip avoid-chip">纳财</div>
+      <div class="item-chip avoid-chip">栽种</div>
+      <div class="item-chip avoid-chip">迁徙</div>
+      <div class="item-chip avoid-chip">嫁娶</div>
+      <div class="item-chip avoid-chip">出行</div>
+      <div class="item-chip avoid-chip">破土</div>
+      <div class="item-chip avoid-chip">安葬</div>
+    </div>
+  </div>
+
+  <!-- 隐藏的导航按钮 -->
+  <div class="hidden-controls" style="display: none;">
+    <button id="prev">前一天</button>
+    <button id="today">今天</button>
+    <button id="next">后一天</button>
+  </div>
+    </div>
+  </main>
+
+  <!-- 组件自包含的脚本 -->
+  <script src="https://mat1.gtimg.com/rain/apub2019/f08d0a5a2ce6.lunar.js"></script>
+  <script src="./almanac.js" defer></script>
+</body>
+</html>

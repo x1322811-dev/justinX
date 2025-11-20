@@ -1,0 +1,287 @@
+/* 五行穿衣指南样式 v1.6 - 优化日期布局，放大农历干支，穿衣指南标题使用宋体 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'KaiTi', '楷体', 'STKaiti', 'SimKai', serif;
+    background: #F5F0E8;
+    color: #333;
+    padding: 16px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #F5F0E8;
+}
+
+/* 标题区域 */
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #D4C4A8;
+    margin-bottom: 24px;
+    gap: 16px;
+}
+
+.title {
+    text-align: center;
+    font-size: 20px;
+    color: #8B7355;
+    letter-spacing: 2px;
+    margin: 0;
+    flex: 1;
+}
+
+/* 日期区域 */
+.date-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0;
+    border-bottom: 1px solid #D4C4A8;
+    margin-bottom: 32px;
+    position: relative;
+    gap: 48px;
+}
+
+/* 日期切换按钮 */
+.date-nav {
+    background: transparent;
+    border: 1px solid #8B7355;
+    color: #8B7355;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    font-weight: normal;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.date-nav:hover {
+    background: #8B7355;
+    color: #F5F0E8;
+    transform: scale(1.1);
+}
+
+.date-nav:active {
+    transform: scale(0.95);
+}
+
+/* 日期内容容器 */
+.date-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.day-number {
+    font-size: 75px;
+    font-weight: bold;
+    color: #8B7355;
+    line-height: 1;
+    font-family: 'Georgia', serif;
+    margin-top: -18px;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.solar-year,
+.solar-month,
+.solar-week {
+    font-size: 16px;
+    color: #8B7355;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+/* 农历信息容器 */
+.lunar-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+}
+
+.lunar-day {
+    font-size: 48px;
+    color: #8B7355;
+    font-weight: bold;
+    letter-spacing: 2px;
+    line-height: 1.2;
+}
+
+.lunar-date {
+    font-size: 19px;
+    color: #999;
+    letter-spacing: 1px;
+    text-align: right;
+    line-height: 1.4;
+}
+
+/* 颜色推荐区域 */
+.color-recommendations {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.color-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #E8DCC8;
+}
+
+.color-item:last-child {
+    border-bottom: none;
+}
+
+.icon-wrapper {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-wrapper img {
+    width: 55px;
+    height: 55px;
+    position: relative;
+    z-index: 1;
+    object-fit: contain;
+}
+
+.content {
+    flex: 1;
+}
+
+.content h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: bold;
+    line-height: 1.6;
+    font-family: 'SimSun', '宋体', 'NSimSun', serif;
+}
+
+.level {
+    font-weight: bold;
+}
+
+.colors {
+    font-weight: bold;
+}
+
+.title-text {
+    font-size: 14px;
+}
+
+.colors {
+    color: #666;
+    font-weight: normal;
+}
+
+.description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+    margin-top: 4px;
+}
+
+/* 背景色将通过JavaScript动态设置 */
+
+/* 响应式适配 */
+@media (max-width: 600px) {
+    .day-number {
+        font-size: 60px;
+    }
+    
+    .lunar-day {
+        font-size: 36px;
+    }
+    
+    .solar-year,
+    .solar-month,
+    .solar-week {
+        font-size: 14px;
+    }
+    
+    .lunar-date {
+        font-size: 16px;
+    }
+    
+    .date-nav {
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    
+    .icon-wrapper {
+        width: 70px;
+        height: 70px;
+        font-size: 35px;
+    }
+    
+    .content h3 {
+        font-size: 15px;
+    }
+    
+    .description {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .day-number {
+        font-size: 48px;
+    }
+    
+    .date-content {
+        gap: 12px;
+    }
+    
+    .solar-year,
+    .solar-month,
+    .solar-week {
+        font-size: 13px;
+    }
+    
+    .lunar-day {
+        font-size: 32px;
+    }
+    
+    .lunar-date {
+        font-size: 14px;
+    }
+    
+    .date-nav {
+        font-size: 11px;
+        padding: 5px 6px;
+    }
+    
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+    }
+}

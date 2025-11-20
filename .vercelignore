@@ -1,0 +1,17 @@
+node_modules
+.git
+.DS_Store
+*.log
+components
+scripts
+templates
+test
+reference
+assets
+BUILD_GUIDE.md
+TEST_WHITENOISE.md
+TRANSLATOR_API_ISSUE.md
+TRANSLATOR_README.md
+WHITENOISE_DEBUG.md
+WHITENOISE_FIX.md
+tools.config.json

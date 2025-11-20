@@ -1,0 +1,536 @@
+/**
+ * QB小工具 - 色彩样式库
+ * Colors Style Library for QB Tools
+ * 
+ * 使用说明 (Usage):
+ * 1. 通过CSS变量调用颜色，例如: color: var(--qb-newblue);
+ * 2. 夜间模式通过在根元素添加 data-color-scheme='dark' 属性来启用
+ * 3. 颜色分为四大类：基础色板、文本图标、背景框架、线条描边
+ * 
+ * 使用示例 (Usage Examples):
+ * 
+ * 1. 使用CSS变量:
+ *    <div style="color: var(--qb-text-a1); background-color: var(--qb-bg-white);">
+ *      主文本内容
+ *    </div>
+ * 
+ * 2. 使用CSS类名（需配合夜间模式选择器）:
+ *    <p class="qb-text-primary">主文本</p>
+ *    <p class="qb-text-secondary">次要文本</p>
+ *    <p class="qb-text-highlight">高亮文本</p>
+ *    <div class="qb-card">卡片背景</div>
+ * 
+ * 3. 启用夜间模式:
+ *    <html data-color-scheme="dark">
+ *      <!-- 所有颜色自动切换到夜间模式 -->
+ *    </html>
+ * 
+ * 4. JavaScript切换夜间模式:
+ *    // 启用夜间模式
+ *    document.documentElement.setAttribute('data-color-scheme', 'dark');
+ *    
+ *    // 禁用夜间模式
+ *    document.documentElement.setAttribute('data-color-scheme', 'light');
+ *    // 或者
+ *    document.documentElement.removeAttribute('data-color-scheme');
+ *    
+ *    // 切换夜间模式
+ *    const current = document.documentElement.getAttribute('data-color-scheme');
+ *    document.documentElement.setAttribute('data-color-scheme', current === 'dark' ? 'light' : 'dark');
+ * 
+ * 5. 按钮颜色集成示例:
+ *    <button class="qb-btn-primary" style="background-color: var(--qb-primary); color: white;">
+ *      主按钮
+ *    </button>
+ * 
+ * 6. 文本层级示例:
+ *    <h1 class="qb-module-title">主标题</h1>
+ *    <p class="qb-text-primary">正文内容</p>
+ *    <span class="qb-text-tertiary">辅助说明</span>
+ *    <input placeholder="占位文字" class="qb-input">
+ * 
+ * 7. 分割线示例:
+ *    <hr style="border-color: var(--qb-line);">
+ * 
+ * 注意：夜间模式通过CSS选择器自动覆盖样式，无需修改CSS变量或类名
+ * 
+ * 颜色命名规则 (Naming Convention):
+ * - 基础色板: --qb-{颜色名称} (如: --qb-newblue, --qb-red)
+ * - 文本图标: --qb-text-{级别} (如: --qb-text-a1, --qb-text-a2)
+ * - 背景框架: --qb-bg-{类型} (如: --qb-bg-white, --qb-bg-grey)
+ * - 线条描边: --qb-line, --qb-border
+ * 
+ * 通用CSS命名映射 (CSS Standard Mapping):
+ * --qb-primary: 主色调 (映射到 NewBlue)
+ * --qb-danger: 危险/警告色 (映射到 Red)
+ * --qb-success: 成功色 (映射到 Green)
+ * --qb-warning: 警告色 (映射到 Orange)
+ * --qb-info: 信息色 (映射到 Cyan)
+ */
+
+/* ==================== 根变量定义 (日间模式) ==================== */
+:root {
+  /* ========== 基础色板 (Primary Colors) ========== */
+  
+  /* 品牌色 NewBlue - 新框架品牌主色 / 按钮 / 高亮文本 */
+  --qb-newblue: #205AEF;
+  --qb-newblue-dark: #1F4DC4; /* 夜间模式 */
+  
+  /* 功能色 */
+  --qb-red: #F44837;          /* 警示 / 强调 */
+  --qb-red-dark: #C83F31;     /* 夜间模式 */
+  
+  --qb-orange: #FF8A14;       /* 分数 / 评星 / 辅助色 */
+  --qb-orange-dark: #D17415;  /* 夜间模式 */
+  
+  --qb-yellow: #FFC20D;       /* 辅助色 */
+  --qb-yellow-dark: #D1A010;  /* 夜间模式 */
+  
+  --qb-gold: #FBC56E;         /* 金色 / 会员 / 小说 / 等级体系 */
+  --qb-gold-dark: #D1A85C;    /* 夜间模式 */
+  
+  --qb-green: #0BB861;        /* 安全 / 辅助色 */
+  --qb-green-dark: #0E9853;   /* 夜间模式 */
+  
+  --qb-cyan: #0ACC9B;         /* 辅助色 */
+  --qb-cyan-dark: #0DA881;    /* 夜间模式 */
+  
+  --qb-purple: #7632FF;       /* 辅助色 */
+  --qb-purple-dark: #642DD1;  /* 夜间模式 */
+  
+  --qb-brown: #78461A;        /* 辅助色 */
+  --qb-brown-dark: #70441D;   /* 夜间模式 */
+  
+  
+  /* ========== 文本 & 图标 (Text & Icon) ========== */
+  
+  /* 日间模式文本颜色 */
+  --qb-text-a1: #242424;      /* 主文本 (#000000·86%) */
+  --qb-text-a2: #666666;      /* 次要文本 (#000000·60%) */
+  --qb-text-a3: #8F8F8F;      /* 辅助文本 (#000000·44%) */
+  --qb-text-a4: #B3B3B3;      /* 占位文本 (#000000·30%) */
+  
+  /* 高亮文本 */
+  --qb-text-highlight: #205AEF;  /* 高亮文本 (NewBlue) */
+  --qb-text-danger: #F44837;     /* 警示文本 (Red) */
+  
+  /* 夜间模式文本颜色 */
+  --qb-text-a1-dark: #A3A3A3;    /* 主文本 (#FFFFFF·60%) */
+  --qb-text-a2-dark: #7F7F7F;    /* 次要文本 (#FFFFFF·44%) */
+  --qb-text-a3-dark: #5F5F5F;    /* 辅助文本 (#FFFFFF·30%) */
+  --qb-text-a4-dark: #484848;    /* 占位文本 (#FFFFFF·20%) */
+  
+  /* 夜间模式高亮文本 */
+  --qb-text-highlight-dark: #1F4DC4;  /* 高亮文本 (#205AEF·80%) */
+  --qb-text-danger-dark: #C83F31;     /* 警示文本 (#F44837·80%) */
+  
+  
+  /* ========== 背景 & 框架 (Background & Frame) ========== */
+  
+  /* 日间模式背景色 */
+  --qb-bg-grey: #F6F7FA;         /* 浅灰色背景 */
+  --qb-bg-white: #FFFFFF;        /* 卡片 & 列表背景 */
+  --qb-bg-frame: #F5F5F5;        /* 加载占位符 */
+  --qb-bg-black-t: rgba(0, 0, 0, 0.04);  /* 透明黑背景 */
+  --qb-bg-mask: rgba(0, 0, 0, 0.40);     /* 弹窗类组件蒙层 */
+  
+  /* 夜间模式背景色 */
+  --qb-bg-grey-dark: #0D0D0D;    /* 浅灰色背景 */
+  --qb-bg-white-dark: #1A1A1A;   /* 卡片 & 列表背景 */
+  --qb-bg-frame-dark: #262626;   /* 加载占位符 */
+  --qb-bg-black-t-dark: rgba(255, 255, 255, 0.04);  /* 透明黑背景 */
+  --qb-bg-mask-dark: rgba(0, 0, 0, 0.70);           /* 弹窗类组件蒙层 */
+  
+  
+  /* ========== 线条 & 描边 (Line & Border) ========== */
+  
+  /* 日间模式线条描边 */
+  --qb-line: rgba(0, 0, 0, 0.08);    /* 分割线 */
+  --qb-border: rgba(0, 0, 0, 0.04);  /* 图标 & 封面描边 */
+  
+  /* 夜间模式线条描边 */
+  --qb-line-dark: rgba(255, 255, 255, 0.08);    /* 分割线 */
+  --qb-border-dark: rgba(255, 255, 255, 0.04);  /* 图标 & 封面描边 */
+  
+  
+  /* ========== 通用CSS命名映射 (CSS Standard Mapping) ========== */
+  
+  /* 主色调 */
+  --qb-primary: var(--qb-newblue);
+  --qb-primary-color: var(--qb-newblue);
+  
+  /* 功能色映射 */
+  --qb-danger: var(--qb-red);
+  --qb-success: var(--qb-green);
+  --qb-warning: var(--qb-orange);
+  --qb-info: var(--qb-cyan);
+  
+  /* 文本颜色映射 */
+  --qb-text-primary: var(--qb-text-a1);
+  --qb-text-secondary: var(--qb-text-a2);
+  --qb-text-tertiary: var(--qb-text-a3);
+  --qb-text-placeholder: var(--qb-text-a4);
+  
+  /* 背景色映射 */
+  --qb-background: var(--qb-bg-grey);
+  --qb-background-white: var(--qb-bg-white);
+  --qb-background-frame: var(--qb-bg-frame);
+  
+  /* 边框颜色映射 */
+  --qb-border-color: var(--qb-border);
+  --qb-divider: var(--qb-line);
+}
+
+
+
+/* ==================== 统一夜间模式样式 (Unified Dark Mode Styles) ==================== */
+/* 
+ * 基于 [data-color-scheme='dark'] 选择器
+ * 为所有QB小工具提供统一的夜间模式样式
+ * 使用预定义的CSS变量（--qb-*-dark）
+ */
+
+/* ========== 标题样式 (Headings) ========== */
+
+/* 主标题 */
+[data-color-scheme='dark'] .qb-module-title,
+[data-color-scheme='dark'] h1,
+[data-color-scheme='dark'] .qb-h1,
+[data-color-scheme='dark'] .qb-heading1 {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 副标题 */
+[data-color-scheme='dark'] .qb-module-subtitle,
+[data-color-scheme='dark'] h2,
+[data-color-scheme='dark'] .qb-h2,
+[data-color-scheme='dark'] .qb-heading2 {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* 三级标题 */
+[data-color-scheme='dark'] h3,
+[data-color-scheme='dark'] .qb-h3,
+[data-color-scheme='dark'] .qb-heading3 {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 四级及以下标题 */
+[data-color-scheme='dark'] h4,
+[data-color-scheme='dark'] h5,
+[data-color-scheme='dark'] h6,
+[data-color-scheme='dark'] .qb-h4,
+[data-color-scheme='dark'] .qb-h5,
+[data-color-scheme='dark'] .qb-h6,
+[data-color-scheme='dark'] .qb-heading4,
+[data-color-scheme='dark'] .qb-heading5,
+[data-color-scheme='dark'] .qb-heading6 {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* ========== 文本样式 (Text Styles) ========== */
+
+/* 主要文本 */
+[data-color-scheme='dark'] .qb-text-primary,
+[data-color-scheme='dark'] .qb-text-main,
+[data-color-scheme='dark'] .qb-primary-text,
+[data-color-scheme='dark'] p,
+[data-color-scheme='dark'] span,
+[data-color-scheme='dark'] div {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+/* 次要文本 */
+[data-color-scheme='dark'] .qb-text-secondary,
+[data-color-scheme='dark'] .qb-text-sub,
+[data-color-scheme='dark'] .qb-secondary-text,
+[data-color-scheme='dark'] .qb-subtitle {
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* 辅助文本 */
+[data-color-scheme='dark'] .qb-text-tertiary,
+[data-color-scheme='dark'] .qb-text-helper,
+[data-color-scheme='dark'] .qb-helper-text,
+[data-color-scheme='dark'] .qb-desc,
+[data-color-scheme='dark'] .qb-description {
+    color: var(--qb-text-a3-dark, #5F5F5F) !important;
+}
+
+/* 占位文本 */
+[data-color-scheme='dark'] .qb-text-placeholder,
+[data-color-scheme='dark'] .qb-placeholder,
+[data-color-scheme='dark'] input::placeholder,
+[data-color-scheme='dark'] textarea::placeholder {
+    color: var(--qb-text-a4-dark, #484848) !important;
+}
+
+/* 高亮文本 */
+[data-color-scheme='dark'] .qb-text-highlight,
+[data-color-scheme='dark'] .qb-highlight {
+    color: var(--qb-text-highlight-dark, #1F4DC4) !important;
+}
+
+/* 警示文本 */
+[data-color-scheme='dark'] .qb-text-danger,
+[data-color-scheme='dark'] .qb-text-error,
+[data-color-scheme='dark'] .qb-error {
+    color: var(--qb-text-danger-dark, #C83F31) !important;
+}
+
+/* ========== 背景样式 (Background Styles) ========== */
+
+/* 主要背景 */
+[data-color-scheme='dark'] .qb-bg-main,
+[data-color-scheme='dark'] .qb-background,
+[data-color-scheme='dark'] body,
+[data-color-scheme='dark'] .qb-page {
+    background-color: var(--qb-bg-grey-dark, #0D0D0D) !important;
+}
+
+/* 卡片背景 */
+[data-color-scheme='dark'] .qb-card,
+[data-color-scheme='dark'] .qb-bg-white,
+[data-color-scheme='dark'] .qb-bg-card,
+[data-color-scheme='dark'] .qb-module,
+[data-color-scheme='dark'] .qb-panel {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+}
+
+/* 框架背景 */
+[data-color-scheme='dark'] .qb-bg-frame,
+[data-color-scheme='dark'] .qb-frame {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+}
+
+/* 透明背景 */
+[data-color-scheme='dark'] .qb-bg-transparent {
+    background-color: var(--qb-bg-black-t-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 蒙层背景 */
+[data-color-scheme='dark'] .qb-mask,
+[data-color-scheme='dark'] .qb-overlay {
+    background-color: var(--qb-bg-mask-dark, rgba(0, 0, 0, 0.70)) !important;
+}
+
+/* ========== 边框样式 (Border Styles) ========== */
+
+/* 分割线 */
+[data-color-scheme='dark'] .qb-divider,
+[data-color-scheme='dark'] .qb-line,
+[data-color-scheme='dark'] hr {
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+    background-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* 描边 */
+[data-color-scheme='dark'] .qb-border,
+[data-color-scheme='dark'] .qb-bordered {
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* ========== 表单元素 (Form Elements) ========== */
+
+/* 输入框 */
+[data-color-scheme='dark'] input[type="text"],
+[data-color-scheme='dark'] input[type="password"],
+[data-color-scheme='dark'] input[type="email"],
+[data-color-scheme='dark'] input[type="search"],
+[data-color-scheme='dark'] textarea,
+[data-color-scheme='dark'] select,
+[data-color-scheme='dark'] .qb-input {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 按钮 */
+[data-color-scheme='dark'] .qb-btn-primary,
+[data-color-scheme='dark'] .qb-button-primary {
+    background-color: var(--qb-newblue-dark, #1F4DC4) !important;
+    color: #FFFFFF !important;
+}
+
+[data-color-scheme='dark'] .qb-btn-secondary,
+[data-color-scheme='dark'] .qb-button-secondary {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* ========== 链接样式 (Link Styles) ========== */
+
+[data-color-scheme='dark'] a,
+[data-color-scheme='dark'] .qb-link {
+    color: var(--qb-newblue-dark, #1F4DC4) !important;
+}
+
+[data-color-scheme='dark'] a:hover,
+[data-color-scheme='dark'] .qb-link:hover {
+    color: var(--qb-text-highlight-dark, #1F4DC4) !important;
+}
+
+/* ========== 列表样式 (List Styles) ========== */
+
+[data-color-scheme='dark'] .qb-list-item,
+[data-color-scheme='dark'] li {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* ========== 表格样式 (Table Styles) ========== */
+
+[data-color-scheme='dark'] table,
+[data-color-scheme='dark'] .qb-table {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+[data-color-scheme='dark'] th,
+[data-color-scheme='dark'] .qb-table-header {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+[data-color-scheme='dark'] td,
+[data-color-scheme='dark'] .qb-table-cell {
+    border-color: var(--qb-line-dark, rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* ========== 状态颜色 (Status Colors) ========== */
+
+/* 成功状态 */
+[data-color-scheme='dark'] .qb-success,
+[data-color-scheme='dark'] .qb-text-success {
+    color: var(--qb-green-dark, #0E9853) !important;
+}
+
+/* 警告状态 */
+[data-color-scheme='dark'] .qb-warning,
+[data-color-scheme='dark'] .qb-text-warning {
+    color: var(--qb-orange-dark, #D17415) !important;
+}
+
+/* 信息状态 */
+[data-color-scheme='dark'] .qb-info,
+[data-color-scheme='dark'] .qb-text-info {
+    color: var(--qb-cyan-dark, #0DA881) !important;
+}
+
+/* 危险状态 */
+[data-color-scheme='dark'] .qb-danger {
+    color: var(--qb-red-dark, #C83F31) !important;
+}
+
+/* ========== 特殊组件 (Special Components) ========== */
+
+/* 标签 */
+[data-color-scheme='dark'] .qb-tag,
+[data-color-scheme='dark'] .qb-label {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+    color: var(--qb-text-a2-dark, #7F7F7F) !important;
+}
+
+/* 徽章 */
+[data-color-scheme='dark'] .qb-badge {
+    background-color: var(--qb-red-dark, #C83F31) !important;
+    color: #FFFFFF !important;
+}
+
+/* 工具提示 */
+[data-color-scheme='dark'] .qb-tooltip {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+/* 下拉菜单 */
+[data-color-scheme='dark'] .qb-dropdown,
+[data-color-scheme='dark'] .qb-menu {
+    background-color: var(--qb-bg-white-dark, #1A1A1A) !important;
+    border-color: var(--qb-border-dark, rgba(255, 255, 255, 0.04)) !important;
+}
+
+[data-color-scheme='dark'] .qb-dropdown-item,
+[data-color-scheme='dark'] .qb-menu-item {
+    color: var(--qb-text-a1-dark, #A3A3A3) !important;
+}
+
+[data-color-scheme='dark'] .qb-dropdown-item:hover,
+[data-color-scheme='dark'] .qb-menu-item:hover {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+}
+
+/* ========== 滚动条样式 (Scrollbar Styles) ========== */
+
+[data-color-scheme='dark'] ::-webkit-scrollbar {
+    background-color: var(--qb-bg-grey-dark, #0D0D0D) !important;
+}
+
+[data-color-scheme='dark'] ::-webkit-scrollbar-thumb {
+    background-color: var(--qb-bg-frame-dark, #262626) !important;
+}
+
+[data-color-scheme='dark'] ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--qb-text-a4-dark, #484848) !important;
+}
+
+/* ==================== 工具类 (Utility Classes) ==================== */
+
+/* 基础色板工具类 */
+.qb-color-newblue { color: var(--qb-newblue) !important; }
+.qb-color-red { color: var(--qb-red) !important; }
+.qb-color-orange { color: var(--qb-orange) !important; }
+.qb-color-yellow { color: var(--qb-yellow) !important; }
+.qb-color-gold { color: var(--qb-gold) !important; }
+.qb-color-green { color: var(--qb-green) !important; }
+.qb-color-cyan { color: var(--qb-cyan) !important; }
+.qb-color-purple { color: var(--qb-purple) !important; }
+.qb-color-brown { color: var(--qb-brown) !important; }
+
+/* 背景色工具类 */
+.qb-bg-newblue { background-color: var(--qb-newblue) !important; }
+.qb-bg-red { background-color: var(--qb-red) !important; }
+.qb-bg-orange { background-color: var(--qb-orange) !important; }
+.qb-bg-yellow { background-color: var(--qb-yellow) !important; }
+.qb-bg-gold { background-color: var(--qb-gold) !important; }
+.qb-bg-green { background-color: var(--qb-green) !important; }
+.qb-bg-cyan { background-color: var(--qb-cyan) !important; }
+.qb-bg-purple { background-color: var(--qb-purple) !important; }
+.qb-bg-brown { background-color: var(--qb-brown) !important; }
+
+/* 文本颜色工具类 */
+.qb-text-a1 { color: var(--qb-text-a1) !important; }
+.qb-text-a2 { color: var(--qb-text-a2) !important; }
+.qb-text-a3 { color: var(--qb-text-a3) !important; }
+.qb-text-a4 { color: var(--qb-text-a4) !important; }
+.qb-text-highlight { color: var(--qb-text-highlight) !important; }
+.qb-text-danger { color: var(--qb-text-danger) !important; }
+
+/* 背景框架工具类 */
+.qb-bg-grey { background-color: var(--qb-bg-grey) !important; }
+.qb-bg-white { background-color: var(--qb-bg-white) !important; }
+.qb-bg-frame { background-color: var(--qb-bg-frame) !important; }
+.qb-bg-black-t { background-color: var(--qb-bg-black-t) !important; }
+.qb-bg-mask { background-color: var(--qb-bg-mask) !important; }
+
+/* 边框工具类 */
+.qb-border-line { border-color: var(--qb-line) !important; }
+.qb-border-default { border-color: var(--qb-border) !important; }
+
+/* 通用工具类 */
+.qb-color-primary { color: var(--qb-primary) !important; }
+.qb-color-danger { color: var(--qb-danger) !important; }
+.qb-color-success { color: var(--qb-success) !important; }
+.qb-color-warning { color: var(--qb-warning) !important; }
+.qb-color-info { color: var(--qb-info) !important; }
+
+.qb-bg-primary { background-color: var(--qb-primary) !important; }
+.qb-bg-danger { background-color: var(--qb-danger) !important; }
+.qb-bg-success { background-color: var(--qb-success) !important; }
+.qb-bg-warning { background-color: var(--qb-warning) !important; }
+.qb-bg-info { background-color: var(--qb-info) !important; }
+
+
