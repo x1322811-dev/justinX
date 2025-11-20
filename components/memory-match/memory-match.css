@@ -26,6 +26,20 @@
   letter-spacing: 0;
 }
 
+/* 游戏规则提示 */
+.game-rule-hint {
+  font-size: 14px;
+  color: var(--t2);
+  text-align: center;
+  padding: 12px 16px;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .game-main-container {
   background: var(--bg-grey);
   border-radius: 12px;

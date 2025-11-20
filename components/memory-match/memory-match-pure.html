@@ -12,6 +12,11 @@
 <body>
   <main>
     <div class="memory-match-content content-container">
+      <!-- 游戏规则提示 -->
+      <div class="game-rule-hint" id="gameRuleHint">
+        记住卡片的位置，在倒计时结束前完成配对！
+      </div>
+
       <!-- 游戏主容器 - 包含状态栏、提示、卡片区域 -->
       <div class="game-main-container">
         <!-- 游戏状态栏 -->
@@ -33,7 +38,7 @@
         </div>
       </div>
 
-      <!-- 游戏提示 -->
+      <!-- 游戏提示（游戏开始后隐藏）-->
       <div class="game-tips" id="gameTips">
         <div class="tip-item">
           <span class="tip-icon">🧠</span>

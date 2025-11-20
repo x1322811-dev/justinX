@@ -45,6 +45,11 @@ class MemoryMatchGame {
     this.gamePhase = 'idle';
     this.idleAnimationInterval = null;
     
+    // 累计统计数据
+    this.totalMatchedPairs = 0; // 累计配对数
+    this.totalPlayTime = 0; // 累计游戏时长（仅配对阶段）
+    this.playPhaseStartTime = null; // 配对阶段开始时间
+    
     this.initElements();
     this.bindEvents();
     this.loadProgress();
@@ -61,6 +66,7 @@ class MemoryMatchGame {
       skipMemoryBtn: document.getElementById('skipMemoryBtn'),
       restartBtn: document.getElementById('restartBtn'),
       gameStatusBar: document.getElementById('gameStatusBar'),
+      gameRuleHint: document.getElementById('gameRuleHint'),
     };
   }
 
@@ -194,6 +200,11 @@ class MemoryMatchGame {
     }
     if (this.elements.gameHint) {
       this.elements.gameHint.style.display = 'block';
+    }
+    
+    // 隐藏游戏规则提示
+    if (this.elements.gameRuleHint) {
+      this.elements.gameRuleHint.style.display = 'none';
     }
     
     const gameTips = document.getElementById('gameTips');
@@ -348,6 +359,9 @@ class MemoryMatchGame {
   }
 
   startPlayTimer() {
+    // 记录配对阶段开始时间
+    this.playPhaseStartTime = Date.now();
+    
     this.playTimer = setInterval(() => {
       if (this.gamePhase !== 'playing') {
         if (this.playTimer) {
@@ -425,9 +439,16 @@ class MemoryMatchGame {
     }, 400);
     
     this.matchedPairs++;
+    this.totalMatchedPairs++; // 累计配对数
     
     const config = this.getLevelConfig();
     if (this.matchedPairs === config.pairs) {
+      // 计算当前关卡配对阶段的时长
+      if (this.playPhaseStartTime) {
+        const playTime = Math.floor((Date.now() - this.playPhaseStartTime) / 1000);
+        this.totalPlayTime += playTime; // 累计配对时长
+      }
+      
       if (this.playTimer) {
         clearInterval(this.playTimer);
         this.playTimer = null;
@@ -491,6 +512,12 @@ class MemoryMatchGame {
     
     this.gamePhase = 'finished';
     
+    // 计算当前关卡配对阶段的时长（失败时也要累计）
+    if (this.playPhaseStartTime) {
+      const playTime = Math.floor((Date.now() - this.playPhaseStartTime) / 1000);
+      this.totalPlayTime += playTime;
+    }
+    
     if (this.playTimer) {
       clearInterval(this.playTimer);
       this.playTimer = null;
@@ -547,11 +574,11 @@ class MemoryMatchGame {
         </div>
         <div class="stat-item">
           <div class="stat-label">成功配对</div>
-          <div class="stat-value">${this.matchedPairs}对</div>
+          <div class="stat-value">${this.totalMatchedPairs}对</div>
         </div>
         <div class="stat-item">
           <div class="stat-label">游戏时长</div>
-          <div class="stat-value">${playTime}s</div>
+          <div class="stat-value">${this.totalPlayTime}s</div>
         </div>
       </div>
       
@@ -632,6 +659,11 @@ class MemoryMatchGame {
     this.remainingTime = 0;
     this.gamePhase = 'idle';
     
+    // 重置累计统计数据
+    this.totalMatchedPairs = 0;
+    this.totalPlayTime = 0;
+    this.playPhaseStartTime = null;
+    
     try {
       localStorage.removeItem('memoryMatchProgress');
     } catch (e) {
@@ -649,6 +681,11 @@ class MemoryMatchGame {
     this.elements.skipMemoryBtn.style.display = 'none';
     this.elements.restartBtn.style.display = 'none';
     this.elements.gameHint.textContent = '记忆阶段';
+    
+    // 显示游戏规则提示
+    if (this.elements.gameRuleHint) {
+      this.elements.gameRuleHint.style.display = 'block';
+    }
     
     const gameTips = document.getElementById('gameTips');
     if (gameTips) {
