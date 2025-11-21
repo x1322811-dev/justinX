@@ -27,6 +27,22 @@
           "output": "dist/qb/almanac.html"
         }
       }
+    },
+    {
+      "name": "memory-match",
+      "title": "记忆力挑战",
+      "subtitle": "挑战最强大脑，看看你能坚持到第几关？",
+      "component": "components/memory-match/memory-match-pure.html",
+      "css": "../components/common.css",
+      "additionalCss": "../components/memory-match/memory-match.css",
+      "platforms": {
+        "tn": {
+          "output": "dist/tn/memory-match.html"
+        },
+        "qb": {
+          "output": "dist/qb/memory-match.html"
+        }
+      }
     }
 
   ],

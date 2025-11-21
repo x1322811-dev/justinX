@@ -144,7 +144,6 @@ button {
   --t2: #666666;
   --t5: #FFFFFF;
   --bg-white: #FFFFFF;
-  --bg-grey: #F5F5F5;
   --bg-block: #F7F7F7;   
   --blue-normal: #205AEF;
   --blue-light: rgba(32, 90, 239, 0.08);
@@ -159,7 +158,6 @@ button {
   --t2: #7F7F7F;
   --t5: #FFFFFF;
   --bg-white: #1A1A1A;
-  --bg-grey: #262626;
   --bg-block: #262626;
   --blue-normal: #1F4DC4;
   --blue-light: rgba(31, 77, 196, 0.15);
@@ -195,17 +193,294 @@ button {
   letter-spacing: 0;
 }
 
+.hint-container {
+  position: relative;
+  height: 88px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.game-rule-hint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-normal);
+  text-align: center;
+  padding: 24px 16px;
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.game-rule-hint.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.game-rule-hint.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.game-rule-hint.level-display-active {
+}
+
+.level-display-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  animation: levelPulse 0.6s ease;
+}
+
+@keyframes levelPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.memory-countdown-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.memory-countdown-module.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.memory-countdown-module.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.memory-countdown-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-normal);
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.memory-progress-bar {
+  width: 100%;  height: 4px;
+  background: var(--blue-light);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.memory-progress-fill {
+  height: 100%;
+  background: var(--blue-normal);
+  border-radius: 0;
+  width: 100%;
+  transition: width 1s linear;
+}
+
+.play-countdown-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.play-countdown-module.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.play-countdown-module.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.level-complete-hint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.level-complete-hint.visible {
+  opacity: 1;
+  visibility: visible;
+  animation: levelCompleteEnter 0.5s ease;
+}
+
+.level-complete-hint.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes levelCompleteEnter {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.play-countdown-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 48px;
+}
+
+.time-digit-group {
+  width: 36px;
+  height: 48px;
+  overflow: hidden;
+  background: var(--blue-light);
+  border-radius: 8px;
+  position: relative;
+}
+
+.time-digit-group.static {
+  width: 36px;
+}
+
+.time-separator {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.digit-roller {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.digit-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  will-change: transform;
+}
+
+.digit-item {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.digit-static {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: none;
+}
+
 .game-main-container {
-  background: var(--bg-grey);
+  background: transparent;
   border-radius: 12px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  transition: opacity 0.3s ease;
 }
 
 .game-status-bar {
-  display: flex;
+  display: none !important;
   justify-content: space-between;
   align-items: center;
   padding: 12px 8px;
@@ -383,6 +658,7 @@ button {
 .card-back {
   background: var(--blue-normal);
   z-index: 2;
+  border: 2px solid var(--blue-light);
 }
 
 .card-back::after {
@@ -397,6 +673,7 @@ button {
   z-index: 1;
   font-size: 38px;
   background: var(--bg-white);
+  border: 2px solid var(--blue-light);
 }
 
 .card-grid.memory-phase .memory-card {
@@ -407,7 +684,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 12px 0 0 0;
+  padding: 12px 18px 0 18px;
 }
 
 .btn {
@@ -595,30 +872,6 @@ button {
   flex: 1;
 }
 
-.game-tips {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 12px 0 0 0;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.tip-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--t2);
-  line-height: 1.3;
-  letter-spacing: 0;
-}
-
-.tip-icon {
-  font-size: 14px;
-  line-height: 1;
-}
-
 @keyframes slideUp {
   from {
     transform: translateY(30px);
@@ -713,6 +966,54 @@ button {
 
     <!-- 工具内容区域 -->
     <div class="memory-match-content content-container">
+      <!-- 提示区域容器 - 固定高度避免跳动 -->
+      <div class="hint-container">
+        <!-- 游戏规则提示 -->
+        <div class="game-rule-hint" id="gameRuleHint">
+          记住卡片的位置 找出所有相同的卡片
+        </div>
+
+        <!-- 记忆阶段倒计时模块 -->
+        <div class="memory-countdown-module" id="memoryCountdownModule">
+          <div class="memory-countdown-text">记住卡片的位置</div>
+          <div class="memory-progress-bar">
+            <div class="memory-progress-fill" id="memoryProgressFill"></div>
+          </div>
+        </div>
+
+        <!-- 配对阶段倒计时模块 -->
+        <div class="play-countdown-module" id="playCountdownModule">
+          <div class="play-countdown-display">
+            <!-- 十秒位 - 滚动 -->
+            <div class="time-digit-group">
+              <div class="digit-roller" id="digitTens">
+                <div class="digit-track"></div>
+              </div>
+            </div>
+            <!-- 秒位 - 滚动 -->
+            <div class="time-digit-group">
+              <div class="digit-roller" id="digitOnes">
+                <div class="digit-track"></div>
+              </div>
+            </div>
+            <div class="time-separator">:</div>
+            <!-- 0.1秒位 - 原地变换 -->
+            <div class="time-digit-group static">
+              <div class="digit-static" id="digitTenths">0</div>
+            </div>
+            <!-- 0.01秒位 - 原地变换 -->
+            <div class="time-digit-group static">
+              <div class="digit-static" id="digitHundredths">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 通关提示模块 -->
+        <div class="level-complete-hint" id="levelCompleteHint">
+          恭喜你，通过第1关！
+        </div>
+      </div>
+
       <!-- 游戏主容器 - 包含状态栏、提示、卡片区域 -->
       <div class="game-main-container">
         <!-- 游戏状态栏 -->
@@ -734,18 +1035,6 @@ button {
         </div>
       </div>
 
-      <!-- 游戏提示 -->
-      <div class="game-tips" id="gameTips">
-        <div class="tip-item">
-          <span class="tip-icon">🧠</span>
-          <span>记住卡片的位置</span>
-        </div>
-        <div class="tip-item">
-          <span class="tip-icon">⏱️</span>
-          <span>在限定时间内完成配对</span>
-        </div>
-      </div>
-
       <!-- 操作按钮区 -->
       <div class="button-group">
         <button class="btn btn-primary" id="startBtn">
@@ -753,9 +1042,6 @@ button {
         </button>
         <button class="btn btn-primary-dark" id="skipMemoryBtn" style="display: none;">
           直接开始
-        </button>
-        <button class="btn btn-secondary-light" id="restartBtn" style="display: none;">
-          重新开始
         </button>
       </div>
 
@@ -785,12 +1071,13 @@ const GAME_CONFIG = {
   ],
   
   emojiPool: [
-    '🎨', '🎭', '🎪', '🎯', '🎲', '🎸', '🎺', '🎻',
+    '💎', '🎭', '🎪', '🏰', '🎲', '🎡', '⛱️', '⛺️',
     '🏀', '⚽', '🏈', '🎾', '🏐', '🏓', '🏸', '🥊',
-    '🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍒',
+    '🧤', '🍊', '🍋', '🍌', '🍉', '🪭', '🎩', '🧶',
     '🌸', '🌺', '🌻', '🌹', '🌷', '🌼', '🌴', '🌵',
-    '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼',
-    '⭐', '🌟', '✨', '💫', '🌙', '☀️', '🌈', '🔥',
+    '🦧', '🦭', '🦖', '🦄', '🦅', '🐵', '🐯', '🐸',
+    '🤡', '🏎️', '🛵', '🚜', '🏔️', '🧧', '🎃', '🎈',
+    '🌊', '☘️', '🍁', '🍄', '🌏', '🥥', '🥝', '🧋',
   ],
 };
 
@@ -807,8 +1094,14 @@ class MemoryMatchGame {
     this.memoryTimer = null;
     this.playTimer = null;
     this.remainingTime = 0;
+    this.remainingCentiseconds = 0; // 以0.01秒为单位的剩余时间
     this.gamePhase = 'idle';
     this.idleAnimationInterval = null;
+    
+    // 累计统计数据
+    this.totalMatchedPairs = 0; // 累计配对数
+    this.totalPlayTime = 0; // 累计游戏时长（仅配对阶段）
+    this.playPhaseStartTime = null; // 配对阶段开始时间
     
     this.initElements();
     this.bindEvents();
@@ -824,28 +1117,28 @@ class MemoryMatchGame {
       gameHint: document.getElementById('gameHint'),
       startBtn: document.getElementById('startBtn'),
       skipMemoryBtn: document.getElementById('skipMemoryBtn'),
-      restartBtn: document.getElementById('restartBtn'),
       gameStatusBar: document.getElementById('gameStatusBar'),
+      gameRuleHint: document.getElementById('gameRuleHint'),
+      memoryCountdownModule: document.getElementById('memoryCountdownModule'),
+      memoryProgressFill: document.getElementById('memoryProgressFill'),
+      playCountdownModule: document.getElementById('playCountdownModule'),
+      levelCompleteHint: document.getElementById('levelCompleteHint'),
+      digitTens: document.getElementById('digitTens'),
+      digitOnes: document.getElementById('digitOnes'),
+      digitTenths: document.getElementById('digitTenths'),
+      digitHundredths: document.getElementById('digitHundredths'),
     };
   }
 
   bindEvents() {
     this.elements.startBtn.addEventListener('click', () => this.startGame());
     this.elements.skipMemoryBtn.addEventListener('click', () => this.skipMemoryPhase());
-    this.elements.restartBtn.addEventListener('click', () => this.restartGame());
   }
 
   loadProgress() {
-    try {
-      const saved = localStorage.getItem('memoryMatchProgress');
-      if (saved) {
-        const data = JSON.parse(saved);
-        this.currentLevel = data.currentLevel || 1;
-        this.totalLevelsCleared = data.totalLevelsCleared || 0;
-      }
-    } catch (e) {
-      console.error('加载进度失败:', e);
-    }
+    // 初始化时不再自动加载进度，始终从第1关开始
+    this.currentLevel = 1;
+    this.totalLevelsCleared = 0;
     this.updateStatusBar();
     
     if (this.elements.gameStatusBar) {
@@ -854,10 +1147,83 @@ class MemoryMatchGame {
     if (this.elements.gameHint) {
       this.elements.gameHint.style.display = 'none';
     }
+    
+    // 初始化提示区域：显示规则提示，隐藏倒计时模块
+    if (this.elements.gameRuleHint) {
+      this.elements.gameRuleHint.classList.add('visible');
+      this.elements.gameRuleHint.classList.remove('hidden');
+    }
+    if (this.elements.memoryCountdownModule) {
+      this.elements.memoryCountdownModule.classList.add('hidden');
+      this.elements.memoryCountdownModule.classList.remove('visible');
+    }
+    if (this.elements.playCountdownModule) {
+      this.elements.playCountdownModule.classList.add('hidden');
+      this.elements.playCountdownModule.classList.remove('visible');
+    }
+    if (this.elements.levelCompleteHint) {
+      this.elements.levelCompleteHint.classList.add('hidden');
+      this.elements.levelCompleteHint.classList.remove('visible');
+    }
+    
+    // 初始化滚动数字轨道
+    this.initDigitRollers();
+  }
+
+  // 初始化数字滚动轨道
+  initDigitRollers() {
+    const createDigitTrack = (roller) => {
+      const track = roller.querySelector('.digit-track');
+      track.innerHTML = '';
+      for (let i = 0; i <= 9; i++) {
+        const digitItem = document.createElement('div');
+        digitItem.className = 'digit-item';
+        digitItem.textContent = i;
+        track.appendChild(digitItem);
+      }
+    };
+    
+    if (this.elements.digitTens) {
+      createDigitTrack(this.elements.digitTens);
+    }
+    if (this.elements.digitOnes) {
+      createDigitTrack(this.elements.digitOnes);
+    }
+  }
+
+  // 更新滚动数字显示 (时间单位:0.01秒)
+  updateDigitDisplay(centiseconds) {
+    // 转换为各个位数
+    const totalSeconds = Math.floor(centiseconds / 100);
+    const tens = Math.floor(totalSeconds / 10) % 10;
+    const ones = totalSeconds % 10;
+    const tenths = Math.floor((centiseconds % 100) / 10);
+    const hundredths = centiseconds % 10;
+    
+    // 更新滚动数字(秒位和十秒位)
+    const tensTrack = this.elements.digitTens?.querySelector('.digit-track');
+    const onesTrack = this.elements.digitOnes?.querySelector('.digit-track');
+    
+    if (tensTrack) {
+      tensTrack.style.transform = `translateY(-${tens * 48}px)`;
+    }
+    if (onesTrack) {
+      onesTrack.style.transform = `translateY(-${ones * 48}px)`;
+    }
+    
+    // 更新静态数字(0.1秒位和0.01秒位)
+    if (this.elements.digitTenths) {
+      this.elements.digitTenths.textContent = tenths;
+    }
+    if (this.elements.digitHundredths) {
+      this.elements.digitHundredths.textContent = hundredths;
+    }
   }
 
   startIdleAnimation() {
-    const idleEmojis = ['🎨', '🎭', '🎸', '🎯'];
+    // 从emojiPool中随机选取4个emoji
+    const shuffled = [...GAME_CONFIG.emojiPool].sort(() => Math.random() - 0.5);
+    const idleEmojis = shuffled.slice(0, 4);
     const idleCards = [];
     idleEmojis.forEach((emoji, index) => {
       idleCards.push(
@@ -961,12 +1327,7 @@ class MemoryMatchGame {
       this.elements.gameHint.style.display = 'block';
     }
     
-    const gameTips = document.getElementById('gameTips');
-    if (gameTips) {
-      gameTips.style.display = 'none';
-    }
-    
-    this.gamePhase = 'memory';
+    this.gamePhase = 'levelDisplay';
     this.levelStartTime = Date.now();
     this.matchedPairs = 0;
     
@@ -975,14 +1336,79 @@ class MemoryMatchGame {
     
     this.updateStatusBar();
     this.generateCards(config);
-    this.renderCards();
     
     this.elements.startBtn.style.display = 'none';
-    this.elements.skipMemoryBtn.style.display = 'block';
-    this.elements.restartBtn.style.display = 'block';
+    this.elements.skipMemoryBtn.style.display = 'none';
     this.elements.gameHint.textContent = '记忆阶段';
     
-    this.playInitialRevealAnimation(config);
+    // 先展示关卡数，延迟渲染卡片
+    this.showLevelDisplay(config);
+  }
+
+  // 展示关卡数（1秒）
+  showLevelDisplay(config) {
+    // 淡出记忆倒计时模块
+    if (this.elements.memoryCountdownModule) {
+      this.elements.memoryCountdownModule.classList.add('hidden');
+      this.elements.memoryCountdownModule.classList.remove('visible');
+    }
+    
+    // 淡出当前规则提示内容
+    if (this.elements.gameRuleHint) {
+      this.elements.gameRuleHint.classList.add('hidden');
+      this.elements.gameRuleHint.classList.remove('visible');
+    }
+    
+    // 等待淡出完成后切换内容并淡入（同时渲染卡片）
+    setTimeout(() => {
+      // 显示"第N关"文字
+      if (this.elements.gameRuleHint) {
+        this.elements.gameRuleHint.innerHTML = `<span class="level-display-number">第 ${config.level} 关</span>`;
+        this.elements.gameRuleHint.classList.add('level-display-active');
+        this.elements.gameRuleHint.classList.remove('hidden');
+        this.elements.gameRuleHint.classList.add('visible');
+      }
+      
+      // 同时渲染卡片（背面朝上）
+      this.renderCards();
+      
+      // 确保所有卡片都是背面朝上
+      const cards = document.querySelectorAll('.memory-card');
+      cards.forEach(card => {
+        card.classList.remove('flipped');
+        card.style.pointerEvents = 'none';
+      });
+    }, 300);
+    
+    // 1秒后切换到记忆倒计时模块
+    setTimeout(() => {
+      // 淡出关卡显示
+      if (this.elements.gameRuleHint) {
+        this.elements.gameRuleHint.classList.add('hidden');
+        this.elements.gameRuleHint.classList.remove('visible');
+      }
+      
+      // 等待淡出完成后显示记忆倒计时模块
+      setTimeout(() => {
+        if (this.elements.gameRuleHint) {
+          this.elements.gameRuleHint.classList.remove('level-display-active');
+        }
+        
+        // 关键修改：在显示进度条模块之前，先初始化进度条为100%（无过渡）
+        if (this.elements.memoryProgressFill) {
+          this.elements.memoryProgressFill.style.transition = 'none';
+          this.elements.memoryProgressFill.style.width = '100%';
+        }
+        
+        if (this.elements.memoryCountdownModule) {
+          this.elements.memoryCountdownModule.classList.remove('hidden');
+          this.elements.memoryCountdownModule.classList.add('visible');
+        }
+        this.gamePhase = 'memory';
+        this.elements.skipMemoryBtn.style.display = 'block';
+        this.playInitialRevealAnimation(config);
+      }, 300);
+    }, 1000);
   }
 
   generateCards(config) {
@@ -1057,13 +1483,19 @@ class MemoryMatchGame {
     this.elements.cardGrid.classList.add('memory-phase');
     this.elements.gameHint.textContent = `记忆阶段`;
     
+    // 进度条已经在显示前初始化为100%，这里直接开始动画
+    if (this.elements.memoryProgressFill) {
+      // 使用 setTimeout 确保浏览器完成前一帧的渲染
+      setTimeout(() => {
+        this.elements.memoryProgressFill.style.transition = `width ${duration}s linear`;
+        this.elements.memoryProgressFill.style.width = '0%';
+      }, 50); // 50ms延迟足够浏览器完成渲染
+    }
+    
     let countdown = duration;
-    this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
     
     this.memoryTimer = setInterval(() => {
       countdown--;
-      this.elements.remainingTime.textContent = `剩余时间 ${countdown}s`;
-      this.elements.gameHint.textContent = `记忆阶段`;
       
       if (countdown <= 0) {
         this.endMemoryPhase();
@@ -1085,6 +1517,12 @@ class MemoryMatchGame {
       this.memoryTimer = null;
     }
     
+    // 淡出记忆倒计时模块
+    if (this.elements.memoryCountdownModule) {
+      this.elements.memoryCountdownModule.classList.add('hidden');
+      this.elements.memoryCountdownModule.classList.remove('visible');
+    }
+    
     this.gamePhase = 'playing';
     this.elements.cardGrid.classList.remove('memory-phase');
     this.elements.skipMemoryBtn.style.display = 'none';
@@ -1092,6 +1530,11 @@ class MemoryMatchGame {
     
     const cards = document.querySelectorAll('.memory-card');
     const cardArray = Array.from(cards);
+    
+    // 恢复卡片的点击功能
+    cardArray.forEach(card => {
+      card.style.pointerEvents = '';
+    });
     
     // 随机打乱卡片顺序，创建波浪式翻转效果
     const shuffledCards = cardArray.sort(() => Math.random() - 0.5);
@@ -1105,14 +1548,29 @@ class MemoryMatchGame {
       }, index * delayPerCard);
     });
     
-    // 等所有卡片翻转完成后再开始计时
+    // 等所有卡片翻转完成后显示配对倒计时并开始计时
     const totalFlipTime = shuffledCards.length * delayPerCard + 500;
     setTimeout(() => {
+      // 淡入配对倒计时模块
+      if (this.elements.playCountdownModule) {
+        this.elements.playCountdownModule.classList.remove('hidden');
+        this.elements.playCountdownModule.classList.add('visible');
+        // 初始化显示当前剩余时间(转换为0.01秒单位)
+        this.remainingCentiseconds = this.remainingTime * 100;
+        this.updateDigitDisplay(this.remainingCentiseconds);
+      }
       this.startPlayTimer();
     }, totalFlipTime);
   }
 
   startPlayTimer() {
+    // 记录配对阶段开始时间
+    this.playPhaseStartTime = Date.now();
+    
+    // 初始化剩余时间(0.01秒单位)
+    this.remainingCentiseconds = this.remainingTime * 100;
+    
+    // 使用10ms间隔实现0.01秒精度
     this.playTimer = setInterval(() => {
       if (this.gamePhase !== 'playing') {
         if (this.playTimer) {
@@ -1122,16 +1580,25 @@ class MemoryMatchGame {
         return;
       }
       
-      this.remainingTime--;
+      this.remainingCentiseconds--;
       
-      if (this.remainingTime <= 0) {
-        this.remainingTime = 0;
-        this.updateRemainingTime();
-        this.gameFailed();
-      } else {
+      // 更新滚动数字显示
+      this.updateDigitDisplay(this.remainingCentiseconds);
+      
+      // 每秒更新一次状态栏(减少DOM操作)
+      if (this.remainingCentiseconds % 100 === 0) {
+        this.remainingTime = Math.floor(this.remainingCentiseconds / 100);
         this.updateRemainingTime();
       }
-    }, 1000);
+      
+      if (this.remainingCentiseconds <= 0) {
+        this.remainingCentiseconds = 0;
+        this.remainingTime = 0;
+        this.updateRemainingTime();
+        this.updateDigitDisplay(0);
+        this.gameFailed();
+      }
+    }, 10); // 10ms = 0.01秒
   }
 
   updateRemainingTime() {
@@ -1190,9 +1657,16 @@ class MemoryMatchGame {
     }, 400);
     
     this.matchedPairs++;
+    this.totalMatchedPairs++; // 累计配对数
     
     const config = this.getLevelConfig();
     if (this.matchedPairs === config.pairs) {
+      // 计算当前关卡配对阶段的时长
+      if (this.playPhaseStartTime) {
+        const playTime = Math.floor((Date.now() - this.playPhaseStartTime) / 1000);
+        this.totalPlayTime += playTime; // 累计配对时长
+      }
+      
       if (this.playTimer) {
         clearInterval(this.playTimer);
         this.playTimer = null;
@@ -1232,6 +1706,12 @@ class MemoryMatchGame {
       this.playTimer = null;
     }
     
+    // 淡出配对倒计时模块
+    if (this.elements.playCountdownModule) {
+      this.elements.playCountdownModule.classList.add('hidden');
+      this.elements.playCountdownModule.classList.remove('visible');
+    }
+    
     this.totalLevelsCleared++;
     const playTime = Math.floor((Date.now() - this.levelStartTime) / 1000);
     
@@ -1256,13 +1736,22 @@ class MemoryMatchGame {
     
     this.gamePhase = 'finished';
     
+    // 计算当前关卡配对阶段的时长（失败时也要累计）
+    if (this.playPhaseStartTime) {
+      const playTime = Math.floor((Date.now() - this.playPhaseStartTime) / 1000);
+      this.totalPlayTime += playTime;
+    }
+    
     if (this.playTimer) {
       clearInterval(this.playTimer);
       this.playTimer = null;
     }
     
-    // 隐藏底部的重新开始按钮
-    this.elements.restartBtn.style.display = 'none';
+    // 淡出配对倒计时模块
+    if (this.elements.playCountdownModule) {
+      this.elements.playCountdownModule.classList.add('hidden');
+      this.elements.playCountdownModule.classList.remove('visible');
+    }
     
     // 隐藏"配对阶段"提示
     this.elements.gameHint.style.display = 'none';
@@ -1282,17 +1771,24 @@ class MemoryMatchGame {
     // 失败时显示结果面板
     const config = this.getLevelConfig();
     
+    // 在 hint-container 中显示失败提示（复用成功提示的区域）
+    if (this.elements.levelCompleteHint) {
+      this.elements.levelCompleteHint.textContent = '挑战结束，你已经很棒啦！';
+      this.elements.levelCompleteHint.classList.remove('hidden');
+      this.elements.levelCompleteHint.classList.add('visible');
+    }
+    
     // 设置卡片网格背景色
     this.elements.cardGrid.classList.add('game-over');
     this.elements.cardGrid.classList.remove('level-complete');
     
-    // 隐藏整个游戏主容器，显示结果面板
+    // 隐藏游戏主容器（状态栏和卡片）
     const gameMainContainer = document.querySelector('.game-main-container');
     if (gameMainContainer) {
       gameMainContainer.style.display = 'none';
     }
     
-    // 创建结果面板
+    // 创建结果面板（黄色容器）
     const resultPanel = document.createElement('div');
     resultPanel.className = 'inline-result-panel';
     resultPanel.id = 'inlineResultPanel';
@@ -1312,11 +1808,11 @@ class MemoryMatchGame {
         </div>
         <div class="stat-item">
           <div class="stat-label">成功配对</div>
-          <div class="stat-value">${this.matchedPairs}对</div>
+          <div class="stat-value">${this.totalMatchedPairs}对</div>
         </div>
         <div class="stat-item">
           <div class="stat-label">游戏时长</div>
-          <div class="stat-value">${playTime}s</div>
+          <div class="stat-value">${this.totalPlayTime}s</div>
         </div>
       </div>
       
@@ -1325,53 +1821,80 @@ class MemoryMatchGame {
       </div>
     `;
     
+    // 将结果面板插入到 game-main-container 之后
+    if (gameMainContainer && gameMainContainer.parentNode) {
+      gameMainContainer.parentNode.insertBefore(resultPanel, gameMainContainer.nextSibling);
+    }
+    
     // 绑定重试按钮
     setTimeout(() => {
       const retryBtn = document.getElementById('retryBtn');
       if (retryBtn) {
-        retryBtn.addEventListener('click', () => this.restartGame());
+        retryBtn.addEventListener('click', () => this.retryLevel());
       }
     }, 100);
-    
-    // 将结果面板插入到 game-main-container 之后（外面）
-    if (gameMainContainer && gameMainContainer.parentNode) {
-      gameMainContainer.parentNode.insertBefore(resultPanel, gameMainContainer.nextSibling);
-    }
   }
 
   showNextLevelCountdown() {
     const config = this.getLevelConfig();
     let countdown = 3;
     
-    this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
-    this.elements.gameHint.style.display = 'block';
-    this.elements.gameHint.classList.add('countdown-success');
+    // 淡出配对倒计时模块
+    if (this.elements.playCountdownModule) {
+      this.elements.playCountdownModule.classList.add('hidden');
+      this.elements.playCountdownModule.classList.remove('visible');
+    }
     
-    const countdownTimer = setInterval(() => {
-      countdown--;
-      if (countdown > 0) {
-        this.elements.gameHint.textContent = `第 ${config.level} 关完成！准备下一关... ${countdown}`;
-      } else {
-        clearInterval(countdownTimer);
-        this.elements.gameHint.classList.remove('countdown-success');
-        this.nextLevel();
+    // 等待淡出完成后显示通关提示
+    setTimeout(() => {
+      // 设置通关提示文字并显示
+      if (this.elements.levelCompleteHint) {
+        this.elements.levelCompleteHint.textContent = `恭喜你，通过第${config.level}关！`;
+        this.elements.levelCompleteHint.classList.remove('hidden');
+        this.elements.levelCompleteHint.classList.add('visible');
       }
-    }, 1000);
+      
+      // 隐藏状态栏的"配对阶段"提示
+      this.elements.gameHint.style.display = 'none';
+      
+      // 3秒倒计时
+      const countdownTimer = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(countdownTimer);
+          
+          // 淡出通关提示
+          if (this.elements.levelCompleteHint) {
+            this.elements.levelCompleteHint.classList.add('hidden');
+            this.elements.levelCompleteHint.classList.remove('visible');
+          }
+          
+          // 等待淡出完成后进入下一关
+          setTimeout(() => {
+            this.nextLevel();
+          }, 300);
+        }
+      }, 1000);
+    }, 300);
   }
 
   nextLevel() {
     this.currentLevel++;
     this.resetLevel();
+    
+    // 重新显示游戏状态栏和提示
+    if (this.elements.gameStatusBar) {
+      this.elements.gameStatusBar.style.display = 'flex';
+    }
+    if (this.elements.gameHint) {
+      this.elements.gameHint.style.display = 'block';
+    }
+    
     this.startGame();
   }
 
   retryLevel() {
-    this.hideInlineResult();
-    this.resetLevel();
-    this.startGame();
-  }
-
-  restartGame() {
+    // 清理定时器
     if (this.memoryTimer) {
       clearInterval(this.memoryTimer);
       this.memoryTimer = null;
@@ -1387,6 +1910,7 @@ class MemoryMatchGame {
     
     this.hideInlineResult();
     
+    // 重置到初始状态
     this.currentLevel = 1;
     this.totalLevelsCleared = 0;
     this.levelStartTime = null;
@@ -1395,31 +1919,61 @@ class MemoryMatchGame {
     this.matchedPairs = 0;
     this.isProcessing = false;
     this.remainingTime = 0;
+    this.remainingCentiseconds = 0;
     this.gamePhase = 'idle';
     
+    // 重置累计统计数据
+    this.totalMatchedPairs = 0;
+    this.totalPlayTime = 0;
+    this.playPhaseStartTime = null;
+    
+    // 清除进度
     try {
       localStorage.removeItem('memoryMatchProgress');
     } catch (e) {
       console.error('清除进度失败:', e);
     }
     
+    // 重置UI到初始状态
     this.elements.cardGrid.innerHTML = '';
     this.elements.cardGrid.className = 'card-grid';
     this.elements.cardGrid.style.display = '';
+    
     const gameMainContainer = document.querySelector('.game-main-container');
     if (gameMainContainer) {
       gameMainContainer.style.display = '';
     }
+    
+    // 显示开始按钮，隐藏其他按钮
     this.elements.startBtn.style.display = 'block';
     this.elements.skipMemoryBtn.style.display = 'none';
-    this.elements.restartBtn.style.display = 'none';
-    this.elements.gameHint.textContent = '记忆阶段';
     
-    const gameTips = document.getElementById('gameTips');
-    if (gameTips) {
-      gameTips.style.display = 'flex';
+    // 恢复游戏规则提示（使用淡入效果）
+    if (this.elements.gameRuleHint) {
+      this.elements.gameRuleHint.innerHTML = '记住卡片的位置 找出所有相同的卡片';
+      this.elements.gameRuleHint.classList.remove('level-display-active', 'hidden');
+      this.elements.gameRuleHint.classList.add('visible');
     }
     
+    // 隐藏记忆倒计时模块
+    if (this.elements.memoryCountdownModule) {
+      this.elements.memoryCountdownModule.classList.add('hidden');
+      this.elements.memoryCountdownModule.classList.remove('visible');
+    }
+    
+    // 隐藏配对倒计时模块
+    if (this.elements.playCountdownModule) {
+      this.elements.playCountdownModule.classList.add('hidden');
+      this.elements.playCountdownModule.classList.remove('visible');
+    }
+    
+    // 隐藏通关提示模块
+    if (this.elements.levelCompleteHint) {
+      this.elements.levelCompleteHint.classList.add('hidden');
+      this.elements.levelCompleteHint.classList.remove('visible');
+    }
+    
+    // 隐藏游戏状态栏和提示
     if (this.elements.gameStatusBar) {
       this.elements.gameStatusBar.style.display = 'none';
     }
@@ -1435,6 +1989,11 @@ class MemoryMatchGame {
     const panel = document.getElementById('inlineResultPanel');
     if (panel) {
       panel.remove();
+    }
+    // 隐藏失败提示（使用 levelCompleteHint）
+    if (this.elements.levelCompleteHint) {
+      this.elements.levelCompleteHint.classList.add('hidden');
+      this.elements.levelCompleteHint.classList.remove('visible');
     }
     const gameMainContainer = document.querySelector('.game-main-container');
     if (gameMainContainer) {
