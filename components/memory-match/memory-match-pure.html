@@ -12,9 +12,52 @@
 <body>
   <main>
     <div class="memory-match-content content-container">
-      <!-- 游戏规则提示 -->
-      <div class="game-rule-hint" id="gameRuleHint">
-        记住卡片的位置，在倒计时结束前完成配对！
+      <!-- 提示区域容器 - 固定高度避免跳动 -->
+      <div class="hint-container">
+        <!-- 游戏规则提示 -->
+        <div class="game-rule-hint" id="gameRuleHint">
+          记住卡片的位置 找出所有相同的卡片
+        </div>
+
+        <!-- 记忆阶段倒计时模块 -->
+        <div class="memory-countdown-module" id="memoryCountdownModule">
+          <div class="memory-countdown-text">记住卡片的位置</div>
+          <div class="memory-progress-bar">
+            <div class="memory-progress-fill" id="memoryProgressFill"></div>
+          </div>
+        </div>
+
+        <!-- 配对阶段倒计时模块 -->
+        <div class="play-countdown-module" id="playCountdownModule">
+          <div class="play-countdown-display">
+            <!-- 十秒位 - 滚动 -->
+            <div class="time-digit-group">
+              <div class="digit-roller" id="digitTens">
+                <div class="digit-track"></div>
+              </div>
+            </div>
+            <!-- 秒位 - 滚动 -->
+            <div class="time-digit-group">
+              <div class="digit-roller" id="digitOnes">
+                <div class="digit-track"></div>
+              </div>
+            </div>
+            <div class="time-separator">:</div>
+            <!-- 0.1秒位 - 原地变换 -->
+            <div class="time-digit-group static">
+              <div class="digit-static" id="digitTenths">0</div>
+            </div>
+            <!-- 0.01秒位 - 原地变换 -->
+            <div class="time-digit-group static">
+              <div class="digit-static" id="digitHundredths">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 通关提示模块 -->
+        <div class="level-complete-hint" id="levelCompleteHint">
+          恭喜你，通过第1关！
+        </div>
       </div>
 
       <!-- 游戏主容器 - 包含状态栏、提示、卡片区域 -->
@@ -38,18 +81,6 @@
         </div>
       </div>
 
-      <!-- 游戏提示（游戏开始后隐藏）-->
-      <div class="game-tips" id="gameTips">
-        <div class="tip-item">
-          <span class="tip-icon">🧠</span>
-          <span>记住卡片的位置</span>
-        </div>
-        <div class="tip-item">
-          <span class="tip-icon">⏱️</span>
-          <span>在限定时间内完成配对</span>
-        </div>
-      </div>
-
       <!-- 操作按钮区 -->
       <div class="button-group">
         <button class="btn btn-primary" id="startBtn">
@@ -57,9 +88,6 @@
         </button>
         <button class="btn btn-primary-dark" id="skipMemoryBtn" style="display: none;">
           直接开始
-        </button>
-        <button class="btn btn-secondary-light" id="restartBtn" style="display: none;">
-          重新开始
         </button>
       </div>
 

@@ -26,31 +26,307 @@
   letter-spacing: 0;
 }
 
+/* 提示区域容器 - 固定高度避免跳动 */
+.hint-container {
+  position: relative;
+  height: 88px;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
 /* 游戏规则提示 */
 .game-rule-hint {
-  font-size: 14px;
-  color: var(--t2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-normal);
   text-align: center;
-  padding: 12px 16px;
-  margin: 0 0 8px 0;
+  padding: 24px 16px;
+  margin: 0;
   line-height: 1.4;
   letter-spacing: 0;
   white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 隐藏状态 */
+.game-rule-hint.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 显示状态 */
+.game-rule-hint.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 关卡展示状态 */
+.game-rule-hint.level-display-active {
+  /* 保持与基础样式相同的尺寸 */
+}
+
+/* 关卡数字显示 */
+.level-display-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  animation: levelPulse 0.6s ease;
+}
+
+@keyframes levelPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 记忆阶段倒计时模块 */
+.memory-countdown-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 显示状态 */
+.memory-countdown-module.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 隐藏状态 */
+.memory-countdown-module.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.memory-countdown-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue-normal);
+  line-height: 1.4;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.memory-progress-bar {
+  width: 100%;  height: 4px;
+  background: var(--blue-light);
+  border-radius: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
+  position: relative;
+}
+
+.memory-progress-fill {
+  height: 100%;
+  background: var(--blue-normal);
+  border-radius: 0;
+  width: 100%;
+  transition: width 1s linear;
+}
+
+/* 配对阶段倒计时模块 */
+.play-countdown-module {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.play-countdown-module.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.play-countdown-module.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 通关提示模块 */
+.level-complete-hint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px 16px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.level-complete-hint.visible {
+  opacity: 1;
+  visibility: visible;
+  animation: levelCompleteEnter 0.5s ease;
+}
+
+.level-complete-hint.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes levelCompleteEnter {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.play-countdown-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 48px;
+}
+
+.time-digit-group {
+  width: 36px;
+  height: 48px;
+  overflow: hidden;
+  background: var(--blue-light);
+  border-radius: 8px;
+  position: relative;
+}
+
+.time-digit-group.static {
+  width: 36px;
+}
+
+.time-separator {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.digit-roller {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.digit-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  will-change: transform;
+}
+
+.digit-item {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 静态数字样式(0.1秒和0.01秒位) */
+.digit-static {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--blue-normal);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: none;
 }
 
 .game-main-container {
-  background: var(--bg-grey);
+  background: transparent;
   border-radius: 12px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  transition: opacity 0.3s ease;
 }
 
 .game-status-bar {
-  display: flex;
+  display: none !important;
   justify-content: space-between;
   align-items: center;
   padding: 12px 8px;
@@ -229,6 +505,7 @@
 .card-back {
   background: var(--blue-normal);
   z-index: 2;
+  border: 2px solid var(--blue-light);
 }
 
 .card-back::after {
@@ -243,6 +520,7 @@
   z-index: 1;
   font-size: 38px;
   background: var(--bg-white);
+  border: 2px solid var(--blue-light);
 }
 
 .card-grid.memory-phase .memory-card {
@@ -254,7 +532,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 12px 0 0 0;
+  padding: 12px 18px 0 18px;
 }
 
 .btn {
@@ -441,30 +719,6 @@
 
 .result-actions .btn {
   flex: 1;
-}
-
-.game-tips {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 12px 0 0 0;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.tip-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--t2);
-  line-height: 1.3;
-  letter-spacing: 0;
-}
-
-.tip-icon {
-  font-size: 14px;
-  line-height: 1;
 }
 
 @keyframes slideUp {

@@ -692,30 +692,6 @@ body.dark-theme {
   flex: 1;
 }
 
-.game-tips {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 12px 0 0 0;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.tip-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--t2);
-  line-height: 1.3;
-  letter-spacing: 0;
-}
-
-.tip-icon {
-  font-size: 14px;
-  line-height: 1;
-}
-
 @keyframes slideUp {
   from {
     transform: translateY(30px);
@@ -837,18 +813,6 @@ body.dark-theme {
         <!-- 卡片网格区域 -->
         <div class="card-grid" id="cardGrid">
           <!-- 卡片将通过JavaScript动态生成 -->
-        </div>
-      </div>
-
-      <!-- 游戏提示（游戏开始后隐藏）-->
-      <div class="game-tips" id="gameTips">
-        <div class="tip-item">
-          <span class="tip-icon">🧠</span>
-          <span>记住卡片的位置</span>
-        </div>
-        <div class="tip-item">
-          <span class="tip-icon">⏱️</span>
-          <span>在限定时间内完成配对</span>
         </div>
       </div>
 
@@ -1145,11 +1109,6 @@ class MemoryMatchGame {
     // 隐藏游戏规则提示
     if (this.elements.gameRuleHint) {
       this.elements.gameRuleHint.style.display = 'none';
-    }
-    
-    const gameTips = document.getElementById('gameTips');
-    if (gameTips) {
-      gameTips.style.display = 'none';
     }
     
     this.gamePhase = 'memory';
@@ -1625,11 +1584,6 @@ class MemoryMatchGame {
     // 显示游戏规则提示
     if (this.elements.gameRuleHint) {
       this.elements.gameRuleHint.style.display = 'block';
-    }
-    
-    const gameTips = document.getElementById('gameTips');
-    if (gameTips) {
-      gameTips.style.display = 'flex';
     }
     
     if (this.elements.gameStatusBar) {
